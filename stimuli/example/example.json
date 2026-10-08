@@ -1,0 +1,78 @@
+{
+ "atom_id": "imagenet_3371",
+ "dataset": "imagenet",
+ "stratum": "practice",
+ "refs_high": [
+  "stimuli/example/h0.jpg",
+  "stimuli/example/h1.jpg",
+  "stimuli/example/h2.jpg",
+  "stimuli/example/h3.jpg",
+  "stimuli/example/h4.jpg",
+  "stimuli/example/h5.jpg",
+  "stimuli/example/h6.jpg",
+  "stimuli/example/h7.jpg",
+  "stimuli/example/h8.jpg"
+ ],
+ "refs_low": [
+  "stimuli/example/l0.jpg",
+  "stimuli/example/l1.jpg",
+  "stimuli/example/l2.jpg",
+  "stimuli/example/l3.jpg",
+  "stimuli/example/l4.jpg",
+  "stimuli/example/l5.jpg",
+  "stimuli/example/l6.jpg",
+  "stimuli/example/l7.jpg",
+  "stimuli/example/l8.jpg"
+ ],
+ "query_pos": "stimuli/example/qpos.jpg",
+ "query_neg": "stimuli/example/qneg.jpg",
+ "names": {
+  "A": null,
+  "B": "swan",
+  "C": "smartphone",
+  "D": "swan"
+ },
+ "meta": {
+  "corr_salt": 0.7924,
+  "corr_cd": 0.7924,
+  "delta_sign": 0,
+  "category": "black swan",
+  "same_name": true,
+  "c_source": "imagenet_5555",
+  "z_pos": 9.071816444396973,
+  "h_neg": 0.8522659540176392,
+  "z_neg": 0.0,
+  "pos_rank_ev": 1,
+  "n_pos_candidates": 59,
+  "nact_ev": 59,
+  "salt_name_evaluable": true,
+  "cd_name_evaluable": true,
+  "src": {
+   "refs_high": [
+    5018,
+    5047,
+    5020,
+    5004,
+    5035,
+    5039,
+    5032,
+    5005,
+    5041
+   ],
+   "refs_low": [
+    33845,
+    35909,
+    3255,
+    1692,
+    11777,
+    14568,
+    9571,
+    1068,
+    14561
+   ],
+   "query_pos": 5026,
+   "query_neg": 5046,
+   "id_kind": "ImageNet val row (= id)"
+  }
+ }
+}
