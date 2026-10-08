@@ -679,15 +679,8 @@ function buildTimeline() {
     data: { task: "condition" }
   });
 
-  // 4. Fullscreen (not forced afterwards; exits are logged).
-  tl.push({
-    type: jsPsychFullscreen,
-    fullscreen_mode: true,
-    message: () => tx("ui.fullscreenHtml", "<p>The study will switch to full screen.</p>"),
-    button_label: () => tx("ui.fullscreenButton", "Enter full screen"),
-    css_classes: ["screen-text"],
-    data: { task: "fullscreen" }
-  });
+  // 4. No fullscreen step (removed 8 Oct. 2026 at the author's request); the window
+  //    size is still checked by the browser check, and blur events are logged.
 
   // 5. Preload example + practice images.
   tl.push({
@@ -748,11 +741,7 @@ function buildTimeline() {
   tl.push(textScreen("test_intro", () => tx("testIntroHtml", "<p>The task starts now.</p>"), () => tx("ui.continueButton", "Continue")));
   tl.push(trialBlock("test"));
 
-  // 12. Leave fullscreen if needed, then the questionnaire.
-  tl.push({
-    timeline: [{ type: jsPsychFullscreen, fullscreen_mode: false, delay_after: 0, data: { task: "fullscreen_exit" } }],
-    conditional_function: () => !!(document.fullscreenElement || document.webkitFullscreenElement)
-  });
+  // 12. Questionnaire.
   tl.push({
     type: jsPsychSurveyHtmlForm,
     css_classes: ["screen-text"],
