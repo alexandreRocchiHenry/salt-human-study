@@ -117,6 +117,7 @@ function showFatal(html) {
 function stimFolder() {
   // ?stim=<folder> is honoured in debug only (e.g. stimuli_mock).
   if (!CFG.debug) return "stimuli";
+  if (CFG.stimOverride) return CFG.stimOverride;   // ?proto=a|b (config.js)
   const s = new URLSearchParams(window.location.search).get("stim");
   if (s && /^[A-Za-z0-9_-]+$/.test(s)) return s;
   if (s) console.warn("[experiment] ignored invalid ?stim value: " + s);
@@ -253,7 +254,7 @@ function debugBadge(item, chosenSide) {
   }
   return '<div class="debug-badge ' + src.cls + '">' +
     '<div class="dbg-source">' + esc(src.label) + "</div>" +
-    '<div class="dbg-meta">atome ' + esc(item.atom_id) + " · " +
+    '<div class="dbg-meta">' + (CFG.stimOverride ? "stimuli : " + esc(CFG.stimOverride) + " · " : "") + "atome " + esc(item.atom_id) + " · " +
     (item.item_type === "practice" ? "entraînement" : item.item_type === "catch" ? "essai piège" : "test, strate " + esc(item.atom.stratum)) +
     " · bonne image : " + SIDE_FR[item.pos_side] + "</div>" +
     verdict + "</div>";

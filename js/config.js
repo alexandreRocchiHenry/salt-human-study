@@ -7,7 +7,10 @@
   if (debug && (p.get("rot") !== null || p.get("list") !== null)) {
     conditionOverride = { rotation: parseInt(p.get("rot") || "0", 10), list: parseInt(p.get("list") || "0", 10) };
   }
+  // Debug only: ?proto=a|b loads a prototype stimulus set (stimuli_a / stimuli_b, 9 Oct. 2026) instead of stimuli/.
+  const proto = p.get("proto");
   window.EXP_CONFIG = {
+    stimOverride: debug && proto && /^[a-z0-9_-]+$/.test(proto) ? "stimuli_" + proto : null,
     datapipeExperimentId: "DATAPIPE_EXPERIMENT_ID",   // placeholder, set by the author
     // Active conditions (8 Oct. 2026: C, the permuted SALT name, is set aside for now).
     // DataPipe cells = 3 lists x number of active conditions (one rotation per condition).
