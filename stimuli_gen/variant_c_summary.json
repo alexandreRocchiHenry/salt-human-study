@@ -1,0 +1,21 @@
+{
+ "variant": "c",
+ "served": 129,
+ "fallback_to_current": 0,
+ "n_fallback_rule": 2,
+ "pair_same_cat": 0,
+ "median_m1": 0.1643727496266365,
+ "median_m1_knn": 0.19999999999999996,
+ "sign_pos": 129,
+ "mean_m5_salt": 0.35658914728682173,
+ "mean_m5_cd": 0.2558139534883721,
+ "median_row_cos": 0.32975172996520996,
+ "fallbacks": {
+  "coco_580": [
+   "query_pos: no top positive inside the concept region (cos to high centroid / kNN); constraint dropped"
+  ],
+  "coco_750": [
+   "query_pos: no top positive inside the concept region (cos to high centroid / kNN); constraint dropped"
+  ]
+ }
+}

@@ -1,0 +1,366 @@
+{
+ "version": "2026-10-08-v1",
+ "created": "2026-10-09 08:25:18",
+ "seeds": {
+  "R": 0,
+  "atom": "1000003*atom + 7 + (0 coco, 1 imagenet)",
+  "lists": 1,
+  "c_names": 2,
+  "catch": 3,
+  "split": "paper_proto/common.split(N, key): default_rng(0) permutation, first 20 % held-out"
+ },
+ "rules": {
+  "names": "paper_proto/out/<key>_atomes.csv, regime 'ouvert', SALT = methode 'tete_s0', CLIP-Dissect = 'cd_off_20k'",
+  "code": "z = TopK_32(ReLU(h)), h = scaler(A_img) @ We.T + be, SAE = DS[key] of paper_proto/common.py",
+  "refs_high": "9 naming-split images with the highest z_a (h0 = highest)",
+  "refs_low": "9 naming-split images with the lowest pre-code h_a (l0 = lowest)",
+  "query_pos": "held-out, the highest-z_a image among the top 10 held-out images by z_a that has a same-category negative; candidates walked by decreasing z_a until a negative exists",
+  "query_neg": "held-out, z = 0 for the atom AND for every atom sharing its SALT or CLIP-Dissect name (split features), same category: imagenet same wnid; coco max Jaccard of the 80-label sets (> 0), ties by seed",
+  "example": "imagenet atom 4999 fixed after visual check; its query_pos walks held-out candidates by decreasing z_a",
+  "crop": "shorter side to 224 (bicubic) + centre crop 224, JPEG q85, optimize, EXIF stripped",
+  "blocklist": {
+   "substrings": [
+    "sex",
+    "porn",
+    "nude",
+    "naked",
+    "nsfw",
+    "fuck",
+    "shit",
+    "rape",
+    "nazi",
+    "hitler",
+    "nigg",
+    "fag",
+    "slut",
+    "whore",
+    "bitch",
+    "cunt",
+    "dick",
+    "penis",
+    "vagina",
+    "boob",
+    "tits",
+    "erotic",
+    "xxx",
+    "suicide",
+    "murder",
+    "corpse",
+    "gore",
+    "kill",
+    "terror",
+    "retard"
+   ],
+   "words": [
+    "anal",
+    "ass",
+    "blood",
+    "cock",
+    "dead",
+    "drug",
+    "drugs",
+    "gun",
+    "guns",
+    "weapon",
+    "weapons"
+   ]
+  }
+ },
+ "datasets": {
+  "coco": {
+   "N": 5000,
+   "n_eval": 1000,
+   "n_train": 4000,
+   "n_atoms": 6144,
+   "bundle_err": 0.0,
+   "n_csv_atoms": 2869,
+   "n_recomputed_evaluable": 2869,
+   "csv_equals_recomputed": true,
+   "n_top_pos": 50,
+   "n_R": 30,
+   "n_Delta": 30,
+   "n_practice": 5,
+   "n_catch": 3,
+   "example": null,
+   "replacements": {
+    "R": 1,
+    "Delta": 1,
+    "practice": 0,
+    "catch": 1
+   },
+   "replaced_atoms": {
+    "R": [
+     {
+      "atom": 2580,
+      "reason": "fewer than 9 naming-split images with z>0"
+     }
+    ],
+    "Delta": [
+     {
+      "atom": 1885,
+      "reason": "fewer than 9 naming-split images with z>0"
+     }
+    ],
+    "practice": [],
+    "catch": [
+     {
+      "atom": 5674,
+      "reason": "fewer than 9 naming-split images with z>0"
+     }
+    ]
+   },
+   "n_atoms_with_blocklisted_name": 2,
+   "blocklisted_names": [
+    "naked",
+    "telefonsex"
+   ],
+   "n_delta_candidates": 2116,
+   "pool_z_pos_median": 5.783047437667847,
+   "c_name_fallback": {
+    "pool": 0,
+    "practice": 0,
+    "catch": 0
+   },
+   "delta_signs": {
+    "+1 (SALT higher)": 17,
+    "-1 (CD higher)": 13,
+    "0": 0
+   },
+   "delta_abs": {
+    "min": 0.56538,
+    "max": 0.84666
+   },
+   "delta_name_not_evaluable": {
+    "salt": 11,
+    "cd": 11
+   },
+   "R_same_name": 9,
+   "R_mean_corr": {
+    "salt": 0.2660416666666667,
+    "cd": 0.22247866666666666
+   },
+   "Delta_mean_corr": {
+    "salt": 0.3878973333333333,
+    "cd": 0.2947923333333333
+   }
+  },
+  "imagenet": {
+   "N": 50000,
+   "n_eval": 10000,
+   "n_train": 40000,
+   "n_atoms": 6144,
+   "bundle_err": 0.0,
+   "n_csv_atoms": 2758,
+   "n_recomputed_evaluable": 2758,
+   "csv_equals_recomputed": true,
+   "n_top_pos": 500,
+   "n_R": 30,
+   "n_Delta": 30,
+   "n_practice": 4,
+   "n_catch": 2,
+   "example": 4228,
+   "replacements": {
+    "R": 10,
+    "Delta": 7,
+    "practice": 4,
+    "catch": 4
+   },
+   "replaced_atoms": {
+    "R": [
+     {
+      "atom": 2154,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 5940,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 5476,
+      "reason": "blocklisted name: SALT 'firearm', CD 'gun'"
+     },
+     {
+      "atom": 3169,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 3820,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 4771,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 5042,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 5002,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 1538,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 11,
+      "reason": "no held-out negative of the same category"
+     }
+    ],
+    "Delta": [
+     {
+      "atom": 5211,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 574,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 1056,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 2666,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 4155,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 3064,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 5530,
+      "reason": "no held-out negative of the same category"
+     }
+    ],
+    "practice": [
+     {
+      "atom": 4840,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 6009,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 2047,
+      "reason": "no held-out negative of the same category"
+     },
+     {
+      "atom": 2379,
+      "reason": "no held-out negative of the same category"
+     }
+    ],
+    "catch": [
+     {
+      "atom": 5014,
+      "reason": "no held-out negative of the same category as the copied reference"
+     },
+     {
+      "atom": 3907,
+      "reason": "no held-out negative of the same category as the copied reference"
+     },
+     {
+      "atom": 95,
+      "reason": "no held-out negative of the same category as the copied reference"
+     },
+     {
+      "atom": 5907,
+      "reason": "no held-out negative of the same category as the copied reference"
+     }
+    ]
+   },
+   "n_atoms_with_blocklisted_name": 6,
+   "blocklisted_names": [
+    "animalsex",
+    "gun",
+    "nude",
+    "transsexual"
+   ],
+   "n_delta_candidates": 1960,
+   "pool_z_pos_median": 7.579200506210327,
+   "c_name_fallback": {
+    "pool": 0,
+    "practice": 0,
+    "catch": 0
+   },
+   "delta_signs": {
+    "+1 (SALT higher)": 23,
+    "-1 (CD higher)": 7,
+    "0": 0
+   },
+   "delta_abs": {
+    "min": 0.5575899999999999,
+    "max": 0.84199
+   },
+   "delta_name_not_evaluable": {
+    "salt": 4,
+    "cd": 19
+   },
+   "R_same_name": 8,
+   "R_mean_corr": {
+    "salt": 0.20158566666666664,
+    "cd": 0.1824336666666667
+   },
+   "Delta_mean_corr": {
+    "salt": 0.49713466666666667,
+    "cd": 0.15052466666666667
+   }
+  }
+ },
+ "output": {
+  "n_pool": 120,
+  "n_practice": 9,
+  "n_catch": 5,
+  "list_sizes": [
+   40,
+   40,
+   40
+  ],
+  "stimuli_bytes": 37028337,
+  "stimuli_files": 2703
+ },
+ "lists": [
+  {
+   "list": 0,
+   "coco_R": 10,
+   "coco_Delta": 10,
+   "imagenet_R": 10,
+   "imagenet_Delta": 10,
+   "mean_corr_salt": 0.34643900000000005,
+   "mean_corr_cd": 0.219002,
+   "mean_abs_delta_Delta": 0.6497729999999999,
+   "delta_sign_plus": 14,
+   "delta_sign_minus": 6
+  },
+  {
+   "list": 1,
+   "coco_R": 10,
+   "coco_Delta": 10,
+   "imagenet_R": 10,
+   "imagenet_Delta": 10,
+   "mean_corr_salt": 0.366839,
+   "mean_corr_cd": 0.16195400000000001,
+   "mean_abs_delta_Delta": 0.6536749999999999,
+   "delta_sign_plus": 15,
+   "delta_sign_minus": 5
+  },
+  {
+   "list": 2,
+   "coco_R": 10,
+   "coco_Delta": 10,
+   "imagenet_R": 10,
+   "imagenet_Delta": 10,
+   "mean_corr_salt": 0.3012165,
+   "mean_corr_cd": 0.25671600000000006,
+   "mean_abs_delta_Delta": 0.6604475000000001,
+   "delta_sign_plus": 11,
+   "delta_sign_minus": 9
+  }
+ ]
+}
