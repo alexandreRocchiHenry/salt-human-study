@@ -1,6 +1,6 @@
 {
- "version": "2026-10-08-v1",
- "created": "2026-10-09 08:25:18",
+ "version": "2026-10-12-v3",
+ "created": "2026-10-12 16:01:39",
  "seeds": {
   "R": 0,
   "atom": "1000003*atom + 7 + (0 coco, 1 imagenet)",
@@ -77,71 +77,64 @@
    "n_recomputed_evaluable": 2869,
    "csv_equals_recomputed": true,
    "n_top_pos": 50,
+   "class_name_filter": {
+    "n_evaluable": 2869,
+    "n_name_ok": 997,
+    "n_not_class_detector": 830,
+    "n_eligible": 523,
+    "class_corr_max": 0.4,
+    "coherence_min": 0.15
+   },
    "n_R": 30,
    "n_Delta": 30,
    "n_practice": 5,
    "n_catch": 3,
    "example": null,
    "replacements": {
-    "R": 1,
-    "Delta": 1,
+    "R": 0,
+    "Delta": 0,
     "practice": 0,
-    "catch": 1
+    "catch": 0
    },
    "replaced_atoms": {
-    "R": [
-     {
-      "atom": 2580,
-      "reason": "fewer than 9 naming-split images with z>0"
-     }
-    ],
-    "Delta": [
-     {
-      "atom": 1885,
-      "reason": "fewer than 9 naming-split images with z>0"
-     }
-    ],
+    "R": [],
+    "Delta": [],
     "practice": [],
-    "catch": [
-     {
-      "atom": 5674,
-      "reason": "fewer than 9 naming-split images with z>0"
-     }
-    ]
+    "catch": []
    },
    "n_atoms_with_blocklisted_name": 2,
    "blocklisted_names": [
     "naked",
     "telefonsex"
    ],
-   "n_delta_candidates": 2116,
-   "pool_z_pos_median": 5.783047437667847,
+   "n_delta_candidates": 352,
+   "pool_z_pos_median": 5.052517890930176,
    "c_name_fallback": {
     "pool": 0,
     "practice": 0,
     "catch": 0
    },
    "delta_signs": {
-    "+1 (SALT higher)": 17,
-    "-1 (CD higher)": 13,
+    "+1 (SALT higher)": 22,
+    "-1 (CD higher)": 8,
     "0": 0
    },
    "delta_abs": {
-    "min": 0.56538,
-    "max": 0.84666
+    "min": 0.3701,
+    "max": 0.72557
    },
    "delta_name_not_evaluable": {
-    "salt": 11,
+    "salt": 4,
     "cd": 11
    },
-   "R_same_name": 9,
+   "R_same_name": 4,
    "R_mean_corr": {
-    "salt": 0.2660416666666667,
-    "cd": 0.22247866666666666
+    "salt": 0.19722333333333333,
+    "cd": 0.15850033333333333
    },
    "Delta_mean_corr": {
-    "salt": 0.3878973333333333,
-    "cd": 0.2947923333333333
+    "salt": 0.3681823333333333,
+    "cd": 0.15582233333333334
    }
   },
   "imagenet": {
@@ -154,123 +147,52 @@
    "n_recomputed_evaluable": 2758,
    "csv_equals_recomputed": true,
    "n_top_pos": 500,
+   "class_name_filter": {
+    "n_evaluable": 2758,
+    "n_name_ok": 507,
+    "n_not_class_detector": 281,
+    "n_eligible": 267,
+    "class_corr_max": 0.4,
+    "coherence_min": 0.15
+   },
    "n_R": 30,
    "n_Delta": 30,
    "n_practice": 4,
    "n_catch": 2,
-   "example": 4228,
+   "example": 5844,
    "replacements": {
-    "R": 10,
-    "Delta": 7,
-    "practice": 4,
-    "catch": 4
+    "R": 0,
+    "Delta": 0,
+    "practice": 0,
+    "catch": 6
    },
    "replaced_atoms": {
-    "R": [
-     {
-      "atom": 2154,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 5940,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 5476,
-      "reason": "blocklisted name: SALT 'firearm', CD 'gun'"
-     },
-     {
-      "atom": 3169,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 3820,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 4771,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 5042,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 5002,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 1538,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 11,
-      "reason": "no held-out negative of the same category"
-     }
-    ],
-    "Delta": [
-     {
-      "atom": 5211,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 574,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 1056,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 2666,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 4155,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 3064,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 5530,
-      "reason": "no held-out negative of the same category"
-     }
-    ],
-    "practice": [
-     {
-      "atom": 4840,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 6009,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 2047,
-      "reason": "no held-out negative of the same category"
-     },
-     {
-      "atom": 2379,
-      "reason": "no held-out negative of the same category"
-     }
-    ],
+    "R": [],
+    "Delta": [],
+    "practice": [],
     "catch": [
      {
-      "atom": 5014,
+      "atom": 4069,
+      "reason": "no held-out negative of the same category as the copied reference"
+     },
+     {
+      "atom": 5017,
+      "reason": "no held-out negative of the same category as the copied reference"
+     },
+     {
+      "atom": 3926,
+      "reason": "no held-out negative of the same category as the copied reference"
+     },
+     {
+      "atom": 99,
+      "reason": "no held-out negative of the same category as the copied reference"
+     },
+     {
+      "atom": 5904,
       "reason": "no held-out negative of the same category as the copied reference"
      },
      {
       "atom": 3907,
-      "reason": "no held-out negative of the same category as the copied reference"
-     },
-     {
-      "atom": 95,
-      "reason": "no held-out negative of the same category as the copied reference"
-     },
-     {
-      "atom": 5907,
       "reason": "no held-out negative of the same category as the copied reference"
      }
     ]
@@ -282,34 +204,34 @@
     "nude",
     "transsexual"
    ],
-   "n_delta_candidates": 1960,
-   "pool_z_pos_median": 7.579200506210327,
+   "n_delta_candidates": 180,
+   "pool_z_pos_median": 6.8900439739227295,
    "c_name_fallback": {
     "pool": 0,
     "practice": 0,
     "catch": 0
    },
    "delta_signs": {
-    "+1 (SALT higher)": 23,
-    "-1 (CD higher)": 7,
+    "+1 (SALT higher)": 20,
+    "-1 (CD higher)": 10,
     "0": 0
    },
    "delta_abs": {
-    "min": 0.5575899999999999,
-    "max": 0.84199
+    "min": 0.13634,
+    "max": 0.42056
    },
    "delta_name_not_evaluable": {
-    "salt": 4,
-    "cd": 19
+    "salt": 7,
+    "cd": 9
    },
-   "R_same_name": 8,
+   "R_same_name": 9,
    "R_mean_corr": {
-    "salt": 0.20158566666666664,
-    "cd": 0.1824336666666667
+    "salt": 0.07504266666666666,
+    "cd": 0.05118466666666667
    },
    "Delta_mean_corr": {
-    "salt": 0.49713466666666667,
-    "cd": 0.15052466666666667
+    "salt": 0.1575333333333333,
+    "cd": 0.08625366666666667
    }
   }
  },
@@ -322,7 +244,7 @@
    40,
    40
   ],
-  "stimuli_bytes": 37028337,
+  "stimuli_bytes": 36787969,
   "stimuli_files": 2703
  },
  "lists": [
@@ -332,11 +254,11 @@
    "coco_Delta": 10,
    "imagenet_R": 10,
    "imagenet_Delta": 10,
-   "mean_corr_salt": 0.34643900000000005,
-   "mean_corr_cd": 0.219002,
-   "mean_abs_delta_Delta": 0.6497729999999999,
-   "delta_sign_plus": 14,
-   "delta_sign_minus": 6
+   "mean_corr_salt": 0.19162149999999997,
+   "mean_corr_cd": 0.1309655,
+   "mean_abs_delta_Delta": 0.3372194999999999,
+   "delta_sign_plus": 13,
+   "delta_sign_minus": 7
   },
   {
    "list": 1,
@@ -344,9 +266,9 @@
    "coco_Delta": 10,
    "imagenet_R": 10,
    "imagenet_Delta": 10,
-   "mean_corr_salt": 0.366839,
-   "mean_corr_cd": 0.16195400000000001,
-   "mean_abs_delta_Delta": 0.6536749999999999,
+   "mean_corr_salt": 0.19045375,
+   "mean_corr_cd": 0.120377,
+   "mean_abs_delta_Delta": 0.3485074999999999,
    "delta_sign_plus": 15,
    "delta_sign_minus": 5
   },
@@ -356,11 +278,11 @@
    "coco_Delta": 10,
    "imagenet_R": 10,
    "imagenet_Delta": 10,
-   "mean_corr_salt": 0.3012165,
-   "mean_corr_cd": 0.25671600000000006,
-   "mean_abs_delta_Delta": 0.6604475000000001,
-   "delta_sign_plus": 11,
-   "delta_sign_minus": 9
+   "mean_corr_salt": 0.216411,
+   "mean_corr_cd": 0.08747825,
+   "mean_abs_delta_Delta": 0.3515435,
+   "delta_sign_plus": 14,
+   "delta_sign_minus": 6
   }
  ]
 }

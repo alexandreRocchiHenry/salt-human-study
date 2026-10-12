@@ -89,6 +89,8 @@ the data as `debug_<subject_id>.csv`. Try all 12 (condition, list) pairs before 
 | `STUDY_ID` | production | Prolific study id (`{{%STUDY_ID%}}`) |
 | `SESSION_ID` | production | Prolific session id (`{{%SESSION_ID%}}`) |
 | `debug=1` | testing | debug mode: no DataPipe, no redirect, local CSV download, debug badge on trials |
+| `full=1` | debug only | run the participant flow (consent, instructions, warm-up, questionnaire). Without it, `debug=1` opens the trial browser: no instructions or warm-up, ◀ ▶ arrows (or ← → keys) to move between rounds without answering, a click on an image shows the verdict and both names |
+| `proto=a\|b\|c` | debug only | prototype stimulus set (`stimuli_a`, `stimuli_b`, `stimuli_c`) |
 | `rot=0..2` (0..3 with C) | debug only | force the rotation of the condition-to-atom assignment |
 | `list=0..2` | debug only | force the list (default 0 when `rot` is given) |
 | `stim=<folder>` | debug only | stimuli folder (default `stimuli`; use `stimuli_mock` for placeholders) |

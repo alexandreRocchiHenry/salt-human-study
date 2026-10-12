@@ -1,7 +1,7 @@
-Images for the illustrated example page of the instructions (stimuli version 2026-10-08-v1).
-Atom: imagenet_4228 (ImageNet SAE atom 4228, outside the test pool, the practice set and the catch set).
-SALT name (B): curtain | permuted name (C): spider | CLIP-Dissect name (D): curtain
-Category of the two queries: front curtain
+Images for the illustrated example page of the instructions (stimuli version 2026-10-12-v3).
+Atom: imagenet_5844 (ImageNet SAE atom 5844, outside the test pool, the practice set and the catch set).
+SALT name (B): scoreboard | permuted name (C): slug | CLIP-Dissect name (D): scoreboard
+Category of the two queries: barbershop
 
 h0.jpg ... h8.jpg  most activating images (h0 = highest)
 l0.jpg ... l8.jpg  least activating images (l0 = lowest pre-code)

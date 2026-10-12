@@ -11,6 +11,8 @@
   const proto = p.get("proto");
   window.EXP_CONFIG = {
     stimOverride: debug && proto && /^[a-z0-9_-]+$/.test(proto) ? "stimuli_" + proto : null,
+    // Debug only: by default the session opens a trial browser (no instructions, no warm-up, prev/next arrows); ?full=1 runs the participant flow.
+    debugBrowse: debug && p.get("full") !== "1",
     datapipeExperimentId: "DATAPIPE_EXPERIMENT_ID",   // placeholder, set by the author
     // Active conditions (8 Oct. 2026: C, the permuted SALT name, is set aside for now).
     // DataPipe cells = 3 lists x number of active conditions (one rotation per condition).

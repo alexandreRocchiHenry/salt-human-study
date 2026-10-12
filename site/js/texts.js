@@ -68,8 +68,21 @@
     "kind of thing.</p>" +
     "<p>Click <b>Next</b> to start the practice.</p>";
 
-  const PLAIN_PAGES = [PAGE_1, PAGE_2_INTRO, PAGE_3, PAGE_4, PAGE_EXAMPLE];
-  const NAMED_PAGES = [PAGE_1, PAGE_2_INTRO + PAGE_2_NAME, PAGE_3, PAGE_4, PAGE_EXAMPLE];
+  // 12 Oct. 2026: a single instruction page, with the illustrated example and the warm-up announcement at the end.
+  const ONE_PAGE =
+    "<h2>Your task</h2>" +
+    "<p>An AI model has learned visual <b>concepts</b>: things it looks for in images. " +
+    "For each concept you see two rows of images. The <b>top row</b> matches the concept most, " +
+    "the <b>bottom row</b> matches it least. Then click, among <b>two new images</b>, " +
+    "the one that belongs with the top row, and say how sure you are (1 to 5).</p>" +
+    "<p>On some rounds a short name for the concept is shown above the images. " +
+    "It was produced by a computer program and may or may not be accurate.</p>" +
+    "{{EXAMPLE_TRIAL}}" +
+    "<p>Here the outlined image on the right is the correct answer.</p>" +
+    '<p class="warmup-note"><b>You will start with 9 warm-up rounds.</b> They are only for training: ' +
+    "after each one we tell you if you were right. Then the real task (about 45 rounds) begins, without feedback.</p>";
+  const PLAIN_PAGES = [ONE_PAGE];
+  const NAMED_PAGES = [ONE_PAGE];
 
   window.EXP_TEXTS = {
     title: "Image study",
@@ -108,15 +121,15 @@
 
     practiceIntroHtml:
       '<div class="text-page">' +
-      "<h2>Practice</h2>" +
-      "<p>You will now do <b>9 practice rounds</b>. After each one, we will tell you if you " +
-      "picked the right image.</p>" +
+      "<h2>Warm-up rounds</h2>" +
+      "<p>You will now do <b>9 warm-up rounds</b>. They are <b>training only</b> and do not count. " +
+      "After each one, we will tell you if you picked the right image.</p>" +
       "</div>",
 
     testIntroHtml:
       '<div class="text-page">' +
       "<h2>The real task starts now</h2>" +
-      "<p>Practice is over. From now on you will <b>not</b> be told whether your answer was correct.</p>" +
+      "<p>The warm-up is over. From now on the rounds count, and you will <b>not</b> be told whether your answer was correct.</p>" +
       "<p>There are about 45 rounds. Once you start, you cannot go back to the instructions.</p>" +
       "<p>Take a good look at each round, but do not overthink it.</p>" +
       "</div>",
@@ -191,6 +204,7 @@
     prolificCompletionUrl: "https://app.prolific.com/submissions/complete?cc=COMPLETION_CODE",
 
     ui: {
+      warmupBanner: "Warm-up round {n} of {N}: training only, this round does not count.",
       consentAgree: "I agree",
       consentDecline: "I do not agree",
       noConsentHtml:

@@ -45,7 +45,7 @@ CFG = dict(
     Z_REL_MIN=0.5,      # query_pos: z_a >= Z_REL_MIN * max held-out z_a (concept clearly present)
     POS_INSIDE=True,    # query_pos must be closer to the refs_high centroid than the median refs_low image is
     POS_KNN_MIN=0.6,    # and at least 3 of its 5 nearest references must be high (it looks like the concept)
-    LOW_MODE='hardneg', # 'hardneg' or 'baseline' (9 lowest pre-code, from the cache)
+    LOW_MODE='twin',    # 'twin' (12 Oct. 2026: one low image per high image, its nearest silent neighbour), 'hardneg' (9 nearest to the high centroid) or 'baseline' (9 lowest pre-code)
     H_MAX=0.0,          # refs_low: pre-code h_a must be < H_MAX (0 = the atom's own ReLU would kill it)
     DUP=0.95,           # skip near-duplicates (cos to an already chosen ref) in refs_low
     N_POS_TOP=10,       # query_pos candidates: top-10 held-out by z_a
@@ -55,6 +55,8 @@ CFG = dict(
     KNN=5,
     PAIR_OBJ='min_margin',  # among admissible pairs: 'min_margin' (hardest solvable) or 'max_cos' (closest pair)
     H_NEG_MAX=0.0,      # query_neg: pre-code h_a must be < H_NEG_MAX (None = only z = 0 on the atom and namesakes)
+    OFF_GROUP=True,     # 12 Oct. 2026: bottom row and wrong query must be truly OFF on the atom AND on every same-named atom (feature splitting):
+    OFF_Q=1.0,          #   pre-code h_j < min(0, quantile OFF_Q of h_j over the naming split) for every j in the group (1.0 = h_j < 0 for all), not just z_j = 0
     NEG_CAT=True,       # query_neg: True = same category first (cascade), False = nearest silent image of ANY category (variant b), 'different' = nearest silent image of a DIFFERENT category (variant c, 9 Oct. 2026)
 )
 SHEET_ATOMS = ["coco_2745", "coco_1210", "coco_3855", "coco_5723", "coco_821", "coco_2234",
@@ -110,6 +112,21 @@ def h_rows(D, rows, a):
     P = prep(D)
     X = P.Xs_tr if rows is D.tr else P.Xs_ev if rows is D.ev else P.Xs[rows]
     return X @ D.We[a] + D.be[a]
+
+
+def off_mask(D, grp, rows, q):
+    """True where the pre-code of EVERY atom of grp (the atom and its namesakes) is below min(0, its own q-quantile on the
+    naming split): the image is far from firing any of them, not merely outside their TopK."""
+    P = prep(D)
+    X = P.Xs_tr if rows is D.tr else P.Xs_ev if rows is D.ev else P.Xs[rows]
+    if not hasattr(P, 'thr'):
+        P.thr = {}
+    m = np.ones(len(rows), bool)
+    for j in grp:
+        if (j, q) not in P.thr:
+            P.thr[(j, q)] = min(0.0, float(np.quantile(P.Xs_tr @ D.We[j] + D.be[j], q)))
+        m &= (X @ D.We[j] + D.be[j]) < P.thr[(j, q)]
+    return m
 
 
 def fps(Xn, cand, n, first):
@@ -226,6 +243,39 @@ def select_trial(D, a, rng, cfg=None):
     # --- refs_low
     if c['LOW_MODE'] == 'baseline':
         refs_low = [int(r) for r in D.low_tr[a]]
+    elif c['LOW_MODE'] == 'twin':
+        # each high reference h_i gets its own twin: the silent naming-split image closest to h_i (DINOv2 cosine), so the two rows
+        # match column by column and differ by the concept; no image twice, no near-duplicates, at most LOW_MAX_PER_CAT per category
+        tr = D.tr
+        ok = silent_mask(D, grp, tr) & ~np.isin(tr, refs_high)
+        if c['OFF_GROUP']:
+            ok &= off_mask(D, grp, tr, c['OFF_Q'])
+        elif c['H_MAX'] is not None:
+            ok &= h_rows(D, tr, a) < c['H_MAX']
+        rows = tr[ok]; Xr = P.Xn_tr[ok]
+        refs_low, ncat, twin_cos = [], {}, []
+        for h in refs_high:
+            sims = Xr @ Xn[h]
+            for i in np.argsort(-sims):
+                r = int(rows[i])
+                if r in refs_low or (refs_low and (Xn[refs_low] @ Xn[r]).max() > c['DUP']):
+                    continue
+                cat = D.category(r)
+                if ncat.get(cat, 0) >= c['LOW_MAX_PER_CAT']:
+                    continue
+                ncat[cat] = ncat.get(cat, 0) + 1; refs_low.append(r); twin_cos.append(float(sims[i])); break
+        if len(refs_low) < N_REF:      # too few images silent on the whole group: keep the atom-only rule (h_a < 0) for the missing twins
+            out['fallback'].append(f'refs_low: only {len(refs_low)} images with every namesake off (h < 0); completed with h_a < 0 on the atom only')
+            ok2 = silent_mask(D, grp, tr) & ~np.isin(tr, refs_high) & (h_rows(D, tr, a) < 0)
+            rows2 = tr[ok2]; Xr2 = P.Xn_tr[ok2]
+            for h in refs_high[len(refs_low):]:
+                sims = Xr2 @ Xn[h]
+                for i in np.argsort(-sims):
+                    r = int(rows2[i])
+                    if r in refs_low or (refs_low and (Xn[refs_low] @ Xn[r]).max() > c['DUP']):
+                        continue
+                    refs_low.append(r); twin_cos.append(float(sims[i])); break
+        out['twin_cos'] = twin_cos
     else:
         tr = D.tr
         ok = silent_mask(D, grp, tr) & ~np.isin(tr, refs_high)
@@ -264,6 +314,7 @@ def select_trial(D, a, rng, cfg=None):
     ev = D.ev
     sil = silent_mask(D, grp, ev)
     hev = h_rows(D, ev, a)
+    offev = off_mask(D, grp, ev, c['OFF_Q']) if c['OFF_GROUP'] else None
     low_cos_med = float(np.median(Xn[refs_low] @ ch))
     pos_ok = []
     for pos in pos_cands:
@@ -286,7 +337,9 @@ def select_trial(D, a, rng, cfg=None):
                 ok &= ~same_cat_mask(D, ev, pos)        # ImageNet: another wnid; COCO: no label in common with the positive
             elif use_cat:
                 ok &= same_cat_mask(D, ev, pos)
-            if use_h and c['H_NEG_MAX'] is not None:
+            if use_h and c['OFF_GROUP']:
+                ok &= offev
+            elif use_h and c['H_NEG_MAX'] is not None:
                 ok &= hev < c['H_NEG_MAX']
             negs = ev[ok]
             if len(negs) == 0:
@@ -297,12 +350,18 @@ def select_trial(D, a, rng, cfg=None):
                 sn, fn = margins(D, refs_high, refs_low, neg, c['KNN'])
                 pairs.append(dict(pos=pos, neg=neg, margin=sp - sn, knn=fp - fn, cos=float(sims[j]), same_cat=int(use_cat is True), level=level))
     # cascade: same category + h < 0  ->  same category, z = 0 only  ->  any category + h < 0
-    if c['NEG_CAT'] == 'different':
-        collect(3, 'different', True)
-    elif c['NEG_CAT']:
-        collect(0, True, True)
-    else:
-        collect(2, False, True)
+    def first_pass():
+        if c['NEG_CAT'] == 'different':
+            collect(3, 'different', True)
+        elif c['NEG_CAT']:
+            collect(0, True, True)
+        else:
+            collect(2, False, True)
+    first_pass()
+    if not pairs and c['OFF_GROUP']:      # no held-out image with every namesake off: keep the category rule, require h_a < 0 on the atom only
+        out['fallback'].append('query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept')
+        offev = hev < 0
+        first_pass()
     if not pairs:
         out['fallback'].append('query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)')
         collect(1, True, False)

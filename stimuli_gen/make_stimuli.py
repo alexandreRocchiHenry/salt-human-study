@@ -19,7 +19,10 @@ GEN = f'{HX}/stimuli_gen'
 SITE = f'{HX}/site'
 STIM = f'{SITE}/stimuli'
 CACHE = f'{GEN}/cache'
-VERSION = '2026-10-08-v1'
+VERSION = '2026-10-12-v3'   # v3 : atomes sans nom de classe, non détecteurs de classe, cohérents (>= 0.15)
+HERE = os.path.dirname(os.path.abspath(__file__))
+CLASS_CORR_MAX = 0.4         # an eligible atom correlates < 0.4 with every class indicator (not a class detector)
+COHERENCE_MIN = 0.15         # and its 9 top images are visually coherent (mean pairwise DINOv2 cosine >= 0.15)
 KEYS = ('coco', 'imagenet')
 DS_OFFSET = {'coco': 0, 'imagenet': 1}     # added to per-atom seeds so the two datasets never share a seed
 
@@ -367,8 +370,41 @@ def main():
             return cache_build[a]
 
         atoms_sorted = sorted(names)
+        # 12 Oct. 2026: test and practice atoms must not be named by a class name (class_name_filter.py: neither the SALT nor the
+        # CLIP-Dissect name is a class name, a class hypernym or a non-dictionary word; the same rule for both methods)
+        ELIG = json.load(open(f'{HERE}/class_name_filter_{key}.json'))['atoms']
+        eligible = sorted(a for a in atoms_sorted if ELIG[str(a)]['eligible'])
+        # and the atom itself must not be a class detector, whatever its names say (a giraffe atom named 'tucson'): Pearson correlation
+        # between its code and every class indicator (ImageNet: 1 000 classes; COCO: 80 labels) over all images < CLASS_CORR_MAX
+        Zall = np.zeros((D.N, D.m), np.float32); np.put_along_axis(Zall, D.z_idx.astype(np.int64), D.z_val, 1)
+        if key == 'imagenet':
+            _u, _inv = np.unique(D.wnid, return_inverse=True); Ycls = np.zeros((D.N, len(_u)), np.float32); Ycls[np.arange(D.N), _inv] = 1
+        else:
+            Ycls = D.labels.astype(np.float32)
+        Ze = Zall[:, eligible]; Ze = (Ze - Ze.mean(0)) / (Ze.std(0) + 1e-9); Yc = (Ycls - Ycls.mean(0)) / (Ycls.std(0) + 1e-9)
+        cmax = (Ze.T @ Yc / D.N).max(1); del Zall, Ze
+        n_name = len(eligible); eligible = [a for a, cm in zip(eligible, cmax) if cm < CLASS_CORR_MAX]
+        n_cls = len(eligible)
+        # 12 Oct. 2026: the atom must be visually coherent, whatever its names: mean pairwise cosine (standardised, L2-normalised DINOv2)
+        # between its 9 top naming-split images (top 25 by z, near-duplicates cos > 0.85 skipped, the refs_high rule of the prototypes)
+        Xs = (np.asarray(D.A, np.float32) - D.sc_mean) / D.sc_scale; Xn = Xs / np.maximum(np.linalg.norm(Xs, axis=1, keepdims=True), 1e-6); del Xs
+        COH = {}
+        for a in eligible:
+            hi = []
+            for r, v in zip(D.top_tr[a][:25], D.top_tr_val[a][:25]):
+                if v <= 0 or (hi and (Xn[hi] @ Xn[int(r)]).max() > 0.85):
+                    continue
+                hi.append(int(r))
+                if len(hi) == N_REF:
+                    break
+            if len(hi) == N_REF:
+                S_ = Xn[hi] @ Xn[hi].T; COH[a] = float((S_.sum() - N_REF) / (N_REF * (N_REF - 1)))
+        del Xn
+        eligible = [a for a in eligible if COH.get(a, -1) >= COHERENCE_MIN]
+        L['class_name_filter'] = dict(n_evaluable=len(atoms_sorted), n_name_ok=n_name, n_not_class_detector=n_cls, n_eligible=len(eligible),
+                                      class_corr_max=CLASS_CORR_MAX, coherence_min=COHERENCE_MIN)
         # stratum R: seeded draw, invalid atoms replaced by the next ones of the draw
-        draw = np.random.default_rng(SEED_R).permutation(atoms_sorted)
+        draw = np.random.default_rng(SEED_R).permutation(eligible)
         R, repl_R = [], []
         for a in draw:
             if len(R) == N_R:
@@ -379,7 +415,7 @@ def main():
             else:
                 R.append(int(a))
         # stratum Delta: largest |corr_salt - corr_cd| among atoms with different names, not in R
-        dl = [a for a in atoms_sorted if a not in R and names[a]['salt'] != names[a]['cd']]
+        dl = [a for a in eligible if a not in R and names[a]['salt'] != names[a]['cd']]
         dl.sort(key=lambda a: (-abs(names[a]['corr_salt'] - names[a]['corr_cd']), a))
         Dl, repl_D = [], []
         for a in dl:
@@ -395,7 +431,7 @@ def main():
         # practice: clear-cut atoms outside the pool (largest min(corr_salt, corr_cd), z_pos above the pool median,
         # distinct SALT names, both names evaluable on held-out captions)
         zmed = float(np.median([get(a)[0]['z_pos'] for a in pool]))
-        pr_cand = sorted([a for a in atoms_sorted if a not in pool and names[a]['salt_evaluable'] and names[a]['cd_evaluable']],
+        pr_cand = sorted([a for a in eligible if a not in pool and names[a]['salt_evaluable'] and names[a]['cd_evaluable']],
                          key=lambda a: (-min(names[a]['corr_salt'], names[a]['corr_cd']), a))
         P, seen, repl_P = [], set(), []
         for a in pr_cand:

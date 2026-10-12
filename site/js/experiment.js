@@ -260,8 +260,15 @@ function debugBadge(item, chosenSide) {
     verdict + "</div>";
 }
 
+// Warm-up (practice) rounds carry a visible banner on every screen (12 Oct. 2026).
+function warmupBanner(item) {
+  if (item.phase !== "practice") return "";
+  return '<div class="warmup-banner">' + tx("ui.warmupBanner", "Warm-up round {n} of {N}: training only, this round does not count.")
+    .replace("{n}", String(item.seq)).replace("{N}", String(CFG.nPractice)) + "</div>";
+}
+
 function renderChoiceScreen(item) {
-  return '<div class="trial">' + debugBadge(item) +
+  return '<div class="trial">' + warmupBanner(item) + debugBadge(item) +
     renderReferences(item.atom, item.condition) +
     '<div class="trial-prompt">' + tx("trialPrompt", "Which image activates this concept?") + "</div>" +
     "</div>";
@@ -285,7 +292,7 @@ function renderQueryPair(item, opts) {
 }
 
 function renderConfidenceScreen(item, chosenSide) {
-  return '<div class="trial trial-confidence">' + debugBadge(item, chosenSide) +
+  return '<div class="trial trial-confidence">' + warmupBanner(item) + debugBadge(item, chosenSide) +
     renderName(item.atom, item.condition) +
     renderQueryPair(item, { chosen: chosenSide }) +
     '<div class="trial-prompt">' + tx("confidencePrompt", "How sure are you?") + "</div>" +
@@ -295,7 +302,7 @@ function renderConfidenceScreen(item, chosenSide) {
 function renderFeedbackScreen(item, chosenSide) {
   const ok = chosenSide === item.pos_side;
   const msg = ok ? tx("feedback.correct", "Correct.") : tx("feedback.incorrect", "Not quite.");
-  return '<div class="trial trial-feedback">' +
+  return '<div class="trial trial-feedback">' + warmupBanner(item) +
     '<div class="feedback ' + (ok ? "feedback-correct" : "feedback-incorrect") + '">' + msg + "</div>" +
     renderQueryPair(item, { chosen: chosenSide, target: item.pos_side }) +
     "</div>";
@@ -571,7 +578,7 @@ function trialBlock(phase) {
       const it = STATE.cur;
       const side = d.response === 0 ? "left" : "right";
       const correct = side === it.pos_side;
-      Object.assign(d, itemFields(it), { response_side: side, correct: correct });
+      Object.assign(d, itemFields(it), { response_side: side, correct: correct, rt_choice_ms: d.rt });
       d.stimulus = null; // paths are recorded; drop the large HTML
       STATE.lastChoice = { side: side, correct: correct, rt: d.rt };
     }
@@ -596,6 +603,10 @@ function trialBlock(phase) {
         rt_choice: lc.rt,
         confidence: d.response + 1,
         rt_conf: d.rt,
+        // response times in ms, measured by jsPsych from the onset of each screen (12 Oct. 2026)
+        rt_choice_ms: lc.rt,
+        rt_confidence_ms: d.rt,
+        rt_trial_ms: (lc.rt || 0) + (d.rt || 0),
         // aliases asked for in the task brief
         correct_side: it.pos_side,
         chosen_side: lc.side,
@@ -636,7 +647,102 @@ function textScreen(task, htmlFn, buttonFn) {
   };
 }
 
+/* ------------------------------------------------------------------ */
+/* Debug trial browser (12 Oct. 2026)                                  */
+/* ------------------------------------------------------------------ */
+// ?debug=1 (without full=1): no consent, instructions or warm-up. All test and catch rounds of the cell are
+// shown one by one; the arrows (or the keyboard arrow keys) go to the previous / next round without answering,
+// a click on a query image shows the verdict and both names. Nothing is saved.
+function debugBrowser() {
+  return {
+    type: jsPsychCallFunction,
+    async: true,
+    data: { task: "debug_browser" },
+    func: (done) => {
+      const items = STATE.items.test;
+      const answers = {};
+      let i = 0;
+      const el = jsPsych.getDisplayElement();
+      const draw = () => {
+        const it = items[i];
+        const chosen = answers[i] || null;
+        const q = (side, src) => {
+          let cls = "query-static dbg-query";
+          if (chosen) cls += side === it.pos_side ? " is-target" : (side === chosen ? " is-chosen" : "");
+          return '<div class="' + cls + '" data-side="' + side + '">' + img(src, "query-img") + "</div>";
+        };
+        el.innerHTML =
+          '<div class="dbg-nav">' +
+          '<button class="dbg-arrow" id="dbg-prev" title="Previous (left arrow)"' + (i === 0 ? " disabled" : "") + ">&#9664;</button>" +
+          '<span class="dbg-count">round ' + (i + 1) + " / " + items.length + "</span>" +
+          '<button class="dbg-arrow" id="dbg-next" title="Next (right arrow)"' + (i === items.length - 1 ? " disabled" : "") + ">&#9654;</button>" +
+          '<button class="dbg-end" id="dbg-end">End</button>' +
+          "</div>" +
+          '<div class="trial">' + debugBadge(it, chosen) + renderReferences(it.atom, it.condition) +
+          '<div class="trial-prompt">' + tx("trialPrompt", "Which image matches this concept?") + "</div>" +
+          '<div class="query-pair">' + q("left", it.left_img) + q("right", it.right_img) + "</div></div>";
+        el.querySelector("#dbg-prev").onclick = () => { if (i > 0) { i -= 1; draw(); } };
+        el.querySelector("#dbg-next").onclick = () => { if (i < items.length - 1) { i += 1; draw(); } };
+        el.querySelector("#dbg-end").onclick = finish;
+        el.querySelectorAll(".dbg-query").forEach((n) => { n.onclick = () => { answers[i] = n.dataset.side; draw(); }; });
+        try { window.scrollTo(0, 0); } catch (e) { /* not available (headless) */ }
+      };
+      const onKey = (e) => {
+        if (e.key === "ArrowLeft" && i > 0) { i -= 1; draw(); }
+        if (e.key === "ArrowRight" && i < items.length - 1) { i += 1; draw(); }
+      };
+      const finish = () => {
+        document.removeEventListener("keydown", onKey);
+        done({ n_answered: Object.keys(answers).length,
+               n_correct: Object.entries(answers).filter(([k, v]) => items[+k].pos_side === v).length });
+      };
+      document.addEventListener("keydown", onKey);
+      draw();
+    }
+  };
+}
+
+function buildDebugTimeline() {
+  return [
+    {
+      type: jsPsychCallFunction,
+      async: true,
+      func: (done) => {
+        chooseCondition().then((c) => {
+          const rotation = c.cond_index % CONDITION_LETTERS.length;
+          const list = Math.floor(c.cond_index / CONDITION_LETTERS.length);
+          STATE.cond_index = c.cond_index;
+          buildState(rotation, list);
+          done({ cond_index: c.cond_index, rotation: rotation, list: list });
+        });
+      },
+      data: { task: "condition" }
+    },
+    {
+      type: jsPsychPreload,
+      images: () => testImages(),
+      show_progress_bar: true,
+      message: "<p>Loading...</p>",
+      max_load_time: 120000,
+      continue_after_error: true,
+      data: { task: "preload_test" }
+    },
+    debugBrowser(),
+    {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: () => {
+        const row = jsPsych.data.get().filter({ task: "debug_browser" }).last(1).values()[0] || {};
+        const d = row.value || {};   // call-function stores the returned object in `value`
+        return "<p>Debug browser closed: " + (d.n_correct || 0) + " correct out of " + (d.n_answered || 0) + " answered rounds.</p>" +
+          "<p>Reload the page to browse again, or add <code>&amp;full=1</code> to the URL for the participant flow.</p>";
+      },
+      choices: ["OK"]
+    }
+  ];
+}
+
 function buildTimeline() {
+  if (CFG.debugBrowse) return buildDebugTimeline();
   const tl = [];
 
   // 1. Browser check (desktop, window at least 1000x650).

@@ -2,90 +2,160 @@
  "variant": "a",
  "served": 129,
  "fallback_to_current": 0,
- "n_fallback_rule": 21,
- "pair_same_cat": 118,
- "median_m1": 0.24123983830213547,
- "median_m1_knn": 0.20000000000000007,
+ "n_fallback_rule": 40,
+ "pair_same_cat": 128,
+ "median_m1": 0.18052750453352928,
+ "median_m1_knn": 0.39999999999999997,
  "sign_pos": 129,
- "mean_m5_salt": 0.26356589147286824,
- "mean_m5_cd": 0.20930232558139536,
- "median_row_cos": 0.32975172996520996,
+ "mean_m5_salt": 0.20155038759689922,
+ "mean_m5_cd": 0.11627906976744186,
+ "median_row_cos": 0.3091556429862976,
+ "median_twin_cos": 0.22410568594932556,
  "fallbacks": {
-  "coco_2237": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
+  "coco_5336": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "coco_580": [
+  "coco_1998": [
+   "refs_low: only 6 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_995": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_2573": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_4979": [
+   "refs_low: only 1 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_796": [
+   "pair: no pair with margin >= 0.02 and kNN margin > 0.0; the pair with the largest margin is kept"
+  ],
+  "coco_3118": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3079": [
+   "refs_low: only 1 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_2577": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_1132": [
    "query_pos: no top positive inside the concept region (cos to high centroid / kNN); constraint dropped"
   ],
-  "coco_3834": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
+  "coco_4530": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "coco_750": [
-   "query_pos: no top positive inside the concept region (cos to high centroid / kNN); constraint dropped"
+  "coco_852": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_5904": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)"
+  "coco_5130": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_2574": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
+  "coco_1399": [
+   "refs_low: only 8 images with every namesake off (h < 0); completed with h_a < 0 on the atom only"
   ],
-  "imagenet_3555": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
+  "coco_4500": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_762": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
+  "coco_2929": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_2957": [
+  "coco_3208": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_6061": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_2882": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_1077": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_5064": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only"
+  ],
+  "coco_1413": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_624": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_4526": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_4263": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3066": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_5901": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3192": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only"
+  ],
+  "coco_5151": [
+   "refs_low: only 8 images with every namesake off (h < 0); completed with h_a < 0 on the atom only"
+  ],
+  "imagenet_4646": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "imagenet_3108": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "imagenet_5644": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "imagenet_3152": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "imagenet_4": [
    "pair: no pair with margin >= 0.02 and kNN margin > 0.0; the pair with the largest margin is kept"
   ],
-  "imagenet_5049": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "pair: no pair with margin >= 0.02 and kNN margin > 0.0; the pair with the largest margin is kept"
+  "imagenet_2696": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_5584": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)"
+  "imagenet_853": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_851": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)"
+  "imagenet_2050": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_5428": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)"
+  "imagenet_515": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ],
-  "imagenet_1493": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
-  ],
-  "imagenet_1055": [
+  "imagenet_3508": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept",
    "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
    "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
   ],
-  "imagenet_5452": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
-  ],
-  "imagenet_4662": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
-  ],
-  "imagenet_571": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
-  ],
-  "imagenet_4027": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "query_neg: no silent same-category held-out image at all; category relaxed (nearest silent image, h < H_NEG_MAX)"
-  ],
-  "imagenet_4801": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)",
-   "pair: no pair with margin >= 0.02 and kNN margin > 0.0; the pair with the largest margin is kept"
-  ],
-  "imagenet_3371": [
-   "query_neg: no silent same-category held-out image with h < H_NEG_MAX; h constraint dropped (z = 0 only)"
+  "imagenet_5462": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ]
  }
 }

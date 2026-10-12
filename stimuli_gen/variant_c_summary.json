@@ -2,20 +2,127 @@
  "variant": "c",
  "served": 129,
  "fallback_to_current": 0,
- "n_fallback_rule": 2,
+ "n_fallback_rule": 29,
  "pair_same_cat": 0,
- "median_m1": 0.1643727496266365,
- "median_m1_knn": 0.19999999999999996,
+ "median_m1": 0.10653279721736908,
+ "median_m1_knn": 0.20000000000000007,
  "sign_pos": 129,
- "mean_m5_salt": 0.35658914728682173,
- "mean_m5_cd": 0.2558139534883721,
- "median_row_cos": 0.32975172996520996,
+ "mean_m5_salt": 0.20930232558139536,
+ "mean_m5_cd": 0.10077519379844961,
+ "median_row_cos": 0.3091556429862976,
+ "median_twin_cos": 0.22410568594932556,
  "fallbacks": {
-  "coco_580": [
+  "coco_5336": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_1998": [
+   "refs_low: only 6 images with every namesake off (h < 0); completed with h_a < 0 on the atom only"
+  ],
+  "coco_995": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_2573": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only"
+  ],
+  "coco_4979": [
+   "refs_low: only 1 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3118": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3079": [
+   "refs_low: only 1 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_2577": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_1132": [
    "query_pos: no top positive inside the concept region (cos to high centroid / kNN); constraint dropped"
   ],
-  "coco_750": [
-   "query_pos: no top positive inside the concept region (cos to high centroid / kNN); constraint dropped"
+  "coco_4530": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_852": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_5130": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_1399": [
+   "refs_low: only 8 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_4500": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_2929": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3208": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_5228": [
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_6061": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_2882": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_1077": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_5064": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_1413": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_624": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_4526": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_4263": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3066": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_5901": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_3192": [
+   "refs_low: only 0 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
+  ],
+  "coco_5151": [
+   "refs_low: only 8 images with every namesake off (h < 0); completed with h_a < 0 on the atom only",
+   "query_neg: no held-out image with every namesake off (h < 0); atom-only h_a < 0 kept"
   ]
  }
 }

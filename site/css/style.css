@@ -309,3 +309,30 @@ img {
   .query-pair { gap: 24px; }
   .query-btn { margin: 0 8px; }
 }
+
+/* ---- Warm-up rounds (12 Oct. 2026) ------------------------------- */
+.warmup-banner {
+  margin: 0 auto 8px;
+  max-width: 980px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #fff1d6;
+  border: 2px solid #d99a1e;
+  color: #5c3d00;
+  font-weight: 700;
+  text-align: center;
+}
+.warmup-note {
+  margin-top: 14px;
+  padding: 8px 12px;
+  border-left: 4px solid #d99a1e;
+  background: #fff8ea;
+}
+
+/* ---- Debug trial browser (12 Oct. 2026) --------------------------- */
+.dbg-nav { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 4px auto 8px; }
+.dbg-arrow { font-size: 18px; width: 40px; height: 32px; border: 1px solid #888; border-radius: 6px; background: #f4f4f4; cursor: pointer; }
+.dbg-arrow:disabled { opacity: 0.35; cursor: default; }
+.dbg-count { font: 14px/1 ui-monospace, Menlo, Consolas, monospace; min-width: 110px; text-align: center; }
+.dbg-end { font-size: 13px; padding: 4px 10px; border: 1px solid #888; border-radius: 6px; background: #fff; cursor: pointer; }
+.dbg-query { cursor: pointer; }

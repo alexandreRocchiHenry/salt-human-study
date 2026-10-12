@@ -40,13 +40,13 @@ for aid, cur in man['atoms'].items():
         did = (lambda row: int(D.image_ids[row])) if key == 'coco' else (lambda row: int(row))
         e['meta'].update(selection=f'explore/A_feature_hardneg/select.py, variant {VARIANT}', category=D.category_name(D.category(r['query_pos'])),
                          z_pos=float(D.z(r['query_pos'], a)), h_neg=float(D.h(r['query_neg'], a)), z_neg=float(D.z(r['query_neg'], a)), pos_rank_ev=r['pos_rank_ev'],
-                         pair_same_cat=r['pair_same_cat'], neg_level=r['neg_level'], fallback=r['fallback'],
+                         pair_same_cat=r['pair_same_cat'], neg_level=r['neg_level'], fallback=r['fallback'], twin_cos=r.get('twin_cos'),
                          metrics={k: (float(v) if isinstance(v, (int, float, np.floating, np.integer)) else v) for k, v in m.items()},
                          src=dict(refs_high=[did(x) for x in r['refs_high']], refs_low=[did(x) for x in r['refs_low']], query_pos=did(r['query_pos']), query_neg=did(r['query_neg']),
                                   id_kind='COCO image id' if key == 'coco' else 'ImageNet val row (= id)'))
         assert e['meta']['z_neg'] == 0.0
         stats['served'] += 1; stats['m1'].append(m['m1_margin']); stats['m1_knn'].append(m['m1_knn']); stats['m5_salt'].append(m['m5_salt']); stats['m5_cd'].append(m['m5_cd'])
-        stats['row_cos'].append(m['m4_row_cos']); stats['pair_same_cat'] += int(r['pair_same_cat'])
+        stats['row_cos'].append(m['m4_row_cos']); stats['pair_same_cat'] += int(r['pair_same_cat']); stats.setdefault('twin', []).extend(r.get('twin_cos') or [])
         if r['fallback']: stats['fallbacks'][aid] = r['fallback']
     e['refs_high'] = [f'{rel}/h{i}.jpg' for i in range(9)]; e['refs_low'] = [f'{rel}/l{i}.jpg' for i in range(9)]; e['query_pos'] = f'{rel}/qpos.jpg'; e['query_neg'] = f'{rel}/qneg.jpg'
     out['atoms'][aid] = e
@@ -54,5 +54,5 @@ for aid, cur in man['atoms'].items():
 json.dump(out, open(f'{STIM}/manifest.json', 'w'), indent=1)
 summ = dict(variant=VARIANT, served=stats['served'], fallback_to_current=stats['fallback_to_current'], n_fallback_rule=len(stats['fallbacks']), pair_same_cat=stats['pair_same_cat'],
             median_m1=float(np.median(stats['m1'])), median_m1_knn=float(np.median(stats['m1_knn'])), sign_pos=int(sum(x > 0 for x in stats['m1'])),
-            mean_m5_salt=float(np.mean(stats['m5_salt'])), mean_m5_cd=float(np.mean(stats['m5_cd'])), median_row_cos=float(np.median(stats['row_cos'])), fallbacks=stats['fallbacks'])
+            mean_m5_salt=float(np.mean(stats['m5_salt'])), mean_m5_cd=float(np.mean(stats['m5_cd'])), median_row_cos=float(np.median(stats['row_cos'])), median_twin_cos=float(np.median(stats['twin'])) if stats.get('twin') else None, fallbacks=stats['fallbacks'])
 json.dump(summ, open(f'{HERE}/variant_{VARIANT}_summary.json', 'w'), indent=1); log({k: v for k, v in summ.items() if k != 'fallbacks'}); print('VARIANT_DONE')
