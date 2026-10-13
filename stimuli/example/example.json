@@ -29,7 +29,7 @@
  "names": {
   "A": null,
   "B": "scoreboard",
-  "C": "snake",
+  "C": "feeder",
   "D": "scoreboard"
  },
  "meta": {
@@ -38,7 +38,7 @@
   "delta_sign": 0,
   "category": "barbershop",
   "same_name": true,
-  "c_source": "imagenet_5293",
+  "c_source": "imagenet_5298",
   "z_pos": 6.943052291870117,
   "h_neg": -1.867654800415039,
   "z_neg": 0.0,

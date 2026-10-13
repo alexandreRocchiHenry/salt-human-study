@@ -1,6 +1,6 @@
-Images for the illustrated example page of the instructions (stimuli version 2026-10-12-v3).
+Images for the illustrated example page of the instructions (stimuli version 2026-10-13-v5).
 Atom: imagenet_5844 (ImageNet SAE atom 5844, outside the test pool, the practice set and the catch set).
-SALT name (B): scoreboard | permuted name (C): snake | CLIP-Dissect name (D): scoreboard
+SALT name (B): scoreboard | permuted name (C): feeder | CLIP-Dissect name (D): scoreboard
 Category of the two queries: barbershop
 
 h0.jpg ... h8.jpg  most activating images (h0 = highest)
