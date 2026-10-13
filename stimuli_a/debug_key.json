@@ -1,0 +1,1347 @@
+{
+ "version": "2026-10-13-v6-protoa",
+ "set": "stimuli_a",
+ "source": "stimuli_a",
+ "neurons": {
+  "2g7qgy": {
+   "atom": "coco_241",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "2g7qgy-qth7cj",
+   "category": "bottle, bowl, chair, couch, dining table, potted plant, tv, vase",
+   "judge_desc": null,
+   "corr_salt": 0.42197,
+   "corr_cd": 0.07869
+  },
+  "2pxu7z": {
+   "atom": "coco_3302",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "2pxu7z-2xsvz5",
+   "category": "boat",
+   "judge_desc": null,
+   "corr_salt": 0.37746,
+   "corr_cd": -0.00575
+  },
+  "2qdr2v": {
+   "atom": "coco_995",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "2qdr2v-f4wj94",
+   "category": "chair, person, sports ball",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.06961
+  },
+  "35nc5e": {
+   "atom": "imagenet_853",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "35nc5e-n93c6t",
+   "category": "silver salmon",
+   "judge_desc": null,
+   "corr_salt": 0.27086,
+   "corr_cd": -0.00161
+  },
+  "36wqur": {
+   "atom": "imagenet_2033",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "36wqur-gaza85",
+   "category": "barbershop",
+   "judge_desc": null,
+   "corr_salt": 0.10836,
+   "corr_cd": 0.0
+  },
+  "37sdmu": {
+   "atom": "imagenet_4869",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "37sdmu-hcwwm7",
+   "category": "car wheel",
+   "judge_desc": null,
+   "corr_salt": 0.41879,
+   "corr_cd": -0.00177
+  },
+  "3h6txe": {
+   "atom": "coco_5304",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "3h6txe-qsa738",
+   "category": "boat, bottle, person, tie",
+   "judge_desc": null,
+   "corr_salt": 0.22649,
+   "corr_cd": 0.27919
+  },
+  "3m58tr": {
+   "atom": "imagenet_5968",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "3m58tr-3quea8",
+   "category": "trench coat",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "3mvu8r": {
+   "atom": "coco_2734",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "3mvu8r-djfqcd",
+   "category": "book, laptop, person, tie",
+   "judge_desc": null,
+   "corr_salt": 0.31909,
+   "corr_cd": 0.27034
+  },
+  "3smsc4": {
+   "atom": "coco_379",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "3smsc4-3dhgx3",
+   "category": "car, person, tie",
+   "judge_desc": null,
+   "corr_salt": 0.39054,
+   "corr_cd": 0.0
+  },
+  "3t7w39": {
+   "atom": "imagenet_2853",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "3t7w39-kp5r7v",
+   "category": "miniskirt",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.33414
+  },
+  "42a577": {
+   "atom": "coco_4751",
+   "dataset": "coco",
+   "stratum": "catch",
+   "pos": "42a577-sy63sf",
+   "category": "car, person",
+   "judge_desc": null,
+   "corr_salt": -0.0156,
+   "corr_cd": -0.0156
+  },
+  "47559f": {
+   "atom": "coco_2336",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "47559f-twntcp",
+   "category": "banana, bicycle, person",
+   "judge_desc": null,
+   "corr_salt": -0.00227,
+   "corr_cd": 0.7233
+  },
+  "48jqnq": {
+   "atom": "imagenet_515",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "48jqnq-eab2vx",
+   "category": "construction crane",
+   "judge_desc": null,
+   "corr_salt": 0.25713,
+   "corr_cd": 0.08783
+  },
+  "48u5ru": {
+   "atom": "coco_6003",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "48u5ru-aen4h5",
+   "category": "banana, bowl, person",
+   "judge_desc": null,
+   "corr_salt": -0.00338,
+   "corr_cd": 0.34694
+  },
+  "4gn8zp": {
+   "atom": "coco_2364",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "4gn8zp-94vua3",
+   "category": "bottle, chair, person, potted plant, tie, wine glass",
+   "judge_desc": null,
+   "corr_salt": 0.37916,
+   "corr_cd": 0.0
+  },
+  "4yur7f": {
+   "atom": "imagenet_4445",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "4yur7f-y2ukeu",
+   "category": "minivan",
+   "judge_desc": null,
+   "corr_salt": -0.00414,
+   "corr_cd": -0.00146
+  },
+  "53djnq": {
+   "atom": "imagenet_4467",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "53djnq-v5jc6z",
+   "category": "prison",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.26642
+  },
+  "5gmm9h": {
+   "atom": "coco_2573",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "5gmm9h-ak4ebs",
+   "category": "boat, person, surfboard",
+   "judge_desc": null,
+   "corr_salt": 0.10859,
+   "corr_cd": 0.30086
+  },
+  "5qmqb6": {
+   "atom": "imagenet_777",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "5qmqb6-3he68y",
+   "category": "pedestal",
+   "judge_desc": null,
+   "corr_salt": 0.11667,
+   "corr_cd": -0.00127
+  },
+  "5wmxte": {
+   "atom": "coco_4979",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "5wmxte-azxpsr",
+   "category": "backpack, bench, person, train",
+   "judge_desc": null,
+   "corr_salt": 0.49772,
+   "corr_cd": 0.49772
+  },
+  "6fbzec": {
+   "atom": "coco_2464",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "6fbzec-rxs7u5",
+   "category": "dog, sports ball",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "6n3kzv": {
+   "atom": "imagenet_1859",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "6n3kzv-4wuaxq",
+   "category": "wallet",
+   "judge_desc": null,
+   "corr_salt": 0.35683,
+   "corr_cd": 0.0
+  },
+  "6yjkw8": {
+   "atom": "imagenet_7",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "6yjkw8-n26jrp",
+   "category": "sawmill",
+   "judge_desc": null,
+   "corr_salt": 0.16763,
+   "corr_cd": 0.0
+  },
+  "725s7j": {
+   "atom": "imagenet_1874",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "725s7j-d5deya",
+   "category": "screwdriver",
+   "judge_desc": null,
+   "corr_salt": 0.06827,
+   "corr_cd": 0.06827
+  },
+  "766g7q": {
+   "atom": "coco_5336",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "766g7q-zxad4d",
+   "category": "backpack, person, skis, snowboard",
+   "judge_desc": null,
+   "corr_salt": 0.421,
+   "corr_cd": 0.10711
+  },
+  "767xhn": {
+   "atom": "imagenet_3199",
+   "dataset": "imagenet",
+   "stratum": "practice",
+   "pos": "767xhn-xgmh5z",
+   "category": "can opener",
+   "judge_desc": null,
+   "corr_salt": 0.32182,
+   "corr_cd": 0.32182
+  },
+  "7e9gaj": {
+   "atom": "coco_3192",
+   "dataset": "coco",
+   "stratum": "practice",
+   "pos": "7e9gaj-v3t7kn",
+   "category": "backpack, person, skateboard",
+   "judge_desc": null,
+   "corr_salt": 0.66408,
+   "corr_cd": 0.66408
+  },
+  "7kb5yk": {
+   "atom": "coco_1123",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "7kb5yk-wjr8yr",
+   "category": "hot dog, person",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": -0.00298
+  },
+  "7kv725": {
+   "atom": "imagenet_1471",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "7kv725-pmgwp5",
+   "category": "comic book",
+   "judge_desc": null,
+   "corr_salt": 0.27211,
+   "corr_cd": 0.0
+  },
+  "7muwt3": {
+   "atom": "imagenet_1925",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "7muwt3-adcvzc",
+   "category": "window shade",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": -0.00065
+  },
+  "7ptq2m": {
+   "atom": "coco_4205",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "7ptq2m-uk2jy6",
+   "category": "apple, banana, car, person",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.40813
+  },
+  "7xtf3c": {
+   "atom": "coco_5901",
+   "dataset": "coco",
+   "stratum": "practice",
+   "pos": "7xtf3c-ksppb5",
+   "category": "bed, sink, tv",
+   "judge_desc": null,
+   "corr_salt": 0.71879,
+   "corr_cd": 0.71879
+  },
+  "7yj9hh": {
+   "atom": "imagenet_3310",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "7yj9hh-2x85tp",
+   "category": "leopard",
+   "judge_desc": null,
+   "corr_salt": 0.19763,
+   "corr_cd": 0.0
+  },
+  "8fed48": {
+   "atom": "imagenet_5947",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "8fed48-wg5st6",
+   "category": "apron",
+   "judge_desc": null,
+   "corr_salt": 0.18906,
+   "corr_cd": 0.18906
+  },
+  "8ms8k6": {
+   "atom": "imagenet_1964",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "8ms8k6-hztdck",
+   "category": "corn",
+   "judge_desc": null,
+   "corr_salt": 0.27185,
+   "corr_cd": 0.02191
+  },
+  "8z46t3": {
+   "atom": "imagenet_3713",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "8z46t3-rqygtt",
+   "category": "construction crane",
+   "judge_desc": null,
+   "corr_salt": 0.13433,
+   "corr_cd": 0.0
+  },
+  "93nbrb": {
+   "atom": "imagenet_2789",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "93nbrb-25836u",
+   "category": "spiral or coil",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.1425
+  },
+  "94ndz8": {
+   "atom": "coco_6014",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "94ndz8-4sq2sm",
+   "category": "bowl, cup, microwave, oven, person, pizza",
+   "judge_desc": null,
+   "corr_salt": 0.1903,
+   "corr_cd": 0.1903
+  },
+  "9dfykd": {
+   "atom": "coco_3563",
+   "dataset": "coco",
+   "stratum": "practice",
+   "pos": "9dfykd-whf25h",
+   "category": "book, bowl, chair, couch, potted plant",
+   "judge_desc": null,
+   "corr_salt": 0.64184,
+   "corr_cd": 0.64184
+  },
+  "9nx889": {
+   "atom": "coco_222",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "9nx889-w6u748",
+   "category": "kite, person",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.55819
+  },
+  "9vy8nu": {
+   "atom": "imagenet_3108",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "9vy8nu-bnzf3d",
+   "category": "tiger shark",
+   "judge_desc": null,
+   "corr_salt": 0.33221,
+   "corr_cd": -0.00077
+  },
+  "9w8vtk": {
+   "atom": "coco_4147",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "9w8vtk-5ce29p",
+   "category": "carrot, chair, cup, dining table, fork, person, spoon, wine glass",
+   "judge_desc": null,
+   "corr_salt": 0.67268,
+   "corr_cd": 0.0
+  },
+  "a767k5": {
+   "atom": "coco_4223",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "a767k5-87kva5",
+   "category": "train",
+   "judge_desc": null,
+   "corr_salt": 0.38754,
+   "corr_cd": -0.00291
+  },
+  "a8qfj2": {
+   "atom": "coco_4733",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "a8qfj2-2wt3fn",
+   "category": "banana, person, tie",
+   "judge_desc": null,
+   "corr_salt": 0.14345,
+   "corr_cd": 0.0
+  },
+  "acy8z8": {
+   "atom": "coco_3118",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "acy8z8-5rk45g",
+   "category": "bicycle, bus, handbag, person",
+   "judge_desc": null,
+   "corr_salt": -0.00425,
+   "corr_cd": 0.17177
+  },
+  "ad2fq5": {
+   "atom": "imagenet_3218",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "ad2fq5-emnm3g",
+   "category": "entertainment center",
+   "judge_desc": null,
+   "corr_salt": 0.16334,
+   "corr_cd": 0.0
+  },
+  "ajr9ev": {
+   "atom": "imagenet_5456",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "ajr9ev-6y9krg",
+   "category": "feather boa",
+   "judge_desc": null,
+   "corr_salt": 0.24633,
+   "corr_cd": 0.55438
+  },
+  "b2tk7x": {
+   "atom": "imagenet_2361",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "b2tk7x-a2k8bs",
+   "category": "pinwheel",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "bjyme7": {
+   "atom": "imagenet_1945",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "bjyme7-4q35y9",
+   "category": "sliding door",
+   "judge_desc": null,
+   "corr_salt": 0.13811,
+   "corr_cd": -0.0017
+  },
+  "buvpnt": {
+   "atom": "imagenet_3178",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "buvpnt-uqsnkf",
+   "category": "sunscreen",
+   "judge_desc": null,
+   "corr_salt": 0.15079,
+   "corr_cd": -0.00079
+  },
+  "bze766": {
+   "atom": "imagenet_3473",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "bze766-yd4ecj",
+   "category": "wallet",
+   "judge_desc": null,
+   "corr_salt": -0.00168,
+   "corr_cd": -0.00168
+  },
+  "c2vwp7": {
+   "atom": "coco_4526",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "c2vwp7-fnuda8",
+   "category": "clock",
+   "judge_desc": null,
+   "corr_salt": 0.39528,
+   "corr_cd": 0.0
+  },
+  "cqhgh5": {
+   "atom": "coco_5151",
+   "dataset": "coco",
+   "stratum": "practice",
+   "pos": "cqhgh5-6zrvb7",
+   "category": "car, person, sports ball",
+   "judge_desc": null,
+   "corr_salt": 0.66014,
+   "corr_cd": 0.66014
+  },
+  "cxje76": {
+   "atom": "coco_1077",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "cxje76-r9j7a3",
+   "category": "kite",
+   "judge_desc": null,
+   "corr_salt": 0.18933,
+   "corr_cd": 0.61108
+  },
+  "dadew7": {
+   "atom": "imagenet_299",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "dadew7-hw9emd",
+   "category": "cornet",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.13634
+  },
+  "dax9wx": {
+   "atom": "coco_4263",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "dax9wx-qvehzw",
+   "category": "clock",
+   "judge_desc": null,
+   "corr_salt": 0.37543,
+   "corr_cd": 0.0
+  },
+  "detgqd": {
+   "atom": "coco_5671",
+   "dataset": "coco",
+   "stratum": "catch",
+   "pos": "detgqd-eh8f3b",
+   "category": "person, remote",
+   "judge_desc": null,
+   "corr_salt": -0.01551,
+   "corr_cd": 0.0
+  },
+  "dev6rn": {
+   "atom": "coco_4673",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "dev6rn-zz6kkz",
+   "category": "cell phone, dining table, person, pizza",
+   "judge_desc": null,
+   "corr_salt": 0.43191,
+   "corr_cd": 0.0
+  },
+  "dpw9m5": {
+   "atom": "imagenet_2411",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "dpw9m5-hxy47p",
+   "category": "microphone",
+   "judge_desc": null,
+   "corr_salt": -0.00271,
+   "corr_cd": 0.0
+  },
+  "dy8w53": {
+   "atom": "coco_1916",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "dy8w53-eyy7hg",
+   "category": "bowl, chair, dining table, motorcycle, person, spoon",
+   "judge_desc": null,
+   "corr_salt": 0.62285,
+   "corr_cd": -0.00859
+  },
+  "ep6wzb": {
+   "atom": "coco_2249",
+   "dataset": "coco",
+   "stratum": "catch",
+   "pos": "ep6wzb-zs8ayz",
+   "category": "pizza",
+   "judge_desc": null,
+   "corr_salt": 0.42539,
+   "corr_cd": 0.42539
+  },
+  "er3bvx": {
+   "atom": "coco_4450",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "er3bvx-jyjg8k",
+   "category": "bench, clock",
+   "judge_desc": null,
+   "corr_salt": 0.82036,
+   "corr_cd": 0.0
+  },
+  "eth9zv": {
+   "atom": "imagenet_2162",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "eth9zv-qawsdq",
+   "category": "CRT monitor",
+   "judge_desc": null,
+   "corr_salt": -0.00159,
+   "corr_cd": -0.00159
+  },
+  "ffrq49": {
+   "atom": "coco_1545",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "ffrq49-pbm3nz",
+   "category": "cake, carrot, dining table, fork",
+   "judge_desc": null,
+   "corr_salt": -0.00526,
+   "corr_cd": -0.00198
+  },
+  "fjvyhw": {
+   "atom": "coco_5228",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "fjvyhw-g2nc8t",
+   "category": "person, toothbrush",
+   "judge_desc": null,
+   "corr_salt": 0.45944,
+   "corr_cd": -0.01888
+  },
+  "g3udjk": {
+   "atom": "imagenet_555",
+   "dataset": "imagenet",
+   "stratum": "catch",
+   "pos": "g3udjk-5kz7g5",
+   "category": "buckle",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.21934
+  },
+  "g6887y": {
+   "atom": "coco_4498",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "g6887y-76v9g4",
+   "category": "book, bottle, chair, couch, potted plant, tv",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.49154
+  },
+  "g7q7vp": {
+   "atom": "coco_6061",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "g7q7vp-839z8r",
+   "category": "person, snowboard",
+   "judge_desc": null,
+   "corr_salt": 0.36137,
+   "corr_cd": 0.79846
+  },
+  "guxjvm": {
+   "atom": "imagenet_2602",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "guxjvm-gvsvn3",
+   "category": "screwdriver",
+   "judge_desc": null,
+   "corr_salt": 0.32062,
+   "corr_cd": 0.0
+  },
+  "h2vz8w": {
+   "atom": "imagenet_4063",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "h2vz8w-m3wxtr",
+   "category": "obelisk",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "hshmnw": {
+   "atom": "imagenet_5188",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "hshmnw-mhtvnp",
+   "category": "spotlight",
+   "judge_desc": null,
+   "corr_salt": 0.18238,
+   "corr_cd": -0.00269
+  },
+  "hswmae": {
+   "atom": "imagenet_409",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "hswmae-zedttf",
+   "category": "plate rack",
+   "judge_desc": null,
+   "corr_salt": -0.00236,
+   "corr_cd": 0.14818
+  },
+  "hym7tq": {
+   "atom": "imagenet_279",
+   "dataset": "imagenet",
+   "stratum": "practice",
+   "pos": "hym7tq-hjajcf",
+   "category": "hammerhead shark",
+   "judge_desc": null,
+   "corr_salt": 0.32134,
+   "corr_cd": 0.32134
+  },
+  "j6ufn9": {
+   "atom": "coco_2817",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "j6ufn9-ctc2ga",
+   "category": "cake, chair, dining table, knife, person",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.34642
+  },
+  "jn8rnx": {
+   "atom": "coco_1315",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "jn8rnx-bcb7sz",
+   "category": "bench, clock",
+   "judge_desc": null,
+   "corr_salt": 0.51523,
+   "corr_cd": -0.00211
+  },
+  "jpp8xu": {
+   "atom": "imagenet_72",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "jpp8xu-cy6uz4",
+   "category": "sandbar",
+   "judge_desc": null,
+   "corr_salt": -0.00081,
+   "corr_cd": 0.20679
+  },
+  "jwndx5": {
+   "atom": "coco_4502",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "jwndx5-v5achu",
+   "category": "car, person, traffic light, umbrella",
+   "judge_desc": null,
+   "corr_salt": 0.34503,
+   "corr_cd": -0.01506
+  },
+  "k5b268": {
+   "atom": "imagenet_1961",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "k5b268-wdw9e3",
+   "category": "punching bag",
+   "judge_desc": null,
+   "corr_salt": 0.08949,
+   "corr_cd": -0.00186
+  },
+  "k6fjvd": {
+   "atom": "imagenet_4646",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "k6fjvd-zt8try",
+   "category": "pajamas",
+   "judge_desc": null,
+   "corr_salt": -0.00217,
+   "corr_cd": 0.0
+  },
+  "k98qcr": {
+   "atom": "coco_3602",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "k98qcr-b7nfhd",
+   "category": "backpack, chair, kite, person",
+   "judge_desc": null,
+   "corr_salt": -0.01144,
+   "corr_cd": 0.0
+  },
+  "m4ffez": {
+   "atom": "imagenet_3152",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "m4ffez-7a5puc",
+   "category": "saxophone",
+   "judge_desc": null,
+   "corr_salt": 0.47619,
+   "corr_cd": 0.47619
+  },
+  "m543fd": {
+   "atom": "imagenet_5182",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "m543fd-7cd4nd",
+   "category": "comic book",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.21977
+  },
+  "m5r2b3": {
+   "atom": "imagenet_2696",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "m5r2b3-5v8gad",
+   "category": "hammerhead shark",
+   "judge_desc": null,
+   "corr_salt": 0.29264,
+   "corr_cd": -0.0007
+  },
+  "mfhb9m": {
+   "atom": "coco_3079",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "mfhb9m-nsjsar",
+   "category": "kite, person, surfboard",
+   "judge_desc": null,
+   "corr_salt": 0.40751,
+   "corr_cd": 0.40751
+  },
+  "mh38e3": {
+   "atom": "imagenet_1334",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "mh38e3-u7fxkc",
+   "category": "cowboy hat",
+   "judge_desc": null,
+   "corr_salt": 0.17667,
+   "corr_cd": 0.0
+  },
+  "mjpjyc": {
+   "atom": "imagenet_339",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "mjpjyc-n6gq78",
+   "category": "beaker",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "mpkejy": {
+   "atom": "coco_624",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "mpkejy-vs43wm",
+   "category": "traffic light, truck",
+   "judge_desc": null,
+   "corr_salt": 0.40677,
+   "corr_cd": 0.0
+  },
+  "mup28p": {
+   "atom": "coco_2929",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "mup28p-pnmrn2",
+   "category": "bottle, bowl, spoon",
+   "judge_desc": null,
+   "corr_salt": 0.73276,
+   "corr_cd": 0.18993
+  },
+  "nhqwqn": {
+   "atom": "coco_4530",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "nhqwqn-zz3sfv",
+   "category": "person, skis",
+   "judge_desc": null,
+   "corr_salt": 0.38677,
+   "corr_cd": 0.11913
+  },
+  "nhzhra": {
+   "atom": "imagenet_2646",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "nhzhra-z9p89g",
+   "category": "harmonica",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "npnze9": {
+   "atom": "imagenet_5462",
+   "dataset": "imagenet",
+   "stratum": "practice",
+   "pos": "npnze9-5xfbcj",
+   "category": "cornet",
+   "judge_desc": null,
+   "corr_salt": 0.38237,
+   "corr_cd": 0.38237
+  },
+  "nrtdc4": {
+   "atom": "coco_2122",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "nrtdc4-wzjnej",
+   "category": "dog, fire hydrant",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "p4q6ap": {
+   "atom": "imagenet_2148",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "p4q6ap-z8gebb",
+   "category": "volleyball",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.26925
+  },
+  "pavxs8": {
+   "atom": "imagenet_5163",
+   "dataset": "imagenet",
+   "stratum": "practice",
+   "pos": "pavxs8-hsxssm",
+   "category": "toilet paper",
+   "judge_desc": null,
+   "corr_salt": 0.40356,
+   "corr_cd": 0.40356
+  },
+  "pbp7ct": {
+   "atom": "imagenet_4",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "pbp7ct-sf6gzp",
+   "category": "letter opener",
+   "judge_desc": null,
+   "corr_salt": -0.00079,
+   "corr_cd": 0.08852
+  },
+  "pnxkne": {
+   "atom": "coco_1625",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "pnxkne-44ssg3",
+   "category": "car, handbag, person",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": -0.00353
+  },
+  "pvf7bd": {
+   "atom": "coco_1413",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "pvf7bd-nrrprj",
+   "category": "person, skis",
+   "judge_desc": null,
+   "corr_salt": 0.39876,
+   "corr_cd": -0.01044
+  },
+  "pwr9ek": {
+   "atom": "coco_2577",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "pwr9ek-y7cvst",
+   "category": "person, snowboard",
+   "judge_desc": null,
+   "corr_salt": 0.3391,
+   "corr_cd": 0.33273
+  },
+  "q7u7k6": {
+   "atom": "coco_365",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "q7u7k6-zbh8ue",
+   "category": "traffic light",
+   "judge_desc": null,
+   "corr_salt": -0.00538,
+   "corr_cd": 0.36019
+  },
+  "qb5rpv": {
+   "atom": "imagenet_5644",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "qb5rpv-kcskrp",
+   "category": "hot tub",
+   "judge_desc": null,
+   "corr_salt": 0.2299,
+   "corr_cd": 0.2299
+  },
+  "qbtq88": {
+   "atom": "imagenet_3508",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "qbtq88-mrhak4",
+   "category": "breakwater",
+   "judge_desc": null,
+   "corr_salt": 0.16126,
+   "corr_cd": -0.0007
+  },
+  "qk8fzr": {
+   "atom": "coco_1874",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "qk8fzr-rnrgkf",
+   "category": "chair, dining table, donut, person",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.34388
+  },
+  "qmh8nj": {
+   "atom": "coco_3107",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "qmh8nj-k3ac9f",
+   "category": "car, person, tie",
+   "judge_desc": null,
+   "corr_salt": 0.17009,
+   "corr_cd": 0.12846
+  },
+  "qpv293": {
+   "atom": "imagenet_4903",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "qpv293-f9j4fz",
+   "category": "cleaver",
+   "judge_desc": null,
+   "corr_salt": 0.2251,
+   "corr_cd": 0.2251
+  },
+  "qyk9h3": {
+   "atom": "coco_2967",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "qyk9h3-k2uc25",
+   "category": "backpack, bus, cell phone, handbag, person, train",
+   "judge_desc": null,
+   "corr_salt": 0.38674,
+   "corr_cd": -0.00749
+  },
+  "s2kx7v": {
+   "atom": "coco_5130",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "s2kx7v-5d8927",
+   "category": "cat, laptop",
+   "judge_desc": null,
+   "corr_salt": 0.25619,
+   "corr_cd": 0.31123
+  },
+  "syr7gf": {
+   "atom": "coco_532",
+   "dataset": "coco",
+   "stratum": "practice",
+   "pos": "syr7gf-3zdgxz",
+   "category": "fire hydrant",
+   "judge_desc": null,
+   "corr_salt": 0.67543,
+   "corr_cd": 0.67543
+  },
+  "t22hbx": {
+   "atom": "imagenet_120",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "t22hbx-xa83y2",
+   "category": "baseball",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "t9axru": {
+   "atom": "coco_3004",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "t9axru-6tz7j2",
+   "category": "person, teddy bear, toilet",
+   "judge_desc": null,
+   "corr_salt": 0.32054,
+   "corr_cd": 0.0
+  },
+  "tgnagq": {
+   "atom": "coco_2486",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "tgnagq-utdh6m",
+   "category": "cup, fork",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.17446
+  },
+  "u3jheg": {
+   "atom": "imagenet_2398",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "u3jheg-py5xcg",
+   "category": "kimono",
+   "judge_desc": null,
+   "corr_salt": 0.10862,
+   "corr_cd": 0.0
+  },
+  "u6hkpu": {
+   "atom": "coco_2392",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "u6hkpu-s7gafh",
+   "category": "handbag, laptop, person, remote, tie",
+   "judge_desc": null,
+   "corr_salt": 0.65326,
+   "corr_cd": 0.0
+  },
+  "ub3crr": {
+   "atom": "coco_1399",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "ub3crr-a4nxs8",
+   "category": "bottle, handbag, person, sheep",
+   "judge_desc": null,
+   "corr_salt": 0.52085,
+   "corr_cd": 0.52085
+  },
+  "us228w": {
+   "atom": "imagenet_5532",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "us228w-ftwvxn",
+   "category": "soccer ball",
+   "judge_desc": null,
+   "corr_salt": 0.06562,
+   "corr_cd": 0.0
+  },
+  "uv327q": {
+   "atom": "coco_3066",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "uv327q-6gcnkz",
+   "category": "backpack, book, bottle, chair, couch, laptop",
+   "judge_desc": null,
+   "corr_salt": 0.36556,
+   "corr_cd": -0.00454
+  },
+  "w5xjnr": {
+   "atom": "imagenet_2592",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "w5xjnr-ybnmup",
+   "category": "drum",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "wbe6xc": {
+   "atom": "imagenet_4738",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "wbe6xc-x36prp",
+   "category": "tights",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.08966
+  },
+  "wkft2a": {
+   "atom": "coco_1118",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "wkft2a-p8bugm",
+   "category": "kite, person",
+   "judge_desc": null,
+   "corr_salt": 0.42296,
+   "corr_cd": 0.2646
+  },
+  "wtfn6x": {
+   "atom": "coco_5064",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "wtfn6x-ch8t3y",
+   "category": "person, skateboard",
+   "judge_desc": null,
+   "corr_salt": 0.55503,
+   "corr_cd": 0.14067
+  },
+  "wv3grt": {
+   "atom": "imagenet_5911",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "wv3grt-vxg5m5",
+   "category": "mountain",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "wwb4p6": {
+   "atom": "imagenet_1355",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "wwb4p6-wmjru9",
+   "category": "guacamole",
+   "judge_desc": null,
+   "corr_salt": 0.24988,
+   "corr_cd": 0.0
+  },
+  "x7egwf": {
+   "atom": "imagenet_3000",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "x7egwf-ky6nm9",
+   "category": "sandbar",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": -0.00067
+  },
+  "x858b8": {
+   "atom": "coco_3208",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "x858b8-g62276",
+   "category": "giraffe, person",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.5119
+  },
+  "xb94yb": {
+   "atom": "imagenet_2050",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "xb94yb-dbpemv",
+   "category": "letter opener",
+   "judge_desc": null,
+   "corr_salt": 0.20447,
+   "corr_cd": 0.0
+  },
+  "xkh6rr": {
+   "atom": "imagenet_1073",
+   "dataset": "imagenet",
+   "stratum": "catch",
+   "pos": "xkh6rr-q75q3d",
+   "category": "poncho",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "xuk29a": {
+   "atom": "coco_5439",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "xuk29a-tx7y4r",
+   "category": "person, toothbrush",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.34026
+  },
+  "y2v2ec": {
+   "atom": "coco_852",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "y2v2ec-9tvsqw",
+   "category": "chair, dining table, potted plant, refrigerator, sink, tv",
+   "judge_desc": null,
+   "corr_salt": 0.38575,
+   "corr_cd": 0.38575
+  },
+  "y5fyyz": {
+   "atom": "imagenet_4416",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "y5fyyz-75zfqc",
+   "category": "ocean liner",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": -0.00206
+  },
+  "ya4cxc": {
+   "atom": "imagenet_1386",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "ya4cxc-yb67z9",
+   "category": "jellyfish",
+   "judge_desc": null,
+   "corr_salt": 0.18136,
+   "corr_cd": -0.00193
+  },
+  "yqgnhv": {
+   "atom": "imagenet_5547",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "yqgnhv-a36hfp",
+   "category": "tench",
+   "judge_desc": null,
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "zmqeku": {
+   "atom": "imagenet_1279",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "zmqeku-vbucn3",
+   "category": "Sussex Spaniel",
+   "judge_desc": null,
+   "corr_salt": 0.1545,
+   "corr_cd": 0.0
+  },
+  "zt2625": {
+   "atom": "coco_956",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "zt2625-b3ys8x",
+   "category": "car, person, traffic light",
+   "judge_desc": null,
+   "corr_salt": 0.60876,
+   "corr_cd": 0.0
+  },
+  "zvx5c8": {
+   "atom": "coco_2385",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "zvx5c8-pg4qhd",
+   "category": "car, chair, person, wine glass",
+   "judge_desc": null,
+   "corr_salt": 0.34775,
+   "corr_cd": 0.0
+  }
+ }
+}

@@ -1,138 +1,133 @@
 # Image study (SALT human evaluation)
 
-This folder is the web page for an online behavioural study run on Prolific. It is a static
-site (HTML, CSS, JavaScript, JPEG images) meant for GitHub Pages. There is no build step.
+Static web page (HTML, CSS, plain JavaScript, JPEG images) for an online study with volunteers. It is meant for GitHub
+Pages; there is no build step and no library.
 
-The study asks whether the names that **SALT** gives to the units ("atoms") of a sparse
-autoencoder (SAE) help people understand what those units respond to. SALT is a linear text
-head on a frozen vision-only TopK SAE.
+The study asks whether the names that **SALT** gives to the units ("atoms", "neurons") of a sparse autoencoder help
+people understand what those units respond to. SALT is a linear text head on a frozen vision-only TopK SAE.
 
-Full design: `../SPEC.md`. Deployment steps: `../DEPLOY.md`. Pre-registration draft:
-`../PREREGISTRATION_DRAFT.md`.
-
-> This file is served publicly if you deploy the whole folder. It names the conditions.
-> `stimuli/manifest.json` does too. See DEPLOY.md, step 1, if you want to remove it.
+> This file names the methods and the conditions, and `stimuli*/debug_key.json` holds the correct answers. For the real
+> study, deploy without them (see "Deploying" below).
 
 ## The task
 
-Two-alternative forced choice (Colin, PhD thesis, chapter 3, experiment II with a semantic
-control). One trial = one SAE atom.
+One round = one neuron. Participant text says "concept", never "neuron", "atom", "SAE" or "activation".
 
-1. The participant sees 9 images that activate the atom most (top row) and 9 that activate it
-   least (bottom row).
-2. Below, two new held-out images of the same category, left and right in random order. One
-   activates the atom strongly, the other does not.
-3. The participant clicks the one that belongs with the top row, then rates confidence (1-5).
+1. The 9 images that activate the neuron most and the 9 that activate it least.
+2. Depending on the condition, a name for it: `This concept: <name>`.
+3. Two new images. One activates the neuron strongly (the correct one); the other one does not. The participant clicks
+   or taps the one that matches, or presses an arrow key. The next round follows at once: there is no confidence
+   rating and no feedback (13 Oct. 2026).
 
-Participant-facing text never says "atom", "SAE" or "activation". It says "concept" and
-"images that match the concept most / least".
-
-## Conditions (within subjects: every session mixes the active ones)
-
-**8 Oct. 2026: condition C (permuted SALT name) is set aside for now.** The active conditions are
-listed in `js/config.js` (`conditions: ["A", "B", "D"]`), with `nConditions = 3 lists x 3
-rotations = 9` DataPipe cells; each session has 13-14 test atoms per condition. To bring C back,
-set `conditions` to the four letters and `nConditions` to 12. The text below describes the
-four-condition version.
-
-| Letter | Shown above the reference images |
+| Condition | Shown above the images |
 |---|---|
-| A | nothing (no name, no placeholder) |
-| B | `This concept: <SALT name>` |
-| C | `This concept: <SALT name of another atom>` (fixed derangement within dataset) |
-| D | `This concept: <CLIP-Dissect name>` |
-
-B, C and D use the same instructions word for word.
-
-Every participant sees the four conditions, mixed in random order: 10 test atoms each
-(5 R + 5 Delta), plus practice and catch trials cycled over the four. DataPipe assigns a
-counterbalancing cell `i` in 0..11: `list = Math.floor(i / 4)`, `rotation = i % 4`. Within a
-list the 40 atoms are split into 4 fixed groups balanced by dataset and stratum
-(`atomGroups` in `js/experiment.js`); group `g` gets condition `"ABCD"[(g + rotation) % 4]`,
-so over the 4 rotations every atom is seen once in every condition. The condition of each
-trial is in the `condition` column of the data. Each list holds 40 test atoms
-(10 R + 10 Delta per dataset, COCO and ImageNet).
+| A | nothing |
+| B | the SALT name of the neuron |
+| C | the SALT name of another neuron (set aside since 8 Oct. 2026) |
+| D | the CLIP-Dissect name of the neuron |
 
 ## Session
 
-Browser check (desktop, window at least 1000 x 650) → consent → condition assignment →
-full screen → instructions with an example → 9 practice trials with feedback → 40 test
-trials + 5 catch trials, no feedback → questionnaire → save to OSF via DataPipe → end page
-and redirect to Prolific. About 12 minutes.
+Introduction page (context; a required "I am 18 or older and I agree to the conditions" checkbox; the conditions in a
+pop-up) → 9 first rounds (practice neurons, not announced, recorded with phase `practice`) → 40 test rounds with 5 catch
+rounds mixed in → questionnaire → saving → thank-you page (no redirect). About 10 minutes. Small "i" buttons open
+detailed explanations (`EXP_TEXTS.info`) on every screen.
 
-## Run locally
+**Draw (random among the neurons).** Every session draws its own neurons with a seeded generator; the seed is saved.
+`config.nTest` = 40 test neurons, 10 from each of the 4 stratum cells of the manifest (COCO R, COCO Delta, ImageNet R,
+ImageNet Delta, 30 neurons each), so each neuron is seen by a third of the participants. The conditions are balanced
+within the session (14 / 13 / 13) and within each cell. The 9 practice and 5 catch neurons are the same for everyone, in a
+random order (one catch round per block of 8 test rounds; never the first test round). Which candidate comes first is
+random. Balance across participants holds on average; a server-side assignment could balance it exactly later.
 
-From the `human_exp/` folder (login node, Python 3, Pillow):
+**Navigation.** Each screen is an entry of the browser history: the browser's back button returns to the previous round
+(its answer is outlined and can be changed), the forward button returns to where the participant was, and answering a
+round that was already answered jumps back to the first unanswered one. The progress is kept in `localStorage`: a
+reload or a closed tab resumes the session at the same round (for 48 hours, with the same stimulus version). After the
+end, the page stays on the thank-you screen.
 
-```bash
-python3 tools/make_mock_stimuli.py                  # placeholder images in site/stimuli_mock/
-python3 tools/check_site.py --stim stimuli_mock     # validates manifest, texts, config, files
-cd site && python3 -m http.server 8000
-```
+**Layout.** Round screens fill about 85-90 % of the window. Landscape windows show the reference images in two rows of
+9 and the two candidates side by side (keys ← and →). Portrait windows (narrow desktop windows, tablets held upright,
+phones) show them in two columns of 9, with the candidates one above the other (keys ↑ and ↓). Image sizes follow the
+window. A phone held sideways is asked to turn upright. Phones and tablets are accepted; the keyboard tip is hidden on
+touch screens.
 
-Then open in a desktop browser (pages must be served over HTTP; opening `index.html` as a
-file does not work because the page fetches JSON):
+## Image codes (13 Oct. 2026)
 
-- `http://localhost:8000/?debug=1&stim=stimuli_mock&rot=1&list=1` (mock images)
-- `http://localhost:8000/?debug=1&rot=0&list=0` (real images)
-
-On the cluster, forward the port first, e.g. `ssh -L 8000:localhost:8000 <login node>`.
-
-Debug mode never contacts DataPipe and never redirects to Prolific. At the end it downloads
-the data as `debug_<subject_id>.csv`. Try all 12 (condition, list) pairs before launch.
-
-## URL parameters
-
-| Parameter | Used when | Meaning |
-|---|---|---|
-| `PROLIFIC_PID` | production | Prolific participant id, filled by Prolific (`{{%PROLIFIC_PID%}}`) |
-| `STUDY_ID` | production | Prolific study id (`{{%STUDY_ID%}}`) |
-| `SESSION_ID` | production | Prolific session id (`{{%SESSION_ID%}}`) |
-| `debug=1` | testing | debug mode: no DataPipe, no redirect, local CSV download, debug badge on trials |
-| `full=1` | debug only | run the participant flow (consent, instructions, warm-up, questionnaire). Without it, `debug=1` opens the trial browser: no instructions or warm-up, ◀ ▶ arrows (or ← → keys) to move between rounds without answering, a click on an image shows the verdict and both names |
-| `proto=a\|b\|c` | debug only | prototype stimulus set (`stimuli_a`, `stimuli_b`, `stimuli_c`) |
-| `rot=0..2` (0..3 with C) | debug only | force the rotation of the condition-to-atom assignment |
-| `list=0..2` | debug only | force the list (default 0 when `rot` is given) |
-| `stim=<folder>` | debug only | stimuli folder (default `stimuli`; use `stimuli_mock` for placeholders) |
-
-Without `debug=1`, `cond`, `list` and `stim` are ignored. A missing `PROLIFIC_PID` does not
-block the session; it is recorded as `pid_missing = true`.
-
-## File layout
-
-```
-site/                       GitHub Pages root (publish the contents of this folder)
-  index.html                page shell: loads jsPsych 8.3.0 and plugins (pinned, unpkg), then js/ and css/
-  .nojekyll                 tells GitHub Pages to serve files as they are
-  README.md                 this file
-  css/style.css             layout and look (light theme, system fonts)
-  js/config.js              DataPipe id (placeholder), counts, debug flags from the URL
-  js/texts.js               every word participants see (consent, instructions, labels, questionnaire, end page)
-  js/experiment.js          timeline, randomisation, data recording, saving
-  stimuli/manifest.json     atoms, lists, names per condition, image paths, metadata
-  stimuli/img/<atom_id>/    h0..h8.jpg (top row), l0..l8.jpg (bottom row), qpos.jpg, qneg.jpg
-  stimuli/example/          example.json + the same 20 images, for the example on the last instruction page
-  stimuli_mock/             placeholder stimuli for testing; delete before deployment
-```
-
-Outside `site/` (never deployed): `build/` (stimulus selection and rendering),
-`tools/` (checks and mock stimuli), `SPEC.md`, `DEPLOY.md`, `PREREGISTRATION_DRAFT.md`.
-
-## Editing text
-
-All participant text is in `js/texts.js`. Keep these rules:
-
-- Never mention SALT, CLIP-Dissect, COCO, ImageNet, permutation or condition letters.
-- B, C and D share the same instruction pages (`NAMED_PAGES`); A uses `PLAIN_PAGES`, with no
-  mention of names.
-- Keep `{{EXAMPLE_TRIAL}}` on the last instruction page of each condition.
-- Keep `nameLabel` as `This concept:` and the questionnaire `name` fields unchanged.
-- Run `tools/check_site.py` after every change.
+Images are named `<neuron>-<image>.jpg` (for example `2g7qgy-7nyvyd.jpg`): the first 6 characters are the same for the
+20 images of a neuron, the last 6 identify the image. Both are keyed hashes: they reveal neither the atom, nor the
+dataset, nor whether the image is a top, bottom, correct or wrong one. `manifest.json` lists the two candidates of a
+neuron in code order, so it does not say which one is correct either, and neither does the page: the answers are
+scored offline. The codes are produced by `../stimuli_gen/encode_stimuli.py`, which also writes the private codebook
+(`../stimuli_gen/codebook/<set>_<version>.json` and `.csv`: every code → atom, dataset, stratum, role, rank, source image).
+The same image in the same role of the same atom keeps its code from one version to the next.
 
 ## Data
 
-One CSV per participant is saved to the OSF component linked to DataPipe, named
-`<PROLIFIC_PID>_<SESSION_ID>.csv`. The analysis row is the `task == "confidence"` row (one
-per trial: item fields, choice, correctness, choice RT, confidence, confidence RT). A
-`task == "summary"` row closes a complete session. Exclusions are applied at analysis time
-only (see `../PREREGISTRATION_DRAFT.md`).
+One CSV per session, saved at the end through DataPipe (`datapipeExperimentId` in `js/config.js`, a placeholder for now)
+as `<subject_id>_<start time>.csv`. One row per round (`row_type = round`) and one session row (`row_type = session`).
+
+Round columns: `round`, `phase` (practice / test), `item_type` (practice / test / catch), `neuron`, `condition`,
+`name_shown`, `img_1` and `img_2` (the candidates, first = left or top), `chosen_slot` and `chosen_img` (final answer),
+`rt_ms` (from the moment the images are on screen), `first_slot`, `first_img`, `first_rt_ms` (first answer),
+`n_answers`, `n_changes`, `input` (mouse, touch, pen, key, keyboard), `layout` (row / col), `n_blur`, `n_img_errors`,
+window size, time stamps. Session row: questionnaire answers (`q_strategy`, `q_used_name`, `q_age_range`,
+`q_ai_familiarity`), number of back moves and resumptions, screen size, pixel ratio, touch screen, user agent, and every
+answer event as JSON. Every row also carries `subject_id`, `seed`, `exp_version`, `stimuli`, `manifest_version`.
+
+Scoring: `python3 ../stimuli_gen/decode_responses.py <csv files or folder> -o decoded.csv` adds `atom`, `dataset`,
+`stratum`, `pos_img`, `pos_slot`, `correct`, `first_correct` and checks every code.
+
+`responseEndpoint` in `js/config.js` (null for now) prepares a dynamic version: if set to a URL, every answer is sent there
+as it is given (`{"kind": "answer", "row": ...}`) and the whole session at the end (`{"kind": "session", "csv": ...}`),
+by POST with a JSON body sent as `text/plain`. If you use it, update the "conditions" text (answers are no longer sent
+only at the end).
+
+## Debug mode
+
+| Parameter | Meaning |
+|---|---|
+| `debug=1` | trial browser: the rounds of one session draw (practice excluded), ◀ ▶ buttons or ← → keys to move without answering; a click on a candidate shows the verdict and both names. The banner says where the name comes from, the atom, the correct image and the MLLM judge's description (`debug_key.json`) |
+| `&full=1` | the participant flow instead, with the banner on every round; nothing is sent, the CSV is downloaded at the end and the scores are shown |
+| `&all=1` | browser: every neuron of the set (practice and catch included) |
+| `&proto=a\|b\|c` | prototype set `stimuli_a`, `stimuli_b`, `stimuli_c` (the default `stimuli` is prototype b) |
+| `&seed=<n>` | reproduce a draw (the seed is in the banner and in the data) |
+| `&cond=A\|B\|C\|D` | show one condition on every round |
+| `&resume=1` | with `full=1`: keep the progress in `localStorage`, to test resuming after a reload |
+| `&stim=<folder>` | another stimulus folder |
+
+## Local test
+
+```bash
+cd human_exp/site && python3 -m http.server 8000
+# then open http://localhost:8000/?debug=1  (browser)  or  http://localhost:8000/?debug=1&full=1  (participant flow)
+```
+
+## Files
+
+```
+index.html            page shell (no external script)
+css/style.css         layout and look (light theme, system fonts)
+js/config.js          DataPipe id, response endpoint, conditions, number of test rounds, debug flags from the URL
+js/texts.js           every word participants see
+js/experiment.js      draw, screens, browser history, saved progress, data, saving, debug browser
+stimuli/              default set (prototype b): manifest.json, debug_key.json, img/<neuron>-<image>.jpg
+stimuli_a|b|c/        prototype sets, same layout
+```
+
+## Caching
+
+Image URLs carry the stimulus version (`?v=<manifest.version>`); scripts and the stylesheet carry `?v=<date>` in
+`index.html`: change it whenever `js/` or `css/` changes. The manifest is fetched with `cache: "no-store"`.
+
+## Deploying
+
+Fill in `[PI_NAME]`, `[INSTITUTION]`, `[CONTACT_EMAIL]` in `js/texts.js` and the DataPipe id in `js/config.js`. For the
+real study, leave out this README and the answer keys:
+
+```bash
+rsync -a --delete --exclude '.git' --exclude '.nojekyll' --exclude 'README.md' --exclude 'debug_key.json' \
+  human_exp/site/ <pages repo>/
+```
+
+Debug mode then still works, without the banner's answer information.

@@ -1,159 +1,46 @@
 // All text that participants see. experiment.js reads it and adds no text of its own.
-// Contract: SPEC.md section 5.3.
 //
 // Rules for this file:
 // - Never name the methods, the datasets or the condition letters in participant text.
-// - Conditions B, C and D share exactly the same pages (built from NAMED_PAGES below).
-//   Condition A says nothing about names.
-// - Placeholders in [SQUARE_BRACKETS] and COMPLETION_CODE must be filled in by the author
-//   before launch (see DEPLOY.md).
-//
-// Example page: the last instruction page of every condition holds the token
-// {{EXAMPLE_TRIAL}}. experiment.js replaces it with a static copy of a trial, built
-// from stimuli/example/example.json and the images written by the stimuli builder:
-//   stimuli/example/h0.jpg ... h8.jpg   (top row, strongest matches)
-//   stimuli/example/l0.jpg ... l8.jpg   (bottom row, weakest matches)
-//   stimuli/example/qpos.jpg            (correct answer, always shown on the right)
-//   stimuli/example/qneg.jpg            (wrong answer, shown on the left)
+// - The same wording is used whatever name (or no name) a round shows.
+// - Placeholders in [SQUARE_BRACKETS] must be filled in by the author before launch.
+// - 13 Oct. 2026: one introduction page (introHtml, with the "conditions" pop-up), no tutorial and no warm-up
+//   announcement; the "i" buttons open the texts of `info`. Volunteers only: no payment, no Prolific.
+// - 13 Oct. 2026 (evening): one screen per round (no confidence rating, no feedback); computers, tablets and phones;
+//   arrow keys on a keyboard; the browser's back button returns to the previous round.
 
 (function () {
-  // ---- instruction pages ----
-
-  const PAGE_1 =
-    "<h2>What this study is about</h2>" +
-    "<p>An AI model has learned many visual <b>concepts</b>. " +
-    "A concept is something the model looks for in images: an object, a part of an object, " +
-    "a shape, a colour, a texture or a kind of scene.</p>" +
-    "<p>Your job is to work out what a concept responds to, just by looking at examples.</p>";
-
-  const PAGE_2_INTRO =
-    "<h2>The examples</h2>" +
-    "<p>For each concept you will see two rows of 9 images:</p>" +
-    "<ul>" +
-    "<li><b>Top row:</b> the images that match the concept most strongly.</li>" +
-    "<li><b>Bottom row:</b> images that match the concept least.</li>" +
-    "</ul>" +
-    "<p>Compare the two rows. What do the top images have in common that the bottom images lack?</p>";
-
-  // Within-subject design: every participant sees rounds with and without a name.
-  const PAGE_2_NAME =
-    "<p>On some rounds, a short name that describes the concept is also shown above the images, like this:</p>" +
-    '<div class="concept-name">This concept: <strong class="concept-name-value">...</strong></div>' +
-    "<p>The name was produced automatically by a computer program. " +
-    "It may or may not be accurate.</p>";
-
-  const PAGE_3 =
-    "<h2>Your task</h2>" +
-    "<p>Below the two rows you will see <b>two new images</b>. " +
-    "Click the one that matches the concept: the one that belongs with the <b>top row</b>.</p>" +
-    "<p>Be careful: the two new images often show the same kind of object or scene. " +
-    "Look at what the top-row images really share.</p>" +
-    "<p>After each choice, tell us how sure you are, from 1 (Guessing) to 5 (Very sure).</p>";
-
-  const PAGE_4 =
-    "<h2>How the session works</h2>" +
-    "<ul>" +
-    "<li>First, <b>9 practice rounds</b>. After each one we tell you if you were right.</li>" +
-    "<li>Then the real task: <b>about 45 rounds</b>, with no feedback.</li>" +
-    "<li>Each round takes about 10 seconds. Take a good look, but do not overthink it.</li>" +
-    "<li>Please use your mouse or touchpad, stay on this page and do not switch tabs until the end.</li>" +
-    "</ul>";
-
-  const PAGE_EXAMPLE =
-    "<h2>Example</h2>" +
-    "<p>This is what a round looks like.</p>" +
-    "{{EXAMPLE_TRIAL}}" +
-    "<p>The outlined image on the right is the correct answer: it shares what the top-row " +
-    "images have in common. The image on the left does not, even if it shows a similar " +
-    "kind of thing.</p>" +
-    "<p>Click <b>Next</b> to start the practice.</p>";
-
-  // 12 Oct. 2026: a single instruction page, with the illustrated example and the warm-up announcement at the end.
-  const ONE_PAGE =
-    "<h2>Your task</h2>" +
-    "<p>An AI model has learned visual <b>concepts</b>: things it looks for in images. " +
-    "For each concept you see two rows of images. The <b>top row</b> matches the concept most, " +
-    "the <b>bottom row</b> matches it least. Then click, among <b>two new images</b>, " +
-    "the one that belongs with the top row, and say how sure you are (1 to 5).</p>" +
-    "<p>On some rounds a short name for the concept is shown above the images. " +
-    "It was produced by a computer program and may or may not be accurate.</p>" +
-    "{{EXAMPLE_TRIAL}}" +
-    "<p>Here the outlined image on the right is the correct answer.</p>" +
-    '<p class="warmup-note"><b>You will start with 9 warm-up rounds.</b> They are only for training: ' +
-    "after each one we tell you if you were right. Then the real task (about 45 rounds) begins, without feedback.</p>";
-  const PLAIN_PAGES = [ONE_PAGE];
-  const NAMED_PAGES = [ONE_PAGE];
-
   window.EXP_TEXTS = {
     title: "Image study",
 
-    consentHtml:
-      '<div class="text-page">' +
-      "<h2>Information and consent</h2>" +
-      "<p><b>Purpose.</b> This study looks at how people interpret what image features " +
-      "learned by an AI model respond to.</p>" +
-      "<p><b>What you will do.</b> You will look at small sets of images and pick, between two " +
-      "new images, the one that belongs with a set. Then you answer a few short questions. " +
-      "It takes about <b>12 minutes</b>. You need a desktop or laptop computer.</p>" +
-      "<p><b>Voluntary.</b> Taking part is your choice. You can stop at any time by closing " +
-      "this page. If you stop early, please return the study on Prolific.</p>" +
-      "<p><b>Payment.</b> You will be paid through Prolific, at the amount shown in the study listing.</p>" +
-      "<p><b>Your data.</b> We record your answers, response times and basic browser information. " +
-      "We do not ask for your name. Data are stored on a private Open Science Framework (OSF) " +
-      "project and used for research and scientific publication. Your Prolific ID is used " +
-      "only to manage payment and is removed before any data are shared.</p>" +
-      "<p><b>Who can take part.</b> You must be 18 or older.</p>" +
-      "<p><b>Contact.</b> [PI_NAME], [INSTITUTION], [CONTACT_EMAIL].</p>" +
-      "<p><b>Ethics.</b> This study was approved by [ETHICS_COMMITTEE] " +
-      "(approval number [APPROVAL_NUMBER]).</p>" +
-      "<p>By clicking <b>I agree</b>, you confirm that you are 18 or older, that you have read " +
-      "this information, and that you agree to take part.</p>" +
-      "</div>",
+    // Introduction page. The checkbox (id "agree") is required; the "conditions" link opens info.conditions.
+    // Elements with class "kbd-only" are shown only on devices with a mouse or a trackpad.
+    introHtml:
+      "<h1>What does an AI model see in images?</h1>" +
+      "<p>AI models that recognise images learn many visual <b>concepts</b> on their own: an object, a part of an object, " +
+      "a material, a pattern or a kind of scene. We want to know how easily people can tell what such a concept responds to.</p>" +
+      "<p>In each round you will see images that strongly match one concept and images that do not. " +
+      "Then you pick, between two new images, the one that matches the concept. Sometimes a short name for the concept is shown. " +
+      "There are about 50 rounds; it takes around 10 minutes.</p>" +
+      '<p class="kbd-only">On a computer you can also answer with the arrow keys of your keyboard.</p>' +
+      '<p class="help-hint">A small <span class="info-btn-sample" aria-hidden="true">i</span> button next to each part of the screen gives more details at any time.</p>' +
+      '<label class="agree"><input type="checkbox" id="agree" name="agree" value="yes" required>' +
+      '<span>I am 18 or older and I agree to the <button type="button" class="info-link" data-info="conditions">conditions of this study</button></span></label>',
 
-    // Within-subject design: every participant reads the "mixed" pages (no condition letter is shown).
-    instructionPages: {
-      mixed: NAMED_PAGES.slice(),
-      A: PLAIN_PAGES.slice(),
-      B: NAMED_PAGES.slice(),
-      C: NAMED_PAGES.slice(),
-      D: NAMED_PAGES.slice()
-    },
-
-    practiceIntroHtml:
-      '<div class="text-page">' +
-      "<h2>Warm-up rounds</h2>" +
-      "<p>You will now do <b>9 warm-up rounds</b>. They are <b>training only</b> and do not count. " +
-      "After each one, we will tell you if you picked the right image.</p>" +
-      "</div>",
-
-    testIntroHtml:
-      '<div class="text-page">' +
-      "<h2>The real task starts now</h2>" +
-      "<p>The warm-up is over. From now on the rounds count, and you will <b>not</b> be told whether your answer was correct.</p>" +
-      "<p>There are about 45 rounds. Once you start, you cannot go back to the instructions.</p>" +
-      "<p>Take a good look at each round, but do not overthink it.</p>" +
-      "</div>",
-
-    trialPrompt: "Which image matches this concept? (Which one belongs with the top row?)",
+    trialPrompt: "Which image matches this concept?",
 
     nameLabel: "This concept:",
 
+    // Long labels: two rows of 9 (wide windows). Short labels: two columns of 9 (narrow windows and phones).
     referenceLabels: {
       high: "Images that match the concept most",
-      low: "Images that match the concept least"
-    },
-
-    confidencePrompt: "How sure are you?",
-
-    // 1 (lowest) to 5 (highest), shown left to right.
-    confidenceLabels: ["Guessing", "Not very sure", "Somewhat sure", "Quite sure", "Very sure"],
-
-    feedback: {
-      correct: "Correct.",
-      incorrect: "Not quite. The outlined image is the one that matches the concept."
+      low: "Images that match the concept least",
+      highShort: "Match most",
+      lowShort: "Match least"
     },
 
     // Names are fixed: analysis code reads q_strategy, q_used_name, q_age_range, q_ai_familiarity.
+    questionnaireIntroHtml: "<h2>Almost done</h2><p>A few short questions to finish.</p>",
     questionnaire: [
       {
         name: "strategy",
@@ -164,7 +51,7 @@
         name: "used_name",
         type: "multi-choice",
         prompt: "When a name was displayed, did you use it?",
-        options: ["Yes, on most trials", "Yes, on some trials", "Rarely", "No, never"]
+        options: ["Yes, on most rounds", "Yes, on some rounds", "Rarely", "No, never"]
       },
       {
         name: "age_range",
@@ -187,69 +74,80 @@
     ],
 
     endHtml:
-      '<div class="text-page">' +
-      "<h2>Thank you!</h2>" +
-      "<p>You have finished the study.</p>" +
+      "<h1>Thank you!</h1>" +
+      "<p>You have finished the study. Your answers have been recorded.</p>" +
       "<p><b>About this study.</b> We are testing whether short names, generated automatically " +
       "by computer programs, help people understand what a concept learned by an AI model " +
       "responds to. Some rounds showed no name, and the others showed names from different " +
       "programs. The programs are not perfect: if you saw a name that did not fit the images, " +
       "this may be why.</p>" +
-      "<p>Please do not share these details with other people who might take part.</p>" +
+      "<p>Please do not share these details with people who might still take part.</p>" +
       "<p>Questions: [CONTACT_EMAIL].</p>" +
-      "<p>Click the button below to return to Prolific and confirm your participation. " +
-      "You will be redirected automatically in a few seconds.</p>" +
-      "</div>",
+      "<p>You can now close this page.</p>",
 
-    prolificCompletionUrl: "https://app.prolific.com/submissions/complete?cc=COMPLETION_CODE",
+    // Detailed explanations behind the small "i" buttons.
+    info: {
+      conditions:
+        "<h3>Conditions of this study</h3>" +
+        "<ul>" +
+        "<li><b>Age.</b> You must be 18 or older.</li>" +
+        "<li><b>Voluntary.</b> Taking part is entirely voluntary and unpaid. You can stop at any time by closing this page; " +
+        "your answers are only sent when you reach the end.</li>" +
+        "<li><b>Anonymous.</b> We do not ask for your name, e-mail or any information that identifies you.</li>" +
+        "<li><b>What we record.</b> Your choices, how long each answer took, your answers to a few short questions at the end, " +
+        "and basic browser information (screen size, browser type). Until you finish, your progress is kept in this browser " +
+        "so that you can continue if the page is closed or reloaded.</li>" +
+        "<li><b>Use of the data.</b> The data are stored securely and used only for research. They may be published in anonymous, " +
+        "aggregated form or shared as an anonymous dataset.</li>" +
+        "<li><b>Images.</b> The photos come from public research image collections. They show everyday scenes and objects.</li>" +
+        "<li><b>Device.</b> A computer, a tablet or a phone all work; on a phone, hold it upright. A larger screen shows the images larger.</li>" +
+        "<li><b>Contact.</b> [PI_NAME], [INSTITUTION], [CONTACT_EMAIL].</li>" +
+        "</ul>",
+      name:
+        "<h3>The name of the concept</h3>" +
+        "<p>On some rounds a short name is shown. It was produced automatically by a computer program, from the images alone. " +
+        "It is often helpful, but it can be too broad, too narrow or simply wrong. Use it as a hint and check it against the images.</p>",
+      refsHigh:
+        "<h3>Images that match the concept most</h3>" +
+        "<p>These are the 9 images, out of thousands, to which the concept responds most strongly. " +
+        "Whatever they have in common is what the concept looks for. It can be an object, a part, a material, a colour, a pattern or a kind of scene.</p>",
+      refsLow:
+        "<h3>Images that match the concept least</h3>" +
+        "<p>These images often look similar to the first set, but the concept does not respond to them at all. " +
+        "Comparing the two sets helps you see what really matters: what the first images have and the others lack.</p>",
+      question:
+        "<h3>Your choice</h3>" +
+        "<p>Exactly one of the two new images strongly matches the concept: it belongs with the images that match the concept most. " +
+        "Click or tap it. The other one does not match, even if it looks similar. If you are unsure, go with your best guess.</p>" +
+        "<p>On a keyboard, the arrow keys answer too: <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> pick the left or the right image; " +
+        "when the two images are shown one above the other, <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> pick the top or the bottom one.</p>" +
+        "<p>Clicked by mistake? Your browser's back button takes you back to the previous round, and its forward button returns to where you were.</p>"
+    },
 
     ui: {
-      warmupBanner: "Warm-up round {n} of {N}: training only, this round does not count.",
-      consentAgree: "I agree",
-      consentDecline: "I do not agree",
-      noConsentHtml:
-        '<div class="text-page">' +
-        "<h2>You chose not to take part</h2>" +
-        "<p>Thank you for your time. No data have been saved.</p>" +
-        "<p>Please return the study on Prolific (click <b>Stop without completing</b>), " +
-        "then you can close this page.</p>" +
-        "</div>",
-      browserExclusionHtml:
-        '<div class="text-page">' +
-        "<h2>This device cannot be used</h2>" +
-        "<p>This study needs a desktop or laptop computer, with a browser window of at least " +
-        "1000 x 650 pixels. Phones and tablets are not supported.</p>" +
-        "<p>Please return the study on Prolific. Thank you.</p>" +
-        "</div>",
-      fullscreenHtml:
-        '<div class="text-page">' +
-        "<p>The study works best in full screen. Click the button below to switch to full screen.</p>" +
-        "</div>",
-      fullscreenButton: "Enter full screen",
-      nextButton: "Next",
-      previousButton: "Previous",
-      continueButton: "Continue",
+      startButton: "Start",
       submitButton: "Submit",
-      exampleTargetCaption: "Correct answer",
-      yourChoice: "Your choice",
-      progressLabel: "Progress",
-      savingHtml:
-        '<div class="text-page"><p>Saving your answers. Please do not close this page.</p></div>',
-      saveErrorHtml:
-        '<div class="text-page">' +
-        "<h2>Your answers could not be saved</h2>" +
-        "<p>Sorry, something went wrong while saving. Please send us a message on Prolific " +
-        "with your Prolific ID so that we can sort it out. You will still be paid.</p>" +
-        "<p>The button below still completes the study on Prolific.</p>" +
-        "</div>",
+      closeButton: "Close",
+      retryButton: "Try again",
+      infoButton: "More information",
+      firstImage: "First image",
+      secondImage: "Second image",
+      yourAnswer: "Your answer",
+      // Shown under the two images on devices with a mouse or a trackpad.
+      keyHintRow: "Keyboard: <kbd>&larr;</kbd> left image &nbsp;·&nbsp; <kbd>&rarr;</kbd> right image",
+      keyHintCol: "Keyboard: <kbd>&uarr;</kbd> top image &nbsp;·&nbsp; <kbd>&darr;</kbd> bottom image",
+      rotateHtml: "<p><b>Please hold your phone upright.</b></p><p>The images are larger that way.</p>",
+      resumedNote: "Welcome back: you can continue where you left off.",
       loadingHtml: "<p>Loading images, please wait...</p>",
+      savingHtml: "<h2>Saving your answers</h2><p>Please do not close this page.</p>",
+      saveErrorHtml:
+        "<h2>Your answers could not be saved</h2>" +
+        "<p>Something went wrong while sending them. Please check your internet connection and press the button below. " +
+        "If it still fails, keep this page open and contact us at [CONTACT_EMAIL].</p>",
       loadErrorHtml:
-        '<div class="text-page">' +
         "<h2>The study could not be loaded</h2>" +
         "<p>Please check your internet connection and reload the page. If the problem " +
-        "continues, please return the study on Prolific and send us a message.</p>" +
-        "</div>",
-      endButton: "Return to Prolific"
+        "continues, please contact us at [CONTACT_EMAIL].</p>"
     }
   };
 })();

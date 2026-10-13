@@ -1,61 +1,61 @@
 /*
- * SALT human study: experiment logic (jsPsych 8.3.0).
+ * SALT human study: experiment logic. Plain JavaScript, no library (rewritten 13 Oct. 2026; jsPsych is no longer used,
+ * because the browser's back button has to move between rounds).
  *
- * One trial = one SAE atom. The participant sees 9 most activating and
- * 9 least activating reference images, then clicks which of two query
- * images activates the atom, then rates confidence (1-5).
+ * One round = one SAE neuron: the 9 images that activate it most, the 9 that activate it least and, depending on the
+ * condition, a name for it. The participant clicks (or taps, or picks with the arrow keys) which of two new images
+ * matches it. One screen per round: no confidence rating and no feedback.
  *
- * Within-subject design: every session mixes the active conditions of
- * config.js (A no name, B SALT name, C permuted SALT name, D CLIP-Dissect
- * name; C is set aside for now, so A, B, D). With n active conditions the
- * counterbalancing cell (0 .. 3n-1, from DataPipe) gives the atom list
- * (cell / n) and the rotation (cell % n): within a list the 40 atoms are
- * split into n fixed groups balanced by dataset and stratum, and group g
- * gets condition (g + rotation) % n, so over the n rotations every atom is
- * seen once in every active condition.
+ * Draw. Every session draws its own neurons with a seeded generator (the seed is saved): config.nTest test neurons, the
+ * same number from each stratum cell of the manifest, plus all practice neurons (the first rounds) and all catch neurons
+ * (one per block of test rounds). Conditions (config.conditions) are balanced within the session and within each cell.
+ * Which candidate goes first (left, or top) is random.
  *
- * Reads: window.EXP_CONFIG (config.js), window.EXP_TEXTS (texts.js),
- *        <stim>/manifest.json and the example atom (example.json).
- * The full timeline is built up front. Parameters that depend on the
- * condition are functions that read the global STATE.
+ * Codes. Images are named by opaque codes (<neuron>-<image>.jpg, stimuli_gen/encode_stimuli.py). The manifest does not
+ * say which candidate is correct, so neither does the page: answers are scored offline with the private codebook
+ * (stimuli_gen/decode_responses.py). With ?debug=1 the answer key (debug_key.json) is also loaded for the debug banner.
+ *
+ * Navigation. Every screen is an entry of the browser history: back and forward move between rounds (an earlier answer
+ * can be changed; the first answer is kept in the data). The progress is also kept in localStorage, so a reload or a
+ * closed tab resumes the session where it stopped (48 h, same stimulus version).
+ *
+ * Layout. Wide windows show the reference images in two rows of 9 and the candidates side by side (arrow keys left /
+ * right); tall windows and phones show them in two columns of 9 with the candidates one above the other (keys up / down).
+ *
+ * Data. One row per round plus one session row, saved at the end as CSV through DataPipe (config.datapipeExperimentId).
+ * config.responseEndpoint, if set, also receives every answer as it is given and the whole session at the end.
  */
 "use strict";
 
-const EXP_VERSION = "2.0.0-within";
-const CONDITION_LETTERS = (window.EXP_CONFIG && window.EXP_CONFIG.conditions) || ["A", "B", "C", "D"];   // active conditions
-
+const EXP_VERSION = "3.0.0";
 const CFG = window.EXP_CONFIG || {};
 const TX = window.EXP_TEXTS || {};
+const CONDS = CFG.conditions || ["A", "B", "D"];
+const APP = "salt-study";                       // marker of our browser-history entries
+const STORE = "salt-study-session";             // localStorage key: one session per browser
+const STORE_MAX_AGE_MS = 48 * 3600 * 1000;
+const LOCK_MS = 250;                            // answers are ignored during the first 250 ms of a round
+const NEXT_MS = 180;                            // the chosen image stays highlighted this long
+const AHEAD = 6;                                // rounds preloaded ahead of the current one
 
-// Shared run state. Filled once the condition is known (node 3).
-const STATE = {
-  stimDir: "stimuli",
-  manifest: null,
-  example: null,
-  rotation: null,
-  list: null,
-  cond_index: null,
-  items: { practice: [], test: [] },
-  test_order: [],
-  sides: [],
-  cur: null,           // item of the trial being shown
-  lastChoice: null,    // {side, correct, rt} of the last choice screen
-  done: 0,             // finished practice + test trials (progress bar)
-  questionnaire: null,
-  save_failed: false,
-  session_complete: false,
-  filename: null,
-  bgPreloadStarted: false
+// Session state. Screens: 0 = introduction, 1..R = rounds, R + 1 = questionnaire, R + 2 = end.
+const S = {
+  stimDir: "stimuli", manifest: null, key: null,
+  sid: null, seed: null, started: null, plan: [], answers: [], events: [],
+  consent: false, frontier: 0, screen: 0, finished: false, saved: null, questionnaire: null, endIso: null,
+  nBack: 0, nResume: 0, nBlur: 0,
+  histPos: 0, histTop: 0, pendingGo: null,
+  layout: "row", ready: false, busy: false, saving: false, onset: 0, token: 0, roundBlur: 0, lastPointer: "mouse",
+  onLayoutChange: null
 };
-
-let jsPsych = null;
+const PERSISTED = ["sid", "seed", "started", "plan", "answers", "events", "consent", "frontier", "finished", "saved",
+  "questionnaire", "endIso", "nBack", "nResume", "nBlur"];
 
 /* ------------------------------------------------------------------ */
 /* Small helpers                                                       */
 /* ------------------------------------------------------------------ */
 
-// Read a text key such as "ui.nextButton". Missing keys log a warning
-// and fall back to a plain default (participant text lives in texts.js).
+// Read a text key such as "ui.startButton". Missing keys log a warning and fall back to a plain default.
 function tx(path, fallback) {
   let v = TX;
   for (const k of path.split(".")) {
@@ -65,11 +65,7 @@ function tx(path, fallback) {
     }
     v = v[k];
   }
-  if (v === null || v === undefined) {
-    console.warn("[experiment] empty text key: " + path);
-    return fallback;
-  }
-  return v;
+  return v === null || v === undefined ? fallback : v;
 }
 
 function esc(s) {
@@ -82,45 +78,87 @@ function cleanName(name) {
   return String(name).replace(/_/g, " ");
 }
 
-function repeat(x, n) {
-  return Array.from({ length: n }, () => x);
-}
-
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function median(xs) {
-  const v = xs.filter((x) => typeof x === "number" && isFinite(x)).sort((a, b) => a - b);
-  if (v.length === 0) return null;
-  const m = Math.floor(v.length / 2);
-  return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
+function val(x) {
+  return x === undefined || x === null ? "" : x;
 }
 
-function mean(xs) {
-  return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null;
+function app() {
+  return document.getElementById("app");
 }
 
-function totalTrials() {
-  return CFG.nPractice + CFG.nTest + CFG.nCatch;
+function nRounds() {
+  return S.plan.length;
+}
+
+function isRound(s) {
+  return s >= 1 && s <= nRounds();
 }
 
 function showFatal(html) {
-  const el = document.getElementById("jspsych-target");
-  if (el) el.innerHTML = '<div class="fatal">' + html + "</div>";
+  app().innerHTML = '<div class="page fatal">' + html + "</div>";
+}
+
+// Seeded generator (mulberry32): the same seed gives the same draw.
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function shuffle(a, rng) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function randomUint32() {
+  try {
+    const u = new Uint32Array(1);
+    window.crypto.getRandomValues(u);
+    return u[0];
+  } catch (e) {
+    return Math.floor(Math.random() * 4294967296);
+  }
+}
+
+function randomId(n) {
+  const A = "23456789abcdefghjkmnpqrstuvwxyz";
+  let s = "";
+  for (let i = 0; i < n; i++) s += A[randomUint32() % A.length];
+  return s;
+}
+
+function toast(html) {
+  if (!html) return;
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.setAttribute("role", "status");
+  t.innerHTML = html;
+  document.body.appendChild(t);
+  setTimeout(() => t.classList.add("is-out"), 4000);
+  setTimeout(() => t.remove(), 4600);
 }
 
 /* ------------------------------------------------------------------ */
-/* Stimuli: loading and validation                                     */
+/* Stimuli                                                             */
 /* ------------------------------------------------------------------ */
 
 function stimFolder() {
-  // ?stim=<folder> is honoured in debug only (e.g. stimuli_mock).
+  // ?stim=<folder> and ?proto=<x> are honoured in debug only.
   if (!CFG.debug) return "stimuli";
-  if (CFG.stimOverride) return CFG.stimOverride;   // ?proto=a|b (config.js)
+  if (CFG.stimOverride) return CFG.stimOverride;
   const s = new URLSearchParams(window.location.search).get("stim");
   if (s && /^[A-Za-z0-9_-]+$/.test(s)) return s;
-  if (s) console.warn("[experiment] ignored invalid ?stim value: " + s);
   return "stimuli";
 }
 
@@ -130,816 +168,744 @@ async function fetchJson(url) {
   return r.json();
 }
 
-async function fetchExample(dir) {
-  const urls = dir === "stimuli"
-    ? ["stimuli/example/example.json"]
-    : [dir + "/example/example.json", dir + "/example.json", "stimuli/example/example.json"];
-  let lastErr = null;
-  for (const u of urls) {
-    try { return await fetchJson(u); } catch (e) { lastErr = e; }
-  }
-  throw lastErr;
+// Image files keep their code across versions when the image is unchanged; the version in the URL makes sure a browser
+// never shows an image cached from another stimulus version.
+function imgUrl(code) {
+  return S.stimDir + "/img/" + code + ".jpg?v=" + encodeURIComponent(S.manifest.version || "0");
 }
 
-function checkAtom(id, a, errs) {
-  if (!a || typeof a !== "object") { errs.push("atom " + id + " missing"); return; }
-  if (a.dataset !== "coco" && a.dataset !== "imagenet") errs.push(id + ": bad dataset");
-  if (!["R", "Delta", "practice", "catch"].includes(a.stratum)) errs.push(id + ": bad stratum");
-  for (const k of ["refs_high", "refs_low"]) {
-    if (!Array.isArray(a[k]) || a[k].length !== 9 || a[k].some((p) => typeof p !== "string" || !p)) {
-      errs.push(id + ": " + k + " must hold 9 paths");
-    }
-  }
-  for (const k of ["query_pos", "query_neg"]) {
-    if (typeof a[k] !== "string" || !a[k]) errs.push(id + ": missing " + k);
-  }
-  if (!a.names || typeof a.names !== "object") {
-    errs.push(id + ": missing names");
-  } else {
-    if (a.names.A !== null && a.names.A !== undefined) errs.push(id + ": names.A must be null");
-    for (const c of ["B", "C", "D"]) {
-      if (typeof a.names[c] !== "string" || !a.names[c].trim()) errs.push(id + ": empty names." + c);
-    }
-  }
-  if (!a.meta || typeof a.meta !== "object") errs.push(id + ": missing meta");
+function roundImages(r) {
+  const N = S.manifest.neurons[r.neuron];
+  return N.top.concat(N.bottom, [r.img1, r.img2]).map(imgUrl);
 }
 
-function validateStimuli(m, ex) {
+function validateStimuli(m) {
   const errs = [];
-  if (!m || typeof m !== "object") return ["manifest is not an object"];
-  if (typeof m.version !== "string") errs.push("manifest.version missing");
-  const atoms = m.atoms || {};
-  const nLists = Math.floor(CFG.nConditions / CONDITION_LETTERS.length);
-  if (!Array.isArray(m.lists) || m.lists.length !== nLists) {
-    errs.push("manifest.lists must hold " + nLists + " lists");
-  } else {
-    m.lists.forEach((L, j) => {
-      if (!L || L.list !== j) errs.push("lists[" + j + "].list must be " + j);
-      const ids = (L && L.test_atoms) || [];
-      if (ids.length !== CFG.nTest) errs.push("list " + j + " has " + ids.length + " test atoms, expected " + CFG.nTest);
-      if (new Set(ids).size !== ids.length) errs.push("list " + j + " has duplicate ids");
-      ids.forEach((id) => { if (!(id in atoms)) errs.push("list " + j + ": unknown atom " + id); });
-    });
+  if (!m || typeof m !== "object" || m.format !== 2) return ["manifest.json must be format 2 (stimuli_gen/encode_stimuli.py)"];
+  const cells = Array.isArray(m.cells) ? m.cells : [];
+  if (!cells.length) errs.push("manifest.cells is empty");
+  else if (CFG.nTest % cells.length) errs.push("config.nTest (" + CFG.nTest + ") is not a multiple of the " + cells.length + " cells");
+  else cells.forEach((c, i) => {
+    if (!Array.isArray(c) || c.length < CFG.nTest / cells.length) errs.push("cell " + i + " holds fewer than " + CFG.nTest / cells.length + " neurons");
+  });
+  if (!Array.isArray(m.practice) || !Array.isArray(m.catch)) errs.push("manifest.practice and manifest.catch must be lists");
+  const ids = cells.flat().concat(m.practice || [], m.catch || []);
+  if (new Set(ids).size !== ids.length) errs.push("a neuron is listed twice");
+  const named = CONDS.filter((c) => c !== "A");
+  for (const id of ids) {
+    const a = (m.neurons || {})[id];
+    if (!a) { errs.push("unknown neuron " + id); continue; }
+    if (!Array.isArray(a.top) || a.top.length !== 9) errs.push(id + ": top must hold 9 image codes");
+    if (!Array.isArray(a.bottom) || a.bottom.length !== 9) errs.push(id + ": bottom must hold 9 image codes");
+    if (!Array.isArray(a.pair) || a.pair.length !== 2) errs.push(id + ": pair must hold 2 image codes");
+    for (const c of named) {
+      if (!a.names || typeof a.names[c] !== "string" || !a.names[c].trim()) errs.push(id + ": empty name " + c);
+    }
   }
-  if (!Array.isArray(m.practice) || m.practice.length !== CFG.nPractice) errs.push("manifest.practice must hold " + CFG.nPractice + " ids");
-  if (!Array.isArray(m.catch) || m.catch.length !== CFG.nCatch) errs.push("manifest.catch must hold " + CFG.nCatch + " ids");
-  const pool = new Set((m.lists || []).flatMap((L) => (L && L.test_atoms) || []));
-  const prac = new Set(m.practice || []);
-  const cat = new Set(m.catch || []);
-  for (const id of prac) { if (pool.has(id) || cat.has(id)) errs.push("practice atom " + id + " overlaps pool or catch"); }
-  for (const id of cat) { if (pool.has(id)) errs.push("catch atom " + id + " overlaps pool"); }
-  for (const id of new Set([...pool, ...prac, ...cat])) {
-    if (!(id in atoms)) { errs.push("unknown atom " + id); continue; }
-    checkAtom(id, atoms[id], errs);
-  }
-  checkAtom("example", ex, errs);
   return errs;
 }
 
-function atomImages(a) {
-  return [...a.refs_high, ...a.refs_low, a.query_pos, a.query_neg];
+/* ------------------------------------------------------------------ */
+/* Draw of the session                                                 */
+/* ------------------------------------------------------------------ */
+
+function withPair(rounds, rng) {
+  return rounds.map((r, i) => {
+    const pair = S.manifest.neurons[r.neuron].pair;
+    const flip = rng() < 0.5;
+    return { round: i + 1, phase: r.type === "practice" ? "practice" : "test", type: r.type, neuron: r.neuron,
+             cond: CFG.debugCond || r.cond, img1: pair[flip ? 1 : 0], img2: pair[flip ? 0 : 1] };
+  });
+}
+
+function makePlan(seed) {
+  const rng = mulberry32(seed);
+  const M = S.manifest;
+  const NC = CONDS.length;
+  const order = shuffle(CONDS.slice(), rng);      // which conditions receive the rounds left over after an even split
+  const per = CFG.nTest / M.cells.length;
+  let extra = 0;
+  const test = [];
+  M.cells.forEach((cell) => {
+    const ids = shuffle(cell.slice(), rng).slice(0, per);
+    const conds = [];
+    for (let k = 0; k < Math.floor(per / NC); k++) conds.push(...CONDS);
+    for (let k = 0; k < per % NC; k++) conds.push(order[extra++ % NC]);
+    shuffle(conds, rng);
+    ids.forEach((id, i) => test.push({ neuron: id, type: "test", cond: conds[i] }));
+  });
+  // Test rounds in blocks, one catch round per block; the first test round is never a catch round.
+  const catches = shuffle(M.catch.slice(), rng).map((id, k) => ({ neuron: id, type: "catch", cond: order[k % NC] }));
+  const T = shuffle(test, rng);
+  const nB = Math.max(1, catches.length);
+  const blocks = [];
+  for (let b = 0; b < nB; b++) {
+    const blk = T.slice(Math.round((b * T.length) / nB), Math.round(((b + 1) * T.length) / nB));
+    if (catches[b]) blk.push(catches[b]);
+    blocks.push(shuffle(blk, rng));
+  }
+  if (blocks[0].some((r) => r.type !== "catch")) {
+    while (blocks[0][0].type === "catch") shuffle(blocks[0], rng);
+  }
+  // Practice rounds first (not announced), conditions balanced.
+  const P = shuffle(M.practice.slice(), rng);
+  const pConds = shuffle(P.map((_, i) => order[i % NC]), rng);
+  const practice = P.map((id, i) => ({ neuron: id, type: "practice", cond: pConds[i] }));
+  return withPair(practice.concat(blocks.flat()), rng);
+}
+
+// Debug browser with &all=1: every neuron of the set, conditions cycled.
+function makeAllPlan(seed) {
+  const M = S.manifest;
+  const kind = (id) => (M.practice.includes(id) ? "practice" : M.catch.includes(id) ? "catch" : "test");
+  const ids = M.practice.concat(...M.cells, M.catch);
+  return withPair(ids.map((id, i) => ({ neuron: id, type: kind(id), cond: CONDS[i % CONDS.length] })), mulberry32(seed));
 }
 
 /* ------------------------------------------------------------------ */
-/* Rendering (section 5.5 / 5.6 of SPEC.md)                            */
+/* Saved progress (localStorage)                                       */
 /* ------------------------------------------------------------------ */
 
-function img(src, cls) {
-  return '<img class="' + cls + '" src="' + esc(src) + '" alt="" draggable="false">';
+function storageOn() {
+  return !CFG.debug || CFG.resume;
 }
 
-function renderName(atom, cond) {
-  if (cond === "A" || !atom.names) return "";
-  const name = atom.names[cond];
-  if (name === null || name === undefined || name === "") return "";
-  return '<div class="concept-name">' + tx("nameLabel", "This concept:") +
-    ' <strong class="concept-name-value">' + esc(cleanName(name)) + "</strong></div>";
+function persist() {
+  if (!storageOn() || !S.manifest || !S.sid) return;
+  const x = { app: APP, exp: EXP_VERSION, v: S.manifest.version, stim: S.stimDir, t: Date.now() };
+  for (const k of PERSISTED) x[k] = S[k];
+  try {
+    localStorage.setItem(STORE, JSON.stringify(x));
+  } catch (e) {
+    /* storage full or disabled: the session still runs, without resume */
+  }
 }
 
-function renderRefBlock(paths, cls, label) {
-  return '<div class="ref-block ' + cls + '">' +
-    '<div class="ref-label">' + label + "</div>" +
-    '<div class="ref-row">' + paths.map((p) => img(p, "ref-img")).join("") + "</div>" +
-    "</div>";
+function restore() {
+  if (!storageOn()) return null;
+  try {
+    const x = JSON.parse(localStorage.getItem(STORE) || "null");
+    if (!x || x.app !== APP || x.exp !== EXP_VERSION || x.v !== S.manifest.version || x.stim !== S.stimDir) return null;
+    if (!(Date.now() - x.t < STORE_MAX_AGE_MS)) return null;
+    if (!Array.isArray(x.plan) || !x.plan.length || x.plan.some((r) => !S.manifest.neurons[r.neuron])) return null;
+    return x;
+  } catch (e) {
+    return null;
+  }
 }
 
-function renderReferences(atom, cond) {
-  return renderName(atom, cond) +
-    renderRefBlock(atom.refs_high, "ref-high", tx("referenceLabels.high", "Most activating images")) +
-    renderRefBlock(atom.refs_low, "ref-low", tx("referenceLabels.low", "Least activating images"));
+/* ------------------------------------------------------------------ */
+/* Screens and browser history                                         */
+/* ------------------------------------------------------------------ */
+
+// Show screen s. mode "push": new history entry; "replace": rewrite the current one.
+function go(s, mode) {
+  try {
+    if (mode === "push") history.pushState({ app: APP, s: s }, "");
+    else if (mode === "replace") history.replaceState({ app: APP, s: s }, "");
+  } catch (e) {
+    /* sandboxed frame: navigation still works inside the page */
+  }
+  S.histTop = s;
+  S.histPos = s;
+  S.screen = s;
+  render();
+  persist();
 }
 
-// Debug only (never shown to participants): a banner that says where the displayed
-// name comes from and, on the confidence screen, whether the choice was right.
+// Forward move after an answer. When the participant came back with the back button, the later screens are still in
+// the browser history: step forward through it (popstate shows the screen), so that the forward button keeps working.
+function moveTo(target) {
+  if (target > S.histPos && target <= S.histTop) {
+    S.pendingGo = target;
+    history.go(target - S.histPos);
+    setTimeout(() => {
+      if (S.pendingGo === target) { S.pendingGo = null; go(target, "push"); }   // no popstate came
+    }, 1500);
+  } else {
+    go(target, "push");
+  }
+}
+
+function onPopState(e) {
+  const st = e.state;
+  if (!st || st.app !== APP || typeof st.s !== "number") return;
+  closeInfo();
+  const expected = S.pendingGo !== null && st.s === S.pendingGo;
+  S.pendingGo = null;
+  S.histPos = st.s;
+  if (S.saving) return;                                     // keep the saving screen
+  if (S.finished) { S.screen = nRounds() + 2; render(); return; }   // once saved, the end page stays
+  if (!expected && st.s < S.screen) S.nBack += 1;
+  S.screen = Math.max(0, Math.min(st.s, S.frontier, nRounds() + 1));
+  render();
+  persist();
+}
+
+function render() {
+  S.token += 1;
+  S.ready = false;
+  S.busy = false;
+  S.roundBlur = 0;
+  document.body.classList.toggle("on-round", isRound(S.screen) && !S.finished);
+  updateProgress();
+  try { window.scrollTo(0, 0); } catch (e) { /* not available (headless) */ }
+  const R = nRounds();
+  if (S.finished || S.screen > R + 1) return renderEnd();
+  if (S.screen === 0) return renderIntro();
+  if (S.screen <= R) return renderRound(S.screen - 1);
+  return renderQuestionnaire();
+}
+
+function updateProgress() {
+  const bar = document.getElementById("progress");
+  if (!bar) return;
+  const R = nRounds();
+  bar.hidden = !(isRound(S.screen) && !S.finished);
+  const done = S.answers.filter(Boolean).length;
+  bar.firstElementChild.style.width = (R ? Math.round((100 * done) / R) : 0) + "%";
+}
+
+// The layout follows the window shape: portrait windows (phones, narrow windows) get the 9 x 2 column layout.
+function updateLayout() {
+  const col = window.innerWidth < window.innerHeight;
+  document.body.classList.toggle("layout-col", col);
+  document.body.classList.toggle("layout-row", !col);
+  const L = col ? "col" : "row";
+  if (L !== S.layout) {
+    S.layout = L;
+    if (S.onLayoutChange) S.onLayoutChange();
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Introduction                                                        */
+/* ------------------------------------------------------------------ */
+
+function renderIntro() {
+  app().innerHTML = '<form class="page intro" id="intro-form">' + tx("introHtml", "") +
+    '<div class="page-actions"><button type="submit" class="btn btn-primary">' + esc(tx("ui.startButton", "Start")) + "</button></div></form>";
+  const f = document.getElementById("intro-form");
+  const box = f.querySelector("#agree");
+  if (box && S.consent) box.checked = true;
+  f.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (box && !box.checked) return;               // the required checkbox already blocks the form
+    S.consent = true;
+    if (!S.started) S.started = new Date().toISOString();
+    if (S.frontier < 1) S.frontier = 1;
+    moveTo(S.frontier);
+  });
+  preloadAhead(0);
+}
+
+/* ------------------------------------------------------------------ */
+/* Rounds                                                              */
+/* ------------------------------------------------------------------ */
+
+// Small "i" button that opens a detailed explanation (texts.js `info`).
+function infoBtn(key) {
+  return '<button type="button" class="info-btn" data-info="' + key + '" aria-label="' + esc(tx("ui.infoButton", "More information")) + '">i</button>';
+}
+
+function roundHtml(r, o) {
+  const N = S.manifest.neurons[r.neuron];
+  const name = r.cond === "A" ? null : N.names[r.cond];
+  const pic = (code, cls) => '<img class="' + cls + '" src="' + esc(imgUrl(code)) + '" alt="" draggable="false">';
+  const block = (cls, codes, which, info) =>
+    '<section class="ref-block ' + cls + '">' +
+    '<div class="ref-label"><span class="lab-long">' + tx("referenceLabels." + which, "") + '</span><span class="lab-short">' +
+    tx("referenceLabels." + which + "Short", "") + "</span>" + infoBtn(info) + "</div>" +
+    '<div class="ref-grid">' + codes.map((c) => pic(c, "ref-img")).join("") + "</div></section>";
+  const cand = (slot, code) =>
+    '<button type="button" class="query-btn' + (o.chosenSlot === slot ? " is-chosen" : "") + '" data-slot="' + slot +
+    '" data-label="' + esc(tx("ui.yourAnswer", "Your answer")) + '" aria-label="' + esc(tx(slot === 1 ? "ui.firstImage" : "ui.secondImage", "")) + '">' +
+    pic(code, "query-img") + "</button>";
+  return '<div class="trial">' + (o.badge || "") +
+    (name
+      ? '<div class="concept-name"><span class="concept-label">' + tx("nameLabel", "This concept:") + '</span> <strong class="concept-name-value">' +
+        esc(cleanName(name)) + "</strong>" + infoBtn("name") + "</div>"
+      : "") +
+    '<div class="refs">' + block("ref-high", N.top, "high", "refsHigh") + block("ref-low", N.bottom, "low", "refsLow") + "</div>" +
+    '<div class="choice"><div class="trial-prompt">' + tx("trialPrompt", "Which image matches this concept?") + infoBtn("question") + "</div>" +
+    '<div class="query-pair">' + cand(1, r.img1) + cand(2, r.img2) + "</div>" +
+    '<div class="key-hint" aria-hidden="true"><span class="hint-row">' + tx("ui.keyHintRow", "") + '</span><span class="hint-col">' +
+    tx("ui.keyHintCol", "") + "</span></div>" +
+    "</div>" + '<div class="trial-loading">' + tx("ui.loadingHtml", "") + "</div></div>";
+}
+
+// Resolves once every image has loaded (or failed), then decoded, or after maxMs.
+function whenLoaded(imgs, maxMs) {
+  const one = (im) => (im.complete ? Promise.resolve() : new Promise((res) => {
+    im.addEventListener("load", res, { once: true });
+    im.addEventListener("error", res, { once: true });
+  }));
+  const dec = (im) => (im.decode && im.naturalWidth ? im.decode().catch(() => {}) : null);
+  return Promise.race([Promise.all(imgs.map(one)), sleep(maxMs || 20000)])
+    .then(() => Promise.race([Promise.all(imgs.map(dec)), sleep(1500)]));
+}
+
+function renderRound(idx) {
+  const r = S.plan[idx];
+  const prev = S.answers[idx];
+  const token = S.token;
+  app().innerHTML = roundHtml(r, { badge: CFG.debug ? debugBadge(r, prev ? prev.slot : null) : "", chosenSlot: prev ? prev.slot : null });
+  const trial = app().querySelector(".trial");
+  trial.querySelectorAll(".query-btn").forEach((b) => {
+    b.addEventListener("click", (e) => choose(+b.dataset.slot, e.detail === 0 ? "keyboard" : S.lastPointer));
+  });
+  const imgs = Array.from(trial.querySelectorAll("img"));
+  const slow = setTimeout(() => { if (token === S.token) trial.classList.add("is-loading"); }, 400);
+  whenLoaded(imgs).then(() => {
+    if (token !== S.token) return;
+    clearTimeout(slow);
+    trial.classList.remove("is-loading");
+    trial.classList.add("is-shown");                 // all images appear together
+    const shown = performance.now();
+    setTimeout(() => {
+      if (token !== S.token) return;
+      S.onset = shown;                               // response times start when the images are on screen
+      S.ready = true;
+      trial.classList.add("is-ready");
+    }, LOCK_MS);
+  });
+  preloadAhead(idx + 1);
+}
+
+function choose(slot, input) {
+  if (!S.ready || S.busy || !isRound(S.screen) || S.finished) return;
+  S.busy = true;
+  const token = S.token;
+  const idx = S.screen - 1;
+  const r = S.plan[idx];
+  const rt = Math.round(performance.now() - S.onset);
+  const img = slot === 1 ? r.img1 : r.img2;
+  const iso = new Date().toISOString();
+  let a = S.answers[idx];
+  if (!a) {
+    a = S.answers[idx] = { first_slot: slot, first_img: img, first_rt_ms: rt, first_iso: iso, n_answers: 0, n_changes: 0, n_blur: 0 };
+  } else if (a.slot !== slot) {
+    a.n_changes += 1;
+  }
+  const broken = Array.from(app().querySelectorAll(".trial img")).filter((im) => !im.naturalWidth).length;
+  Object.assign(a, { slot: slot, img: img, rt_ms: rt, input: input, layout: S.layout, iso: iso, n_answers: a.n_answers + 1,
+                     n_blur: a.n_blur + S.roundBlur, n_img_errors: broken, window_w: window.innerWidth, window_h: window.innerHeight });
+  S.events.push([r.round, slot, rt, input, S.layout, iso]);
+  const atFrontier = S.screen === S.frontier;
+  if (atFrontier) S.frontier = S.screen + 1;
+  const target = atFrontier ? S.screen + 1 : S.frontier;   // after a change on an earlier round, back to where the participant was
+  persist();
+  sendAnswer(idx);
+  updateProgress();
+  app().querySelectorAll(".query-btn").forEach((b) => {
+    b.classList.remove("is-chosen");
+    b.classList.toggle("is-picked", +b.dataset.slot === slot);
+  });
+  setTimeout(() => { if (token === S.token) moveTo(target); }, NEXT_MS);
+}
+
+function onKey(e) {
+  if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || isInfoOpen()) return;
+  if (!isRound(S.screen) || S.finished) return;
+  let slot = null;
+  if (S.layout === "row") {
+    if (e.key === "ArrowLeft") slot = 1;
+    else if (e.key === "ArrowRight") slot = 2;
+  } else {
+    if (e.key === "ArrowUp") slot = 1;
+    else if (e.key === "ArrowDown") slot = 2;
+  }
+  if (slot === null) return;
+  e.preventDefault();
+  if (!e.repeat) choose(slot, "key");
+}
+
+/* ------------------------------------------------------------------ */
+/* Preloading: the current round and the next AHEAD rounds, 6 at a time */
+/* ------------------------------------------------------------------ */
+
+const PRE = new Map();       // url -> Image (kept so the browser keeps the file in its memory cache)
+const QUEUE = [];
+let preActive = 0;
+
+function pump() {
+  while (preActive < 6 && QUEUE.length) {
+    const u = QUEUE.shift();
+    const im = new Image();
+    preActive += 1;
+    const done = () => { preActive -= 1; pump(); };
+    im.onload = done;
+    im.onerror = done;
+    im.src = u;
+    PRE.set(u, im);
+  }
+}
+
+function preloadAhead(idx) {
+  for (let i = Math.max(0, idx); i < Math.min(nRounds(), idx + AHEAD + 1); i++) {
+    for (const u of roundImages(S.plan[i])) {
+      if (!PRE.has(u)) { PRE.set(u, null); QUEUE.push(u); }
+    }
+  }
+  pump();
+}
+
+/* ------------------------------------------------------------------ */
+/* Questionnaire, saving, end                                          */
+/* ------------------------------------------------------------------ */
+
+function questionHtml(q) {
+  const id = "q_" + q.name;
+  let field;
+  if (q.type === "multi-choice") {
+    field = '<div class="q-options" role="radiogroup">' + (q.options || []).map((o, i) =>
+      '<label class="q-option"><input type="radio" name="' + esc(q.name) + '" id="' + id + "_" + i +
+      '" value="' + esc(o) + '" required> <span>' + esc(o) + "</span></label>").join("") + "</div>";
+  } else {
+    field = '<textarea name="' + esc(q.name) + '" id="' + id + '" rows="3" required></textarea>';
+  }
+  return '<div class="q-item"><p class="q-prompt">' + q.prompt + "</p>" + field + "</div>";
+}
+
+function readForm(f, qs) {
+  const out = {};
+  for (const q of qs) {
+    const el = f.elements[q.name];
+    out[q.name] = el ? (el.value || "") : "";
+  }
+  return out;
+}
+
+function renderQuestionnaire() {
+  const qs = tx("questionnaire", []);
+  app().innerHTML = '<form class="page questionnaire" id="q-form">' + tx("questionnaireIntroHtml", "") + qs.map(questionHtml).join("") +
+    '<div class="page-actions"><button type="submit" class="btn btn-primary">' + esc(tx("ui.submitButton", "Submit")) + "</button></div></form>";
+  const f = document.getElementById("q-form");
+  const d = S.questionnaire || {};
+  for (const q of qs) {                            // answers typed before a back / forward move, or before a reload
+    if (!(q.name in d) || !d[q.name]) continue;
+    if (q.type === "multi-choice") {
+      f.querySelectorAll('input[name="' + q.name + '"]').forEach((el) => { el.checked = el.value === d[q.name]; });
+    } else if (f.elements[q.name]) {
+      f.elements[q.name].value = d[q.name];
+    }
+  }
+  f.addEventListener("input", () => { S.questionnaire = readForm(f, qs); persist(); });
+  f.addEventListener("change", () => { S.questionnaire = readForm(f, qs); persist(); });
+  f.addEventListener("submit", (e) => {
+    e.preventDefault();
+    S.questionnaire = readForm(f, qs);
+    finish();
+  });
+}
+
+async function finish() {
+  S.saving = true;
+  S.frontier = nRounds() + 2;
+  S.endIso = new Date().toISOString();
+  persist();
+  document.body.classList.remove("on-round");
+  app().innerHTML = '<div class="page">' + tx("ui.savingHtml", "<p>Saving...</p>") + "</div>";
+  S.saved = await saveSession();
+  S.saving = false;
+  S.finished = true;
+  go(nRounds() + 2, "replace");
+}
+
+function renderEnd() {
+  const failed = S.saved === false;
+  app().innerHTML = '<div class="page end">' +
+    (failed ? '<div class="save-error">' + tx("ui.saveErrorHtml", "") + '<div class="page-actions"><button type="button" class="btn btn-primary" id="retry">' +
+      esc(tx("ui.retryButton", "Try again")) + "</button></div></div>" : "") +
+    tx("endHtml", "<p>Thank you.</p>") + (CFG.debug ? debugSummaryHtml() : "") + "</div>";
+  const b = document.getElementById("retry");
+  if (b) {
+    b.addEventListener("click", async () => {
+      b.disabled = true;
+      S.saved = await saveSession();
+      persist();
+      render();
+    });
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Data                                                                */
+/* ------------------------------------------------------------------ */
+
+function sessionFields() {
+  return { subject_id: S.sid, seed: S.seed, exp_version: EXP_VERSION, stimuli: S.stimDir, manifest_version: S.manifest.version,
+           debug: !!CFG.debug, start_iso: S.started };
+}
+
+// One row per round. img_1 / img_2: the two candidates, first = left (layout "row") or top (layout "col");
+// chosen_img: the final answer, first_img: the first one (they differ only if the participant came back and changed it).
+function roundRow(idx) {
+  const r = S.plan[idx];
+  const a = S.answers[idx] || {};
+  const name = r.cond === "A" ? "" : cleanName(S.manifest.neurons[r.neuron].names[r.cond] || "");
+  return Object.assign({ row_type: "round" }, sessionFields(), {
+    round: r.round, phase: r.phase, item_type: r.type, neuron: r.neuron, condition: r.cond, name_shown: name,
+    img_1: r.img1, img_2: r.img2, chosen_slot: val(a.slot), chosen_img: val(a.img), rt_ms: val(a.rt_ms),
+    first_slot: val(a.first_slot), first_img: val(a.first_img), first_rt_ms: val(a.first_rt_ms),
+    n_answers: val(a.n_answers), n_changes: val(a.n_changes), input: val(a.input), layout: val(a.layout),
+    n_blur: val(a.n_blur), n_img_errors: val(a.n_img_errors), window_w: val(a.window_w), window_h: val(a.window_h),
+    first_iso: val(a.first_iso), answer_iso: val(a.iso)
+  });
+}
+
+function sessionRow() {
+  const q = S.questionnaire || {};
+  const row = Object.assign({ row_type: "session" }, sessionFields(), {
+    end_iso: S.endIso, n_rounds: nRounds(), n_answered: S.answers.filter(Boolean).length,
+    n_back: S.nBack, n_resume: S.nResume, n_blur_total: S.nBlur,
+    screen_w: window.screen ? window.screen.width : "", screen_h: window.screen ? window.screen.height : "",
+    window_w: window.innerWidth, window_h: window.innerHeight, dpr: window.devicePixelRatio || 1,
+    touch: (navigator.maxTouchPoints || 0) > 0, user_agent: navigator.userAgent, events: JSON.stringify(S.events)
+  });
+  for (const item of tx("questionnaire", [])) row["q_" + item.name] = val(q[item.name]);
+  return row;
+}
+
+function toCsv(rows) {
+  const cols = [];
+  rows.forEach((r) => Object.keys(r).forEach((k) => { if (!cols.includes(k)) cols.push(k); }));
+  const cell = (v) => {
+    const s = String(val(v));
+    return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+  return [cols.join(",")].concat(rows.map((r) => cols.map((c) => cell(r[c])).join(","))).join("\n") + "\n";
+}
+
+function buildCsv() {
+  return toCsv(S.plan.map((_, i) => roundRow(i)).concat([sessionRow()]));
+}
+
+async function pipeSave(id, filename, data) {
+  try {
+    const r = await fetch("https://pipe.jspsych.org/api/data/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "*/*" },
+      body: JSON.stringify({ experimentID: id, filename: filename, data: data })
+    });
+    const j = await r.json();
+    return !!j && typeof j === "object" && !j.error;
+  } catch (e) {
+    return false;
+  }
+}
+
+// text/plain avoids a CORS preflight; the server parses the JSON body.
+async function postText(url, body) {
+  try {
+    const r = await fetch(url, { method: "POST", headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: body });
+    return r.ok;
+  } catch (e) {
+    return false;
+  }
+}
+
+function sendAnswer(idx) {
+  if (!CFG.responseEndpoint || CFG.debug) return;
+  const body = JSON.stringify({ kind: "answer", row: roundRow(idx) });
+  try {
+    if (navigator.sendBeacon && navigator.sendBeacon(CFG.responseEndpoint, new Blob([body], { type: "text/plain;charset=UTF-8" }))) return;
+  } catch (e) {
+    /* fall back to fetch */
+  }
+  postText(CFG.responseEndpoint, body);
+}
+
+function download(text, name) {
+  try {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], { type: "text/csv" }));
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } catch (e) {
+    console.warn("[experiment] download failed", e);
+  }
+}
+
+async function saveSession() {
+  const csv = buildCsv();
+  const stamp = String(S.started || new Date().toISOString()).replace(/[-:]/g, "").replace(/\..*$/, "");
+  const filename = S.sid + "_" + stamp + ".csv";
+  if (CFG.debug) {                                  // debug: nothing is sent, the file is downloaded
+    download(csv, "debug_" + filename);
+    return true;
+  }
+  let ok = false;
+  if (CFG.responseEndpoint) {
+    ok = await postText(CFG.responseEndpoint, JSON.stringify({ kind: "session", filename: filename, csv: csv }));
+  }
+  const id = CFG.datapipeExperimentId;
+  if (id && !/^DATAPIPE_/.test(id)) {
+    for (let k = 0; k < 3; k++) {
+      if (await pipeSave(id, filename, csv)) { ok = true; break; }
+      await sleep(2000);
+    }
+  }
+  return ok;
+}
+
+/* ------------------------------------------------------------------ */
+/* Debug (never shown to participants)                                 */
+/* ------------------------------------------------------------------ */
+
 const DEBUG_SOURCE = {
   A: { cls: "dbg-a", label: "AUCUN NOM — images seules (condition A)" },
   B: { cls: "dbg-b", label: "NOM SALT — le vrai nom SALT de cet atome (condition B)" },
   C: { cls: "dbg-c", label: "NOM SALT PERMUTÉ — nom SALT d'un AUTRE atome, donc faux (condition C)" },
   D: { cls: "dbg-d", label: "NOM CLIP-DISSECT — le nom CLIP-Dissect de cet atome (condition D)" }
 };
-const SIDE_FR = { left: "gauche", right: "droite" };
 
-function debugBadge(item, chosenSide) {
-  if (!CFG.debug) return "";
-  const src = DEBUG_SOURCE[item.condition] || { cls: "", label: "condition inconnue" };
+function keyOf(r) {
+  return S.key && S.key.neurons ? S.key.neurons[r.neuron] || null : null;
+}
+
+function posSlotOf(r) {
+  const k = keyOf(r);
+  if (!k) return null;
+  return k.pos === r.img1 ? 1 : k.pos === r.img2 ? 2 : null;
+}
+
+function sideWord(slot) {
+  return S.layout === "col" ? (slot === 1 ? "haut" : "bas") : (slot === 1 ? "gauche" : "droite");
+}
+
+function debugBadge(r, chosenSlot) {
+  const src = DEBUG_SOURCE[r.cond] || { cls: "", label: "condition inconnue" };
+  const k = keyOf(r);
+  const pos = posSlotOf(r);
   let verdict = "";
-  if (chosenSide) {
-    const ok = chosenSide === item.pos_side;
-    const nm = item.atom.names || {};
-    verdict = '<div class="dbg-verdict ' + (ok ? "dbg-ok" : "dbg-ko") + '">' +
-      (ok ? "✓ JUSTE" : "✗ FAUX") + " — tu as choisi l'image de " + SIDE_FR[chosenSide] +
-      ", la bonne était à " + SIDE_FR[item.pos_side] + "</div>" +
-      '<div class="dbg-names">Nom SALT : <b>' + esc(cleanName(nm.B || "—")) + "</b> · Nom CLIP-Dissect : <b>" +
-      esc(cleanName(nm.D || "—")) + "</b></div>";
+  if (chosenSlot && pos) {
+    const ok = chosenSlot === pos;
+    const nm = S.manifest.neurons[r.neuron].names || {};
+    verdict = '<div class="dbg-verdict ' + (ok ? "dbg-ok" : "dbg-ko") + '">' + (ok ? "✓ JUSTE" : "✗ FAUX") +
+      " — choisie : " + sideWord(chosenSlot) + ", bonne : " + sideWord(pos) + "</div>" +
+      '<div class="dbg-names">Nom SALT : <b>' + esc(cleanName(nm.B || "—")) + "</b> · Nom CLIP-Dissect : <b>" + esc(cleanName(nm.D || "—")) + "</b></div>";
   }
   return '<div class="debug-badge ' + src.cls + '">' +
     '<div class="dbg-source">' + esc(src.label) + "</div>" +
-    (item.item_type === "catch" ? '<div class="dbg-catch">ESSAI PIÈGE (voulu) : l\'image correcte est une copie d\'une des 9 images du haut ' +
-      "(contrôle d'attention, 5 par session).</div>" : "") +
-    '<div class="dbg-meta">' + (CFG.stimOverride ? "stimuli : " + esc(CFG.stimOverride) + " · " : "") + "atome " + esc(item.atom_id) + " · " +
-    (item.item_type === "practice" ? "entraînement" : item.item_type === "catch" ? "essai piège" : "test, strate " + esc(item.atom.stratum)) +
-    " · bonne image : " + SIDE_FR[item.pos_side] + "</div>" +
-    (item.atom.meta && item.atom.meta.judge_desc ? '<div class="dbg-meta">juge MLLM (sans les noms) : ' + esc(item.atom.meta.judge_desc) + "</div>" : "") +
+    (r.type === "catch" ? '<div class="dbg-catch">ESSAI PIÈGE (voulu) : la bonne image est une copie d\'une des 9 images du haut ' +
+      "(contrôle d'attention).</div>" : "") +
+    '<div class="dbg-meta">' + esc(S.stimDir) + " " + esc(S.manifest.version) + " · graine " + esc(S.seed) + " · round " + r.round + " · neurone " + esc(r.neuron) +
+    (k ? " = " + esc(k.atom) + " (" + esc(k.dataset) + ", strate " + esc(k.stratum) + ")" : " · clé de debug absente") + " · " +
+    (r.type === "practice" ? "premier round (échauffement)" : r.type === "catch" ? "essai piège" : "test") +
+    (pos ? " · bonne image : " + sideWord(pos) : "") + "</div>" +
+    (k && k.judge_desc ? '<div class="dbg-meta">juge MLLM (sans les noms) : ' + esc(k.judge_desc) + "</div>" : "") +
     verdict + "</div>";
 }
 
-// Warm-up (practice) rounds carry a visible banner on every screen (12 Oct. 2026).
-function warmupBanner(item) {
-  if (item.phase !== "practice") return "";
-  return '<div class="warmup-banner">' + tx("ui.warmupBanner", "Warm-up round {n} of {N}: training only, this round does not count.")
-    .replace("{n}", String(item.seq)).replace("{N}", String(CFG.nPractice)) + "</div>";
+function debugSummaryHtml() {
+  if (!S.key) return '<div class="debug-badge">Debug : clé absente, pas de score.</div>';
+  const by = {};
+  S.plan.forEach((r, i) => {
+    const a = S.answers[i];
+    const pos = posSlotOf(r);
+    if (!a || !pos) return;
+    const g = r.type === "test" ? "test " + r.cond : r.type;
+    (by[g] = by[g] || []).push(a.slot === pos ? 1 : 0);
+  });
+  return '<div class="debug-badge"><b>Debug</b> (le CSV a été téléchargé) — ' + Object.keys(by).sort().map((g) =>
+    esc(g) + " : " + by[g].reduce((x, y) => x + y, 0) + "/" + by[g].length).join(" · ") + "</div>";
 }
 
-function renderChoiceScreen(item) {
-  return '<div class="trial">' + warmupBanner(item) + debugBadge(item) +
-    renderReferences(item.atom, item.condition) +
-    '<div class="trial-prompt">' + tx("trialPrompt", "Which image activates this concept?") + "</div>" +
-    "</div>";
-}
-
-// Two static query images. opts.chosen: side the participant chose;
-// opts.target: side to outline as correct; opts.targetCaption: caption.
-function renderQueryPair(item, opts) {
-  const o = opts || {};
-  const cell = (side, src) => {
-    const cls = ["query-static"];
-    if (o.chosen === side) cls.push("is-chosen");
-    if (o.target === side) cls.push("is-target");
-    let cap = "&nbsp;";
-    if (o.target === side && o.targetCaption) cap = o.targetCaption;
-    else if (o.chosen === side) cap = tx("ui.yourChoice", "Your choice");
-    return '<div class="' + cls.join(" ") + '" data-side="' + side + '">' + img(src, "query-img") +
-      '<div class="query-caption">' + cap + "</div></div>";
-  };
-  return '<div class="query-pair">' + cell("left", item.left_img) + cell("right", item.right_img) + "</div>";
-}
-
-function renderConfidenceScreen(item, chosenSide) {
-  return '<div class="trial trial-confidence">' + warmupBanner(item) + debugBadge(item, chosenSide) +
-    renderName(item.atom, item.condition) +
-    renderQueryPair(item, { chosen: chosenSide }) +
-    '<div class="trial-prompt">' + tx("confidencePrompt", "How sure are you?") + "</div>" +
-    "</div>";
-}
-
-function renderFeedbackScreen(item, chosenSide) {
-  const ok = chosenSide === item.pos_side;
-  const msg = ok ? tx("feedback.correct", "Correct.") : tx("feedback.incorrect", "Not quite.");
-  return '<div class="trial trial-feedback">' + warmupBanner(item) +
-    '<div class="feedback ' + (ok ? "feedback-correct" : "feedback-incorrect") + '">' + msg + "</div>" +
-    renderQueryPair(item, { chosen: chosenSide, target: item.pos_side }) +
-    "</div>";
-}
-
-// The example looks like a real trial. The positive query is always on the right.
-function renderExample(exampleAtom, cond) {
-  const item = {
-    atom_id: exampleAtom.atom_id || "example",
-    atom: exampleAtom,
-    pos_side: "right",
-    left_img: exampleAtom.query_neg,
-    right_img: exampleAtom.query_pos
-  };
-  return '<div class="example-trial">' +
-    '<div class="trial">' + renderReferences(exampleAtom, cond) +
-    '<div class="trial-prompt">' + tx("trialPrompt", "Which image activates this concept?") + "</div></div>" +
-    renderQueryPair(item, { target: "right", targetCaption: tx("ui.exampleTargetCaption", "This one") }) +
-    "</div>";
-}
-
-/* ------------------------------------------------------------------ */
-/* Condition and randomisation                                         */
-/* ------------------------------------------------------------------ */
-
-function validOverride(ov) {
-  if (!ov) return null;
-  const nLists = Math.floor(CFG.nConditions / CONDITION_LETTERS.length);
-  if (Number.isInteger(ov.rotation) && ov.rotation >= 0 && ov.rotation < CONDITION_LETTERS.length &&
-      Number.isInteger(ov.list) && ov.list >= 0 && ov.list < nLists) {
-    return ov;
-  }
-  console.warn("[experiment] invalid condition override ignored:", ov);
-  return null;
-}
-
-function randomIndex() {
-  return Math.floor(Math.random() * CFG.nConditions);
-}
-
-async function chooseCondition() {
-  if (CFG.debug) {
-    const ov = validOverride(CFG.conditionOverride);
-    if (ov) {
-      return { cond_index: ov.list * CONDITION_LETTERS.length + ov.rotation, cond_source: "override" };
-    }
-    return { cond_index: randomIndex(), cond_source: "debug_random" };
-  }
-  let x;
-  try {
-    x = await Promise.race([
-      jsPsychPipe.getCondition(CFG.datapipeExperimentId),
-      sleep(10000).then(() => new Error("timeout"))
-    ]);
-  } catch (e) {
-    x = e;
-  }
-  if (Number.isInteger(x) && x >= 0 && x < CFG.nConditions) {
-    return { cond_index: x, cond_source: "datapipe" };
-  }
-  return { cond_index: randomIndex(), cond_source: "fallback", cond_error: String(x) };
-}
-
-function makeItem(id, phase, itemType, seq, posSide, condition) {
-  const atom = STATE.manifest.atoms[id];
-  const left = posSide === "left" ? atom.query_pos : atom.query_neg;
-  const right = posSide === "left" ? atom.query_neg : atom.query_pos;
-  const name = condition === "A" ? null : atom.names[condition];
-  return {
-    atom_id: id, atom: atom, phase: phase, item_type: itemType, seq: seq, condition: condition,
-    pos_side: posSide, left_img: left, right_img: right,
-    name_shown: name === undefined || name === null ? null : cleanName(name)
-  };
-}
-
-// Fixed split of a list into 4 groups balanced by dataset and stratum. Cells are
-// taken in manifest order; cell offsets (R: 0, 2; Delta: 1, 3) give every group
-// 5 R + 5 Delta atoms and 4 to 6 atoms of each dataset. The split depends only on
-// the manifest, so all participants of a list share it.
-function atomGroups(list) {
-  const M = STATE.manifest;
-  const ids = M.lists[list].test_atoms;
-  const cells = [["coco", "R", 0], ["coco", "Delta", 1], ["imagenet", "R", 2], ["imagenet", "Delta", 3]];
-  const g = {};
-  for (const [ds, st, off] of cells) {
-    ids.filter((id) => M.atoms[id].dataset === ds && M.atoms[id].stratum === st)
-      .forEach((id, i) => { g[id] = (i + off) % CONDITION_LETTERS.length; });
-  }
-  ids.forEach((id, i) => { if (!(id in g)) g[id] = i % CONDITION_LETTERS.length; });   // other cells, if any
-  return g;
-}
-
-function buildState(rotation, list) {
-  const R = jsPsych.randomization;
-  const M = STATE.manifest;
-  const NC = CONDITION_LETTERS.length;
-  STATE.rotation = rotation;
-  STATE.list = list;
-  const condOfGroup = (grp) => CONDITION_LETTERS[(grp + rotation) % NC];
-
-  // Practice: shuffled atoms, sides 5 left + 4 right (for 9), conditions cycled.
-  const P = R.shuffle(M.practice);
-  const nL = Math.ceil(P.length / 2);
-  const pSides = R.shuffle(repeat("left", nL).concat(repeat("right", P.length - nL)));
-  const pConds = R.shuffle(P.map((_, i) => condOfGroup(i % NC)));
-  STATE.items.practice = P.map((id, i) => makeItem(id, "practice", "practice", i + 1, pSides[i], pConds[i]));
-
-  // Test: 5 blocks of 8 test atoms, one catch atom appended per block.
-  const T = R.shuffle(M.lists[list].test_atoms);
-  const K = R.shuffle(M.catch);
-  const nB = K.length;
-  const blocks = [];
-  for (let b = 0; b < nB; b++) {
-    const lo = Math.round((b * T.length) / nB);
-    const hi = Math.round(((b + 1) * T.length) / nB);
-    blocks.push(R.shuffle(T.slice(lo, hi).concat([K[b]])));
-  }
-  const catchSet = new Set(K);
-  const groups = atomGroups(list);
-  const catchCond = {};
-  K.forEach((id, k) => { catchCond[id] = condOfGroup(k % NC); });
-  if (blocks.length && blocks[0].length > 1) {
-    while (catchSet.has(blocks[0][0])) blocks[0] = R.shuffle(blocks[0]);
-  }
-  const order = blocks.flat();
-
-  // Sides: 20 left + 20 right over the test atoms; random for catch.
-  const hT = Math.ceil(T.length / 2);
-  const tSides = R.shuffle(repeat("left", hT).concat(repeat("right", T.length - hT)));
-  let t = 0;
-  const sides = order.map((id) => (catchSet.has(id) ? (Math.random() < 0.5 ? "left" : "right") : tSides[t++]));
-  STATE.items.test = order.map((id, i) => makeItem(id, "test", catchSet.has(id) ? "catch" : "test", i + 1, sides[i],
-    catchSet.has(id) ? catchCond[id] : condOfGroup(groups[id])));
-  STATE.test_order = order;
-  STATE.sides = sides;
-}
-
-function practiceImages() {
-  return [atomImages(STATE.example), ...STATE.items.practice.map((it) => atomImages(it.atom))].flat();
-}
-
-function testImages() {
-  return STATE.items.test.map((it) => atomImages(it.atom)).flat();
-}
-
-/* ------------------------------------------------------------------ */
-/* Data helpers                                                        */
-/* ------------------------------------------------------------------ */
-
-function itemFields(it) {
-  const meta = it.atom.meta || {};
-  return {
-    phase: it.phase,
-    item_type: it.item_type,
-    seq: it.seq,
-    atom_id: it.atom_id,
-    dataset: it.atom.dataset,
-    stratum: it.atom.stratum,
-    condition: it.condition,
-    category: meta.category === undefined ? null : meta.category,
-    name_shown: it.name_shown,
-    pos_side: it.pos_side,
-    left_img: it.left_img,
-    right_img: it.right_img
-  };
-}
-
-// DataPipe answers with JSON; failures carry an "error" field. A network
-// failure makes plugin-pipe return the Error object itself (and still
-// report success), so both cases are checked here.
-function saveOk(result) {
-  if (!result || typeof result !== "object") return false;
-  if (result instanceof Error || Object.prototype.toString.call(result) === "[object Error]") return false;
-  return !result.error;
-}
-
-function saveFilename() {
-  if (!STATE.filename) {
-    const v = (k) => jsPsych.data.getURLVariable(k) || null;
-    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..*$/, "");
-    STATE.filename = (v("PROLIFIC_PID") || "nopid") + "_" + (v("SESSION_ID") || STATE.subject_id) + "_" + stamp + ".csv";
-  }
-  return STATE.filename;
-}
-
-function buildSummary() {
-  const conf = jsPsych.data.get().filter({ task: "confidence" }).values();
-  const test = conf.filter((r) => r.phase === "test" && r.item_type === "test");
-  const catchRows = conf.filter((r) => r.phase === "test" && r.item_type === "catch");
-  const prac = conf.filter((r) => r.phase === "practice");
-  const inter = jsPsych.data.getInteractionData();
-  const s = {
-    session_complete: true,
-    n_test: test.length,
-    n_catch: catchRows.length,
-    catch_failed: catchRows.filter((r) => !r.correct).length,
-    test_accuracy: mean(test.map((r) => (r.correct ? 1 : 0))),
-    test_accuracy_A: mean(test.filter((r) => r.condition === "A").map((r) => (r.correct ? 1 : 0))),
-    test_accuracy_B: mean(test.filter((r) => r.condition === "B").map((r) => (r.correct ? 1 : 0))),
-    test_accuracy_C: mean(test.filter((r) => r.condition === "C").map((r) => (r.correct ? 1 : 0))),
-    test_accuracy_D: mean(test.filter((r) => r.condition === "D").map((r) => (r.correct ? 1 : 0))),
-    practice_accuracy: mean(prac.map((r) => (r.correct ? 1 : 0))),
-    median_rt_test: median(test.map((r) => r.rt_choice)),
-    median_rt_test_incl_catch: median(test.concat(catchRows).map((r) => r.rt_choice)),
-    total_duration_ms: jsPsych.getTotalTime(),
-    n_blur: inter.filter({ event: "blur" }).count(),
-    n_fullscreen_exit: inter.filter({ event: "fullscreenexit" }).count(),
-    interactions: inter.json(),
-    test_order: JSON.stringify(STATE.test_order),
-    sides: JSON.stringify(STATE.sides),
-    screen_w: window.screen ? window.screen.width : null,
-    screen_h: window.screen ? window.screen.height : null,
-    window_w: window.innerWidth,
-    window_h: window.innerHeight
-  };
-  const q = STATE.questionnaire || {};
-  for (const item of activeQuestions()) {
-    s["q_" + item.name] = item.name in q ? q[item.name] : null;
-  }
-  return s;
-}
-
-/* ------------------------------------------------------------------ */
-/* Questionnaire                                                       */
-/* ------------------------------------------------------------------ */
-
-function activeQuestions() {
-  const qs = tx("questionnaire", []);
-  return qs;   // within-subject: every participant answers every question
-}
-
-function buildQuestionnaire() {
-  return '<div class="questionnaire">' + activeQuestions().map((q) => {
-    const id = "q_" + q.name;
-    let field;
-    if (q.type === "multi-choice") {
-      field = '<div class="q-options" role="radiogroup">' + (q.options || []).map((o, i) =>
-        '<label class="q-option"><input type="radio" name="' + esc(q.name) + '" id="' + id + "_" + i +
-        '" value="' + esc(o) + '" required> <span>' + esc(o) + "</span></label>").join("") + "</div>";
-    } else {
-      if (q.type !== "text") console.warn("[experiment] unknown question type, using text:", q.type);
-      field = '<textarea name="' + esc(q.name) + '" id="' + id + '" rows="3" required></textarea>';
-    }
-    return '<div class="q-item"><p class="q-prompt">' + q.prompt + "</p>" + field + "</div>";
-  }).join("") + "</div>";
-}
-
-/* ------------------------------------------------------------------ */
-/* Timeline                                                            */
-/* ------------------------------------------------------------------ */
-
-function trialBlock(phase) {
-  const items = () => STATE.items[phase];
-  const n = phase === "practice" ? CFG.nPractice : CFG.nTest + CFG.nCatch;
-  const slots = Array.from({ length: n }, (_, i) => ({ slot: i }));
-
-  const choice = {
-    type: jsPsychHtmlButtonResponse,
-    css_classes: ["screen-trial"],
-    stimulus: () => {
-      STATE.cur = items()[jsPsych.evaluateTimelineVariable("slot")];
-      return renderChoiceScreen(STATE.cur);
-    },
-    choices: ["left", "right"],
-    button_layout: "flex",
-    button_html: (c, i) => {
-      const src = c === "left" ? STATE.cur.left_img : STATE.cur.right_img;
-      return '<button class="query-btn" data-side="' + c + '">' + img(src, "query-img") + "</button>";
-    },
-    response_ends_trial: true,
-    data: { task: "choice" },
-    on_finish: (d) => {
-      const it = STATE.cur;
-      const side = d.response === 0 ? "left" : "right";
-      const correct = side === it.pos_side;
-      Object.assign(d, itemFields(it), { response_side: side, correct: correct, rt_choice_ms: d.rt });
-      d.stimulus = null; // paths are recorded; drop the large HTML
-      STATE.lastChoice = { side: side, correct: correct, rt: d.rt };
-    }
-  };
-
-  const confidence = {
-    type: jsPsychHtmlButtonResponse,
-    css_classes: ["screen-trial"],
-    stimulus: () => renderConfidenceScreen(STATE.cur, STATE.lastChoice.side),
-    choices: () => tx("confidenceLabels", ["1", "2", "3", "4", "5"]),
-    button_layout: "flex",
-    button_html: (c, i) =>
-      '<button class="jspsych-btn conf-btn"><span class="conf-num">' + (i + 1) +
-      '</span><span class="conf-label">' + c + "</span></button>",
-    data: { task: "confidence" },
-    on_finish: (d) => {
-      const it = STATE.cur;
-      const lc = STATE.lastChoice;
-      Object.assign(d, itemFields(it), {
-        response_side: lc.side,
-        correct: lc.correct,
-        rt_choice: lc.rt,
-        confidence: d.response + 1,
-        rt_conf: d.rt,
-        // response times in ms, measured by jsPsych from the onset of each screen (12 Oct. 2026)
-        rt_choice_ms: lc.rt,
-        rt_confidence_ms: d.rt,
-        rt_trial_ms: (lc.rt || 0) + (d.rt || 0),
-        // aliases asked for in the task brief
-        correct_side: it.pos_side,
-        chosen_side: lc.side,
-        rt_ms: lc.rt
-      });
-      d.stimulus = null;
-      STATE.done += 1;
-      jsPsych.progressBar.progress = Math.min(1, STATE.done / totalTrials());
-    }
-  };
-
-  const feedback = {
-    type: jsPsychHtmlButtonResponse,
-    css_classes: ["screen-trial"],
-    stimulus: () => renderFeedbackScreen(STATE.cur, STATE.lastChoice.side),
-    choices: () => [tx("ui.continueButton", "Continue")],
-    data: { task: "feedback" },
-    on_finish: (d) => {
-      d.seq = STATE.cur.seq;
-      d.atom_id = STATE.cur.atom_id;
-      d.stimulus = null;
-    }
-  };
-
-  return {
-    timeline: phase === "practice" ? [choice, confidence, feedback] : [choice, confidence],
-    timeline_variables: slots
-  };
-}
-
-function textScreen(task, htmlFn, buttonFn) {
-  return {
-    type: jsPsychHtmlButtonResponse,
-    css_classes: ["screen-text"],
-    stimulus: htmlFn,
-    choices: () => [buttonFn()],
-    data: { task: task }
-  };
-}
-
-/* ------------------------------------------------------------------ */
-/* Debug trial browser (12 Oct. 2026)                                  */
-/* ------------------------------------------------------------------ */
-// ?debug=1 (without full=1): no consent, instructions or warm-up. All test and catch rounds of the cell are
-// shown one by one; the arrows (or the keyboard arrow keys) go to the previous / next round without answering,
-// a click on a query image shows the verdict and both names. Nothing is saved.
+// ?debug=1 without full=1: the rounds of one session draw (or of every neuron with &all=1), one by one. The arrows (or the
+// keyboard arrow keys) go to the previous / next round without answering; a click on a candidate shows the verdict and both
+// names. Nothing is saved.
 function debugBrowser() {
-  return {
-    type: jsPsychCallFunction,
-    async: true,
-    data: { task: "debug_browser" },
-    func: (done) => {
-      const items = STATE.items.test;
-      const answers = {};
-      let i = 0;
-      const el = jsPsych.getDisplayElement();
-      const draw = () => {
-        const it = items[i];
-        const chosen = answers[i] || null;
-        const q = (side, src) => {
-          let cls = "query-static dbg-query";
-          if (chosen) cls += side === it.pos_side ? " is-target" : (side === chosen ? " is-chosen" : "");
-          return '<div class="' + cls + '" data-side="' + side + '">' + img(src, "query-img") + "</div>";
-        };
-        el.innerHTML =
-          '<div class="dbg-nav">' +
-          '<button class="dbg-arrow" id="dbg-prev" title="Previous (left arrow)"' + (i === 0 ? " disabled" : "") + ">&#9664;</button>" +
-          '<span class="dbg-count">round ' + (i + 1) + " / " + items.length + "</span>" +
-          '<button class="dbg-arrow" id="dbg-next" title="Next (right arrow)"' + (i === items.length - 1 ? " disabled" : "") + ">&#9654;</button>" +
-          '<button class="dbg-end" id="dbg-end">End</button>' +
-          "</div>" +
-          '<div class="trial">' + debugBadge(it, chosen) + renderReferences(it.atom, it.condition) +
-          '<div class="trial-prompt">' + tx("trialPrompt", "Which image matches this concept?") + "</div>" +
-          '<div class="query-pair">' + q("left", it.left_img) + q("right", it.right_img) + "</div></div>";
-        el.querySelector("#dbg-prev").onclick = () => { if (i > 0) { i -= 1; draw(); } };
-        el.querySelector("#dbg-next").onclick = () => { if (i < items.length - 1) { i += 1; draw(); } };
-        el.querySelector("#dbg-end").onclick = finish;
-        el.querySelectorAll(".dbg-query").forEach((n) => { n.onclick = () => { answers[i] = n.dataset.side; draw(); }; });
-        try { window.scrollTo(0, 0); } catch (e) { /* not available (headless) */ }
-      };
-      const onKey = (e) => {
-        if (e.key === "ArrowLeft" && i > 0) { i -= 1; draw(); }
-        if (e.key === "ArrowRight" && i < items.length - 1) { i += 1; draw(); }
-      };
-      const finish = () => {
-        document.removeEventListener("keydown", onKey);
-        done({ n_answered: Object.keys(answers).length,
-               n_correct: Object.entries(answers).filter(([k, v]) => items[+k].pos_side === v).length });
-      };
-      document.addEventListener("keydown", onKey);
-      draw();
-    }
+  const items = CFG.debugAll ? S.plan : S.plan.filter((r) => r.type !== "practice");
+  const answers = {};
+  let i = 0;
+  const draw = () => {
+    S.token += 1;
+    const r = items[i];
+    app().innerHTML =
+      '<div class="dbg-nav">' +
+      '<button class="dbg-arrow" id="dbg-prev" title="Previous (left arrow)"' + (i === 0 ? " disabled" : "") + ">&#9664;</button>" +
+      '<span class="dbg-count">round ' + (i + 1) + " / " + items.length + "</span>" +
+      '<span class="dbg-version">' + esc(S.stimDir) + " " + esc(S.manifest.version || "?") + " · graine " + esc(S.seed) + "</span>" +
+      '<button class="dbg-arrow" id="dbg-next" title="Next (right arrow)"' + (i === items.length - 1 ? " disabled" : "") + ">&#9654;</button>" +
+      '<button class="dbg-end" id="dbg-end">End</button>' +
+      "</div>" + roundHtml(r, { badge: debugBadge(r, answers[i] || null), chosenSlot: answers[i] || null });
+    const trial = app().querySelector(".trial");
+    trial.classList.add("is-shown", "is-ready");
+    document.getElementById("dbg-prev").onclick = () => { if (i > 0) { i -= 1; draw(); } };
+    document.getElementById("dbg-next").onclick = () => { if (i < items.length - 1) { i += 1; draw(); } };
+    document.getElementById("dbg-end").onclick = finishBrowse;
+    trial.querySelectorAll(".query-btn").forEach((b) => { b.onclick = () => { answers[i] = +b.dataset.slot; draw(); }; });
+    const idx = S.plan.indexOf(r);
+    preloadAhead(idx);
+    try { window.scrollTo(0, 0); } catch (e) { /* headless */ }
   };
+  const onKeyBrowse = (e) => {
+    if (isInfoOpen() || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === "ArrowLeft" && i > 0) { i -= 1; draw(); }
+    if (e.key === "ArrowRight" && i < items.length - 1) { i += 1; draw(); }
+  };
+  const finishBrowse = () => {
+    document.removeEventListener("keydown", onKeyBrowse);
+    S.onLayoutChange = null;
+    const done = Object.keys(answers);
+    const ok = done.filter((k) => answers[k] === posSlotOf(items[+k])).length;
+    app().innerHTML = '<div class="page"><p>Debug browser closed: ' + ok + " correct out of " + done.length + " answered rounds.</p>" +
+      "<p>Reload the page to browse again, or add <code>&amp;full=1</code> to the URL for the participant flow.</p></div>";
+  };
+  document.addEventListener("keydown", onKeyBrowse);
+  S.onLayoutChange = draw;                          // the banner says left / right or top / bottom
+  draw();
 }
 
-function buildDebugTimeline() {
-  return [
-    {
-      type: jsPsychCallFunction,
-      async: true,
-      func: (done) => {
-        chooseCondition().then((c) => {
-          const rotation = c.cond_index % CONDITION_LETTERS.length;
-          const list = Math.floor(c.cond_index / CONDITION_LETTERS.length);
-          STATE.cond_index = c.cond_index;
-          buildState(rotation, list);
-          done({ cond_index: c.cond_index, rotation: rotation, list: list });
-        });
-      },
-      data: { task: "condition" }
-    },
-    {
-      type: jsPsychPreload,
-      images: () => testImages(),
-      show_progress_bar: true,
-      message: "<p>Loading...</p>",
-      max_load_time: 120000,
-      continue_after_error: true,
-      data: { task: "preload_test" }
-    },
-    debugBrowser(),
-    {
-      type: jsPsychHtmlButtonResponse,
-      stimulus: () => {
-        const row = jsPsych.data.get().filter({ task: "debug_browser" }).last(1).values()[0] || {};
-        const d = row.value || {};   // call-function stores the returned object in `value`
-        return "<p>Debug browser closed: " + (d.n_correct || 0) + " correct out of " + (d.n_answered || 0) + " answered rounds.</p>" +
-          "<p>Reload the page to browse again, or add <code>&amp;full=1</code> to the URL for the participant flow.</p>";
-      },
-      choices: ["OK"]
+/* ------------------------------------------------------------------ */
+/* Info pop-ups                                                        */
+/* ------------------------------------------------------------------ */
+// One modal outside #app, so it survives every screen change. Any element with data-info="<key>" (the small "i" buttons,
+// the "conditions" link of the introduction) opens texts.js info[<key>].
+const INFO = { close: null };
+
+function setupInfoModal() {
+  const m = document.createElement("div");
+  m.id = "info-modal";
+  m.hidden = true;
+  m.setAttribute("role", "dialog");
+  m.setAttribute("aria-modal", "true");
+  m.setAttribute("aria-labelledby", "info-body");
+  m.innerHTML = '<div class="info-box"><div id="info-body"></div><button type="button" id="info-close" class="btn">' +
+    esc(tx("ui.closeButton", "Close")) + "</button></div>";
+  document.body.appendChild(m);
+  let opener = null;
+  INFO.close = () => {
+    m.hidden = true;
+    if (opener) { try { opener.focus({ preventScroll: true }); } catch (e) { /* gone */ } }
+    opener = null;
+  };
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-info]");
+    if (t) {
+      e.preventDefault();
+      e.stopPropagation();
+      opener = t;
+      document.getElementById("info-body").innerHTML = tx("info." + t.getAttribute("data-info"), "<p>No information.</p>");
+      m.hidden = false;
+      document.getElementById("info-close").focus();
+      return;
     }
-  ];
+    if (!m.hidden && (e.target === m || e.target.id === "info-close")) INFO.close();
+  }, true);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !m.hidden) INFO.close(); });
 }
 
-function buildTimeline() {
-  if (CFG.debugBrowse) return buildDebugTimeline();
-  const tl = [];
+function isInfoOpen() {
+  const m = document.getElementById("info-modal");
+  return !!m && !m.hidden;
+}
 
-  // 1. Browser check (desktop, window at least 1000x650).
-  tl.push({
-    type: jsPsychBrowserCheck,
-    minimum_width: 1000,
-    minimum_height: 650,
-    skip_features: ["webaudio", "webcam", "microphone", "vsync_rate"],
-    inclusion_function: (d) => !d.mobile,
-    exclusion_message: () => tx("ui.browserExclusionHtml", "<p>Please use a desktop or laptop computer.</p>"),
-    data: { task: "browser_check" }
-  });
-
-  // 2. Consent. Decline ends the study; nothing is saved.
-  tl.push({
-    type: jsPsychHtmlButtonResponse,
-    css_classes: ["screen-text"],
-    stimulus: () => tx("consentHtml", "<p>Consent text missing.</p>"),
-    choices: () => [tx("ui.consentAgree", "I agree"), tx("ui.consentDecline", "I do not agree")],
-    data: { task: "consent" },
-    on_finish: (d) => {
-      d.consent = d.response === 0;
-      if (!d.consent) jsPsych.abortExperiment(tx("ui.noConsentHtml", "<p>You did not consent. Please return the study.</p>"));
-    }
-  });
-
-  // 3. Condition (asked only after consent).
-  tl.push({
-    type: jsPsychCallFunction,
-    async: true,
-    func: (done) => {
-      chooseCondition().then((c) => {
-        const rotation = c.cond_index % CONDITION_LETTERS.length;
-        const list = Math.floor(c.cond_index / CONDITION_LETTERS.length);
-        STATE.cond_index = c.cond_index;
-        jsPsych.data.addProperties({ cond_index: c.cond_index, rotation: rotation, list: list, cond_source: c.cond_source, design: "within" });
-        buildState(rotation, list);
-        done({ cond_error: c.cond_error || null });
-      });
-    },
-    data: { task: "condition" }
-  });
-
-  // 4. No fullscreen step (removed 8 Oct. 2026 at the author's request); the window
-  //    size is still checked by the browser check, and blur events are logged.
-
-  // 5. Preload example + practice images.
-  tl.push({
-    type: jsPsychPreload,
-    images: () => practiceImages(),
-    show_progress_bar: true,
-    message: () => tx("ui.loadingHtml", "<p>Loading...</p>"),
-    max_load_time: 120000,
-    continue_after_error: false,
-    error_message: () => tx("ui.loadErrorHtml", "<p>The images could not be loaded.</p>"),
-    data: { task: "preload_practice" },
-    on_finish: () => {
-      // Background preload of test and catch images. Started here, after
-      // preload 1, so it does not slow down the first screens and is not
-      // cancelled by that preload trial.
-      if (!STATE.bgPreloadStarted) {
-        STATE.bgPreloadStarted = true;
-        jsPsych.pluginAPI.preloadImages(testImages(), () => {});
-      }
-    }
-  });
-
-  // 6. Instructions with the illustrated example.
-  tl.push({
-    type: jsPsychInstructions,
-    css_classes: ["screen-instr"],
-    pages: () => {
-      const pages = (TX.instructionPages && TX.instructionPages.mixed) || null;
-      if (!pages) console.warn("[experiment] missing text key: instructionPages.mixed");
-      const ex = renderExample(STATE.example, "B");   // the example shows a name (the SALT name of the example atom)
-      return (pages || ["{{EXAMPLE_TRIAL}}"]).map((p) => '<div class="instr-page">' + p.split("{{EXAMPLE_TRIAL}}").join(ex) + "</div>");
-    },
-    show_clickable_nav: true,
-    allow_backward: true,
-    allow_keys: false,
-    button_label_next: () => tx("ui.nextButton", "Next"),
-    button_label_previous: () => tx("ui.previousButton", "Previous"),
-    data: { task: "instructions" }
-  });
-
-  // 7-8. Practice with feedback.
-  tl.push(textScreen("practice_intro", () => tx("practiceIntroHtml", "<p>Practice.</p>"), () => tx("ui.continueButton", "Continue")));
-  tl.push(trialBlock("practice"));
-
-  // 9. Preload test + catch images (usually already cached).
-  tl.push({
-    type: jsPsychPreload,
-    images: () => testImages(),
-    show_progress_bar: true,
-    message: () => tx("ui.loadingHtml", "<p>Loading...</p>"),
-    max_load_time: 120000,
-    continue_after_error: false,
-    error_message: () => tx("ui.loadErrorHtml", "<p>The images could not be loaded.</p>"),
-    data: { task: "preload_test" }
-  });
-
-  // 10-11. Test (no feedback), catch trials mixed in.
-  tl.push(textScreen("test_intro", () => tx("testIntroHtml", "<p>The task starts now.</p>"), () => tx("ui.continueButton", "Continue")));
-  tl.push(trialBlock("test"));
-
-  // 12. Questionnaire.
-  tl.push({
-    type: jsPsychSurveyHtmlForm,
-    css_classes: ["screen-text"],
-    html: () => buildQuestionnaire(),
-    button_label: () => tx("ui.submitButton", "Submit"),
-    data: { task: "questionnaire" },
-    on_finish: (d) => { STATE.questionnaire = d.response; }
-  });
-
-  // 13. Summary row.
-  tl.push({
-    type: jsPsychCallFunction,
-    func: () => null,
-    data: { task: "summary" },
-    on_finish: (d) => {
-      Object.assign(d, buildSummary());
-      STATE.session_complete = true;
-    }
-  });
-
-  // 14. Save. Production: DataPipe with retries. Debug: local download only.
-  tl.push({
-    timeline: [
-      {
-        type: jsPsychPipe,
-        action: "save",
-        experiment_id: CFG.datapipeExperimentId,
-        filename: () => saveFilename(),
-        data_string: () => jsPsych.data.get().csv(),
-        wait_message: () => tx("ui.savingHtml", "<p>Saving your data. Please do not close this page.</p>"),
-        data: { task: "save" }
-      },
-      {
-        type: jsPsychCallFunction,
-        async: true,
-        func: (done) => {
-          (async () => {
-            const last = jsPsych.data.get().filter({ task: "save" }).last(1).values()[0];
-            let ok = !!last && last.success === true && saveOk(last.result);
-            let retries = 0;
-            while (!ok && retries < 2) {
-              jsPsych.getDisplayElement().innerHTML = tx("ui.savingHtml", "<p>Saving your data...</p>");
-              await sleep(2000);
-              retries += 1;
-              let r;
-              try {
-                r = await jsPsychPipe.saveData(CFG.datapipeExperimentId, saveFilename(), jsPsych.data.get().csv());
-              } catch (e) {
-                r = e;
-              }
-              ok = saveOk(r);
-            }
-            STATE.save_failed = !ok;
-            done({ save_ok: ok, save_retries: retries, save_failed: !ok });
-          })();
-        },
-        data: { task: "save_check" }
-      }
-    ],
-    conditional_function: () => !CFG.debug
-  });
-  tl.push({
-    timeline: [{
-      type: jsPsychCallFunction,
-      func: () => {
-        jsPsych.data.get().localSave("csv", "debug_" + STATE.subject_id + ".csv");
-        return null;
-      },
-      data: { task: "save_debug" }
-    }],
-    conditional_function: () => !!CFG.debug
-  });
-
-  // 15. End screen and Prolific redirect (no redirect in debug).
-  tl.push({
-    type: jsPsychHtmlButtonResponse,
-    css_classes: ["screen-text"],
-    stimulus: () => (STATE.save_failed ? tx("ui.saveErrorHtml", "<p>Your data could not be saved.</p>") : "") +
-      tx("endHtml", "<p>Thank you.</p>"),
-    choices: () => [tx("ui.endButton", "Return to Prolific")],
-    trial_duration: () => (CFG.debug || STATE.save_failed ? null : 10000),
-    data: { task: "end" },
-    on_finish: () => {
-      if (!CFG.debug) window.location.href = tx("prolificCompletionUrl", "https://app.prolific.com/");
-    }
-  });
-
-  return tl;
+function closeInfo() {
+  if (isInfoOpen() && INFO.close) INFO.close();
 }
 
 /* ------------------------------------------------------------------ */
@@ -947,52 +913,68 @@ function buildTimeline() {
 /* ------------------------------------------------------------------ */
 
 async function main() {
-  jsPsych = initJsPsych({
-    display_element: "jspsych-target",
-    show_progress_bar: true,
-    auto_update_progress_bar: false,
-    message_progress_bar: tx("ui.progressLabel", "Progress"),
-    on_finish: () => {
-      // Debug: show the data on screen once the session is complete.
-      if (CFG.debug && STATE.session_complete) jsPsych.data.displayData("csv");
-    }
-  });
+  setupInfoModal();
+  updateLayout();
+  window.addEventListener("resize", updateLayout);
+  window.addEventListener("orientationchange", updateLayout);
+  if (CFG.debug) document.body.classList.add("debug");
+  document.addEventListener("pointerdown", (e) => { S.lastPointer = e.pointerType || "mouse"; }, true);
+  const rot = document.getElementById("rotate");
+  if (rot) rot.innerHTML = tx("ui.rotateHtml", "");
 
-  const url = (k) => jsPsych.data.getURLVariable(k) || null;
-  const prolific_pid = url("PROLIFIC_PID");
-  STATE.subject_id = jsPsych.randomization.randomID(12);
-
-  STATE.stimDir = stimFolder();
+  S.stimDir = stimFolder();
   try {
-    const [m, ex] = await Promise.all([fetchJson(STATE.stimDir + "/manifest.json"), fetchExample(STATE.stimDir)]);
-    STATE.manifest = m;
-    STATE.example = ex;
+    S.manifest = await fetchJson(S.stimDir + "/manifest.json");
   } catch (e) {
     console.error(e);
     showFatal(CFG.debug ? "<pre>" + esc(String(e)) + "</pre>" : tx("ui.loadErrorHtml", "<p>The study could not be loaded.</p>"));
     return;
   }
-  const errs = validateStimuli(STATE.manifest, STATE.example);
+  const errs = validateStimuli(S.manifest);
   if (errs.length) {
     console.error("[experiment] stimulus errors:", errs);
     showFatal(CFG.debug ? "<pre>" + esc(errs.join("\n")) + "</pre>" : tx("ui.loadErrorHtml", "<p>The study could not be loaded.</p>"));
     return;
   }
+  if (CFG.debug) {
+    try { S.key = await fetchJson(S.stimDir + "/debug_key.json"); } catch (e) { S.key = null; }
+  }
+  const seed = CFG.seed !== null && CFG.seed !== undefined ? CFG.seed : randomUint32();
 
-  jsPsych.data.addProperties({
-    prolific_pid: prolific_pid,
-    study_id: url("STUDY_ID"),
-    session_id: url("SESSION_ID"),
-    subject_id: STATE.subject_id,
-    pid_missing: !prolific_pid,
-    exp_version: EXP_VERSION,
-    manifest_version: STATE.manifest.version,
-    debug: !!CFG.debug,
-    user_agent: navigator.userAgent,
-    start_iso: new Date().toISOString()
+  if (CFG.debugBrowse) {
+    S.seed = seed;
+    S.plan = CFG.debugAll ? makeAllPlan(seed) : makePlan(seed);
+    debugBrowser();
+    return;
+  }
+
+  window.addEventListener("popstate", onPopState);
+  document.addEventListener("keydown", onKey);
+  window.addEventListener("blur", () => { S.nBlur += 1; S.roundBlur += 1; });
+  window.addEventListener("pagehide", persist);
+  window.addEventListener("beforeunload", (e) => {
+    if (CFG.debug || !S.consent || S.finished) return;
+    persist();
+    e.preventDefault();
+    e.returnValue = "";
   });
 
-  jsPsych.run(buildTimeline());
+  const saved = restore();
+  if (saved) {
+    for (const k of PERSISTED) S[k] = saved[k];
+    if (!S.answers) S.answers = [];
+    if (!S.events) S.events = [];
+    if (!S.finished) {
+      S.nResume += 1;
+      if (S.consent) toast(tx("ui.resumedNote", ""));
+    }
+    go(S.finished ? nRounds() + 2 : Math.min(Math.max(0, S.frontier), nRounds() + 1), "replace");
+  } else {
+    S.sid = randomId(12);
+    S.seed = seed;
+    S.plan = makePlan(seed);
+    go(0, "replace");
+  }
 }
 
 if (document.readyState === "loading") {
