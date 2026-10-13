@@ -5,44 +5,44 @@
    "list": 0,
    "test_atoms": [
     "coco_3602",
-    "coco_995",
-    "coco_1625",
+    "coco_1123",
     "coco_2464",
     "coco_2573",
-    "coco_3107",
-    "coco_5130",
-    "coco_852",
+    "coco_5304",
+    "coco_3004",
+    "coco_4502",
+    "coco_4530",
     "coco_5336",
-    "coco_3891",
-    "coco_2364",
+    "coco_1399",
+    "coco_1874",
+    "coco_6003",
+    "coco_3066",
     "coco_4223",
-    "coco_2967",
-    "coco_624",
-    "coco_5064",
-    "coco_2882",
-    "coco_6061",
-    "coco_4500",
+    "coco_4526",
+    "coco_4205",
+    "coco_4673",
+    "coco_2929",
     "coco_222",
     "coco_2392",
     "imagenet_4646",
     "imagenet_2162",
-    "imagenet_923",
-    "imagenet_2148",
-    "imagenet_2646",
-    "imagenet_4063",
+    "imagenet_1925",
+    "imagenet_2361",
+    "imagenet_3000",
+    "imagenet_4416",
     "imagenet_5968",
     "imagenet_1874",
     "imagenet_4903",
     "imagenet_3152",
-    "imagenet_2789",
-    "imagenet_5538",
+    "imagenet_299",
+    "imagenet_1945",
+    "imagenet_3178",
     "imagenet_3508",
-    "imagenet_7",
-    "imagenet_1334",
-    "imagenet_3310",
-    "imagenet_5182",
-    "imagenet_853",
-    "imagenet_2525",
+    "imagenet_515",
+    "imagenet_5188",
+    "imagenet_72",
+    "imagenet_1471",
+    "imagenet_5456",
     "imagenet_2853"
    ]
   },
@@ -50,44 +50,44 @@
    "list": 1,
    "test_atoms": [
     "coco_1545",
-    "coco_1123",
-    "coco_1132",
-    "coco_2486",
-    "coco_4498",
-    "coco_796",
-    "coco_5304",
+    "coco_1625",
+    "coco_2122",
+    "coco_4733",
+    "coco_6014",
+    "coco_2734",
     "coco_2577",
+    "coco_852",
     "coco_3079",
     "coco_4450",
-    "coco_3066",
-    "coco_894",
+    "coco_5439",
+    "coco_2817",
+    "coco_365",
     "coco_379",
-    "coco_4205",
-    "coco_1413",
-    "coco_4535",
+    "coco_2967",
+    "coco_1077",
+    "coco_5228",
     "coco_3208",
-    "coco_1315",
     "coco_956",
     "coco_2336",
     "imagenet_3473",
     "imagenet_4",
     "imagenet_120",
-    "imagenet_1925",
-    "imagenet_2592",
+    "imagenet_2148",
+    "imagenet_2646",
     "imagenet_5911",
     "imagenet_5532",
     "imagenet_1961",
     "imagenet_5644",
     "imagenet_2602",
-    "imagenet_1945",
-    "imagenet_3178",
-    "imagenet_1279",
-    "imagenet_515",
-    "imagenet_1386",
-    "imagenet_2050",
-    "imagenet_1964",
+    "imagenet_3713",
+    "imagenet_5538",
+    "imagenet_409",
+    "imagenet_3218",
+    "imagenet_1334",
+    "imagenet_3310",
+    "imagenet_5182",
+    "imagenet_853",
     "imagenet_2696",
-    "imagenet_5456",
     "imagenet_1859"
    ]
   },
@@ -95,126 +95,49 @@
    "list": 2,
    "test_atoms": [
     "coco_3118",
-    "coco_1998",
-    "coco_1900",
-    "coco_2122",
-    "coco_2516",
-    "coco_4733",
-    "coco_3004",
-    "coco_4530",
-    "coco_4979",
-    "coco_1399",
+    "coco_995",
+    "coco_2486",
+    "coco_4498",
+    "coco_3107",
+    "coco_5130",
     "coco_4263",
+    "coco_1413",
+    "coco_1118",
+    "coco_4979",
+    "coco_241",
+    "coco_2385",
+    "coco_2364",
     "coco_3302",
-    "coco_4526",
-    "coco_123",
-    "coco_1077",
-    "coco_4673",
-    "coco_5228",
-    "coco_2929",
+    "coco_624",
+    "coco_5064",
+    "coco_6061",
+    "coco_1315",
     "coco_1916",
     "coco_4147",
     "imagenet_2411",
     "imagenet_1657",
     "imagenet_339",
-    "imagenet_2361",
-    "imagenet_3000",
-    "imagenet_4416",
+    "imagenet_2592",
+    "imagenet_4063",
+    "imagenet_5547",
     "imagenet_5903",
     "imagenet_5947",
     "imagenet_1355",
     "imagenet_3108",
-    "imagenet_299",
-    "imagenet_409",
-    "imagenet_3218",
-    "imagenet_818",
-    "imagenet_5188",
-    "imagenet_72",
+    "imagenet_777",
+    "imagenet_2789",
+    "imagenet_1279",
+    "imagenet_7",
+    "imagenet_1386",
+    "imagenet_2050",
+    "imagenet_1964",
     "imagenet_4467",
-    "imagenet_1471",
     "imagenet_3172",
     "imagenet_4869"
    ]
   }
  ],
  "atoms": {
-  "coco_2516": {
-   "dataset": "coco",
-   "stratum": "R",
-   "refs_high": [
-    "stimuli/img/coco_2516/h0.jpg",
-    "stimuli/img/coco_2516/h1.jpg",
-    "stimuli/img/coco_2516/h2.jpg",
-    "stimuli/img/coco_2516/h3.jpg",
-    "stimuli/img/coco_2516/h4.jpg",
-    "stimuli/img/coco_2516/h5.jpg",
-    "stimuli/img/coco_2516/h6.jpg",
-    "stimuli/img/coco_2516/h7.jpg",
-    "stimuli/img/coco_2516/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_2516/l0.jpg",
-    "stimuli/img/coco_2516/l1.jpg",
-    "stimuli/img/coco_2516/l2.jpg",
-    "stimuli/img/coco_2516/l3.jpg",
-    "stimuli/img/coco_2516/l4.jpg",
-    "stimuli/img/coco_2516/l5.jpg",
-    "stimuli/img/coco_2516/l6.jpg",
-    "stimuli/img/coco_2516/l7.jpg",
-    "stimuli/img/coco_2516/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_2516/qpos.jpg",
-   "query_neg": "stimuli/img/coco_2516/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "dental",
-    "C": "children",
-    "D": "cigarette"
-   },
-   "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": -0.00261,
-    "delta_sign": 1,
-    "category": "person, toothbrush",
-    "same_name": false,
-    "c_source": "coco_4673",
-    "z_pos": 3.3390660285949707,
-    "h_neg": 1.0951902866363525,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 7,
-    "nact_ev": 7,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      19924,
-      164602,
-      202001,
-      297578,
-      123480,
-      218439,
-      507473,
-      255483,
-      154644
-     ],
-     "refs_low": [
-      528524,
-      66886,
-      213171,
-      524280,
-      162035,
-      344100,
-      108026,
-      552371,
-      283412
-     ],
-     "query_pos": 445999,
-     "query_neg": 500565,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_1625": {
    "dataset": "coco",
    "stratum": "R",
@@ -245,7 +168,7 @@
    "names": {
     "A": null,
     "B": "protest",
-    "C": "bread",
+    "C": "sand",
     "D": "signage"
    },
    "meta": {
@@ -254,7 +177,7 @@
     "delta_sign": 1,
     "category": "car, handbag, person",
     "same_name": false,
-    "c_source": "coco_3891",
+    "c_source": "coco_2573",
     "z_pos": 5.2936272621154785,
     "h_neg": -1.130406379699707,
     "z_neg": 0.0,
@@ -322,7 +245,7 @@
    "names": {
     "A": null,
     "B": "mountains",
-    "C": "flashlight",
+    "C": "subway",
     "D": "skiing"
    },
    "meta": {
@@ -331,7 +254,7 @@
     "delta_sign": 1,
     "category": "person",
     "same_name": false,
-    "c_source": "coco_995",
+    "c_source": "coco_2967",
     "z_pos": 7.505609035491943,
     "h_neg": -1.498154640197754,
     "z_neg": 0.0,
@@ -369,83 +292,6 @@
     }
    }
   },
-  "coco_1998": {
-   "dataset": "coco",
-   "stratum": "R",
-   "refs_high": [
-    "stimuli/img/coco_1998/h0.jpg",
-    "stimuli/img/coco_1998/h1.jpg",
-    "stimuli/img/coco_1998/h2.jpg",
-    "stimuli/img/coco_1998/h3.jpg",
-    "stimuli/img/coco_1998/h4.jpg",
-    "stimuli/img/coco_1998/h5.jpg",
-    "stimuli/img/coco_1998/h6.jpg",
-    "stimuli/img/coco_1998/h7.jpg",
-    "stimuli/img/coco_1998/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_1998/l0.jpg",
-    "stimuli/img/coco_1998/l1.jpg",
-    "stimuli/img/coco_1998/l2.jpg",
-    "stimuli/img/coco_1998/l3.jpg",
-    "stimuli/img/coco_1998/l4.jpg",
-    "stimuli/img/coco_1998/l5.jpg",
-    "stimuli/img/coco_1998/l6.jpg",
-    "stimuli/img/coco_1998/l7.jpg",
-    "stimuli/img/coco_1998/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_1998/qpos.jpg",
-   "query_neg": "stimuli/img/coco_1998/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "railway",
-    "C": "night",
-    "D": "railways"
-   },
-   "meta": {
-    "corr_salt": -0.0022,
-    "corr_cd": -0.0022,
-    "delta_sign": 0,
-    "category": "train",
-    "same_name": false,
-    "c_source": "coco_956",
-    "z_pos": 8.105225563049316,
-    "h_neg": -0.7583932280540466,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 7,
-    "nact_ev": 7,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      519338,
-      76625,
-      379800,
-      579818,
-      426268,
-      477623,
-      494863,
-      505573,
-      419096
-     ],
-     "refs_low": [
-      176847,
-      148719,
-      52412,
-      119038,
-      416269,
-      130613,
-      90155,
-      463522,
-      155443
-     ],
-     "query_pos": 368038,
-     "query_neg": 578093,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_995": {
    "dataset": "coco",
    "stratum": "R",
@@ -476,7 +322,7 @@
    "names": {
     "A": null,
     "B": "flashlight",
-    "C": "shops",
+    "C": "bulldog",
     "D": "tennis"
    },
    "meta": {
@@ -485,7 +331,7 @@
     "delta_sign": -1,
     "category": "vase",
     "same_name": false,
-    "c_source": "coco_894",
+    "c_source": "coco_2464",
     "z_pos": 2.6326582431793213,
     "h_neg": -0.8889351487159729,
     "z_neg": 0.0,
@@ -553,7 +399,7 @@
    "names": {
     "A": null,
     "B": "sand",
-    "C": "tower",
+    "C": "soccer",
     "D": "surfers"
    },
    "meta": {
@@ -562,7 +408,7 @@
     "delta_sign": -1,
     "category": "person, surfboard",
     "same_name": false,
-    "c_source": "coco_624",
+    "c_source": "coco_1399",
     "z_pos": 3.6492133140563965,
     "h_neg": 1.3722140789031982,
     "z_neg": 0.0,
@@ -630,7 +476,7 @@
    "names": {
     "A": null,
     "B": "railways",
-    "C": "vaccine",
+    "C": "tracks",
     "D": "railways"
    },
    "meta": {
@@ -639,7 +485,7 @@
     "delta_sign": 0,
     "category": "bench",
     "same_name": true,
-    "c_source": "coco_2882",
+    "c_source": "coco_4223",
     "z_pos": 2.793363094329834,
     "h_neg": 0.474561870098114,
     "z_neg": 0.0,
@@ -707,7 +553,7 @@
    "names": {
     "A": null,
     "B": "church",
-    "C": "controller",
+    "C": "lighting",
     "D": "cathedral"
    },
    "meta": {
@@ -716,7 +562,7 @@
     "delta_sign": 1,
     "category": "clock",
     "same_name": false,
-    "c_source": "coco_3004",
+    "c_source": "coco_365",
     "z_pos": 9.890000343322754,
     "h_neg": -0.45329469442367554,
     "z_neg": 0.0,
@@ -784,7 +630,7 @@
    "names": {
     "A": null,
     "B": "controller",
-    "C": "egg",
+    "C": "urban",
     "D": "participants"
    },
    "meta": {
@@ -793,7 +639,7 @@
     "delta_sign": 1,
     "category": "person, remote",
     "same_name": false,
-    "c_source": "coco_123",
+    "c_source": "coco_3107",
     "z_pos": 3.770409107208252,
     "h_neg": -1.5362927913665771,
     "z_neg": 0.0,
@@ -861,7 +707,7 @@
    "names": {
     "A": null,
     "B": "poultry",
-    "C": "church",
+    "C": "bridges",
     "D": "dinners"
    },
    "meta": {
@@ -870,7 +716,7 @@
     "delta_sign": -1,
     "category": "cake, dining table",
     "same_name": false,
-    "c_source": "coco_1315",
+    "c_source": "coco_4502",
     "z_pos": 7.619819641113281,
     "h_neg": -1.2326072454452515,
     "z_neg": 0.0,
@@ -908,83 +754,6 @@
     }
    }
   },
-  "coco_796": {
-   "dataset": "coco",
-   "stratum": "R",
-   "refs_high": [
-    "stimuli/img/coco_796/h0.jpg",
-    "stimuli/img/coco_796/h1.jpg",
-    "stimuli/img/coco_796/h2.jpg",
-    "stimuli/img/coco_796/h3.jpg",
-    "stimuli/img/coco_796/h4.jpg",
-    "stimuli/img/coco_796/h5.jpg",
-    "stimuli/img/coco_796/h6.jpg",
-    "stimuli/img/coco_796/h7.jpg",
-    "stimuli/img/coco_796/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_796/l0.jpg",
-    "stimuli/img/coco_796/l1.jpg",
-    "stimuli/img/coco_796/l2.jpg",
-    "stimuli/img/coco_796/l3.jpg",
-    "stimuli/img/coco_796/l4.jpg",
-    "stimuli/img/coco_796/l5.jpg",
-    "stimuli/img/coco_796/l6.jpg",
-    "stimuli/img/coco_796/l7.jpg",
-    "stimuli/img/coco_796/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_796/qpos.jpg",
-   "query_neg": "stimuli/img/coco_796/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "beaches",
-    "C": "rice",
-    "D": "beach"
-   },
-   "meta": {
-    "corr_salt": 0.16456,
-    "corr_cd": 0.16456,
-    "delta_sign": 0,
-    "category": "kite, person",
-    "same_name": false,
-    "c_source": "coco_3302",
-    "z_pos": 2.90771746635437,
-    "h_neg": -1.2824852466583252,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 6,
-    "nact_ev": 6,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      312237,
-      224664,
-      150224,
-      199395,
-      50326,
-      57760,
-      108503,
-      84477,
-      485802
-     ],
-     "refs_low": [
-      496597,
-      203639,
-      252716,
-      180188,
-      528980,
-      351589,
-      561009,
-      577864,
-      115946
-     ],
-     "query_pos": 357238,
-     "query_neg": 399462,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_3118": {
    "dataset": "coco",
    "stratum": "R",
@@ -1015,7 +784,7 @@
    "names": {
     "A": null,
     "B": "lighting",
-    "C": "children",
+    "C": "mountains",
     "D": "intersection"
    },
    "meta": {
@@ -1024,7 +793,7 @@
     "delta_sign": -1,
     "category": "traffic light",
     "same_name": false,
-    "c_source": "coco_3602",
+    "c_source": "coco_5336",
     "z_pos": 4.346277713775635,
     "h_neg": 0.2775040864944458,
     "z_neg": 0.0,
@@ -1169,7 +938,7 @@
    "names": {
     "A": null,
     "B": "wedding",
-    "C": "lighting",
+    "C": "controller",
     "D": "groom"
    },
    "meta": {
@@ -1178,7 +947,7 @@
     "delta_sign": -1,
     "category": "boat, bottle, person",
     "same_name": false,
-    "c_source": "coco_3118",
+    "c_source": "coco_3004",
     "z_pos": 4.420740127563477,
     "h_neg": -0.4843220114707947,
     "z_neg": 0.0,
@@ -1246,7 +1015,7 @@
    "names": {
     "A": null,
     "B": "snow",
-    "C": "jumps",
+    "C": "ramp",
     "D": "skiing"
    },
    "meta": {
@@ -1255,7 +1024,7 @@
     "delta_sign": 1,
     "category": "person",
     "same_name": false,
-    "c_source": "coco_1077",
+    "c_source": "coco_5064",
     "z_pos": 6.4513468742370605,
     "h_neg": -0.38530388474464417,
     "z_neg": 0.0,
@@ -1293,160 +1062,6 @@
     }
    }
   },
-  "coco_1900": {
-   "dataset": "coco",
-   "stratum": "R",
-   "refs_high": [
-    "stimuli/img/coco_1900/h0.jpg",
-    "stimuli/img/coco_1900/h1.jpg",
-    "stimuli/img/coco_1900/h2.jpg",
-    "stimuli/img/coco_1900/h3.jpg",
-    "stimuli/img/coco_1900/h4.jpg",
-    "stimuli/img/coco_1900/h5.jpg",
-    "stimuli/img/coco_1900/h6.jpg",
-    "stimuli/img/coco_1900/h7.jpg",
-    "stimuli/img/coco_1900/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_1900/l0.jpg",
-    "stimuli/img/coco_1900/l1.jpg",
-    "stimuli/img/coco_1900/l2.jpg",
-    "stimuli/img/coco_1900/l3.jpg",
-    "stimuli/img/coco_1900/l4.jpg",
-    "stimuli/img/coco_1900/l5.jpg",
-    "stimuli/img/coco_1900/l6.jpg",
-    "stimuli/img/coco_1900/l7.jpg",
-    "stimuli/img/coco_1900/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_1900/qpos.jpg",
-   "query_neg": "stimuli/img/coco_1900/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "infant",
-    "C": "snow",
-    "D": "toddler"
-   },
-   "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": 0.31393,
-    "delta_sign": -1,
-    "category": "person",
-    "same_name": false,
-    "c_source": "coco_2577",
-    "z_pos": 6.637912750244141,
-    "h_neg": -0.9557607173919678,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 13,
-    "nact_ev": 13,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      420840,
-      311394,
-      422670,
-      212166,
-      437205,
-      368212,
-      474039,
-      92091,
-      534041
-     ],
-     "refs_low": [
-      512403,
-      471087,
-      141328,
-      187243,
-      93437,
-      220310,
-      365655,
-      578545,
-      111609
-     ],
-     "query_pos": 500565,
-     "query_neg": 409475,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
-  "coco_1132": {
-   "dataset": "coco",
-   "stratum": "R",
-   "refs_high": [
-    "stimuli/img/coco_1132/h0.jpg",
-    "stimuli/img/coco_1132/h1.jpg",
-    "stimuli/img/coco_1132/h2.jpg",
-    "stimuli/img/coco_1132/h3.jpg",
-    "stimuli/img/coco_1132/h4.jpg",
-    "stimuli/img/coco_1132/h5.jpg",
-    "stimuli/img/coco_1132/h6.jpg",
-    "stimuli/img/coco_1132/h7.jpg",
-    "stimuli/img/coco_1132/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_1132/l0.jpg",
-    "stimuli/img/coco_1132/l1.jpg",
-    "stimuli/img/coco_1132/l2.jpg",
-    "stimuli/img/coco_1132/l3.jpg",
-    "stimuli/img/coco_1132/l4.jpg",
-    "stimuli/img/coco_1132/l5.jpg",
-    "stimuli/img/coco_1132/l6.jpg",
-    "stimuli/img/coco_1132/l7.jpg",
-    "stimuli/img/coco_1132/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_1132/qpos.jpg",
-   "query_neg": "stimuli/img/coco_1132/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "gan",
-    "C": "tower",
-    "D": "parties"
-   },
-   "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": -0.00444,
-    "delta_sign": 1,
-    "category": "cake, cup, person",
-    "same_name": false,
-    "c_source": "coco_4526",
-    "z_pos": 3.2920122146606445,
-    "h_neg": -0.45301902294158936,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 5,
-    "nact_ev": 5,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      506178,
-      404839,
-      172946,
-      209753,
-      284743,
-      313034,
-      147729,
-      259597,
-      2685
-     ],
-     "refs_low": [
-      439715,
-      341469,
-      486479,
-      539962,
-      131138,
-      269866,
-      319696,
-      525322,
-      290771
-     ],
-     "query_pos": 462371,
-     "query_neg": 128476,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_1123": {
    "dataset": "coco",
    "stratum": "R",
@@ -1477,7 +1092,7 @@
    "names": {
     "A": null,
     "B": "hotspots",
-    "C": "mountain",
+    "C": "bread",
     "D": "gourmet"
    },
    "meta": {
@@ -1486,7 +1101,7 @@
     "delta_sign": 1,
     "category": "hot dog, person",
     "same_name": false,
-    "c_source": "coco_1413",
+    "c_source": "coco_1545",
     "z_pos": 4.4843058586120605,
     "h_neg": -0.9642506837844849,
     "z_neg": 0.0,
@@ -1524,83 +1139,6 @@
     }
    }
   },
-  "coco_3891": {
-   "dataset": "coco",
-   "stratum": "R",
-   "refs_high": [
-    "stimuli/img/coco_3891/h0.jpg",
-    "stimuli/img/coco_3891/h1.jpg",
-    "stimuli/img/coco_3891/h2.jpg",
-    "stimuli/img/coco_3891/h3.jpg",
-    "stimuli/img/coco_3891/h4.jpg",
-    "stimuli/img/coco_3891/h5.jpg",
-    "stimuli/img/coco_3891/h6.jpg",
-    "stimuli/img/coco_3891/h7.jpg",
-    "stimuli/img/coco_3891/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_3891/l0.jpg",
-    "stimuli/img/coco_3891/l1.jpg",
-    "stimuli/img/coco_3891/l2.jpg",
-    "stimuli/img/coco_3891/l3.jpg",
-    "stimuli/img/coco_3891/l4.jpg",
-    "stimuli/img/coco_3891/l5.jpg",
-    "stimuli/img/coco_3891/l6.jpg",
-    "stimuli/img/coco_3891/l7.jpg",
-    "stimuli/img/coco_3891/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_3891/qpos.jpg",
-   "query_neg": "stimuli/img/coco_3891/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "bread",
-    "C": "flame",
-    "D": "gourmet"
-   },
-   "meta": {
-    "corr_salt": 0.77088,
-    "corr_cd": -0.00366,
-    "delta_sign": 1,
-    "category": "bowl, cup, dining table, orange",
-    "same_name": false,
-    "c_source": "coco_2122",
-    "z_pos": 4.4527387619018555,
-    "h_neg": 0.127619206905365,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 7,
-    "nact_ev": 7,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      85195,
-      64084,
-      465430,
-      15079,
-      470121,
-      216636,
-      170670,
-      339442,
-      293044
-     ],
-     "refs_low": [
-      375763,
-      534394,
-      571598,
-      209613,
-      428562,
-      12062,
-      399296,
-      536343,
-      378873
-     ],
-     "query_pos": 318114,
-     "query_neg": 462576,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_4530": {
    "dataset": "coco",
    "stratum": "R",
@@ -1631,7 +1169,7 @@
    "names": {
     "A": null,
     "B": "mountains",
-    "C": "railway",
+    "C": "baking",
     "D": "skiing"
    },
    "meta": {
@@ -1640,7 +1178,7 @@
     "delta_sign": 1,
     "category": "backpack, person",
     "same_name": false,
-    "c_source": "coco_1998",
+    "c_source": "coco_6003",
     "z_pos": 4.012206554412842,
     "h_neg": -0.48609572649002075,
     "z_neg": 0.0,
@@ -1708,7 +1246,7 @@
    "names": {
     "A": null,
     "B": "bread",
-    "C": "poultry",
+    "C": "railways",
     "D": "baking"
    },
    "meta": {
@@ -1717,7 +1255,7 @@
     "delta_sign": -1,
     "category": "carrot, dining table, fork",
     "same_name": false,
-    "c_source": "coco_2486",
+    "c_source": "coco_4979",
     "z_pos": 5.818175315856934,
     "h_neg": -1.3237563371658325,
     "z_neg": 0.0,
@@ -1785,7 +1323,7 @@
    "names": {
     "A": null,
     "B": "urban",
-    "C": "stove",
+    "C": "infant",
     "D": "sidewalk"
    },
    "meta": {
@@ -1794,7 +1332,7 @@
     "delta_sign": 1,
     "category": "car, person, sports ball",
     "same_name": false,
-    "c_source": "coco_5130",
+    "c_source": "coco_1874",
     "z_pos": 4.421506881713867,
     "h_neg": -0.5414623022079468,
     "z_neg": 0.0,
@@ -1862,7 +1400,7 @@
    "names": {
     "A": null,
     "B": "kitchen",
-    "C": "potatoes",
+    "C": "mountains",
     "D": "kitchen"
    },
    "meta": {
@@ -1871,7 +1409,7 @@
     "delta_sign": 0,
     "category": "bottle, cup, sink",
     "same_name": true,
-    "c_source": "coco_4500",
+    "c_source": "coco_4530",
     "z_pos": 5.143316745758057,
     "h_neg": -0.9451149702072144,
     "z_neg": 0.0,
@@ -1939,7 +1477,7 @@
    "names": {
     "A": null,
     "B": "bulldog",
-    "C": "church",
+    "C": "beach",
     "D": "bulldogs"
    },
    "meta": {
@@ -1948,7 +1486,7 @@
     "delta_sign": 0,
     "category": "dog, sports ball",
     "same_name": false,
-    "c_source": "coco_4450",
+    "c_source": "coco_3079",
     "z_pos": 4.65447998046875,
     "h_neg": -6.363469123840332,
     "z_neg": 0.0,
@@ -2016,7 +1554,7 @@
    "names": {
     "A": null,
     "B": "flame",
-    "C": "kitchen",
+    "C": "tower",
     "D": "plumbing"
    },
    "meta": {
@@ -2025,7 +1563,7 @@
     "delta_sign": 0,
     "category": "fire hydrant",
     "same_name": false,
-    "c_source": "coco_852",
+    "c_source": "coco_624",
     "z_pos": 3.0585317611694336,
     "h_neg": 1.2999391555786133,
     "z_neg": 0.0,
@@ -2093,7 +1631,7 @@
    "names": {
     "A": null,
     "B": "stove",
-    "C": "rice",
+    "C": "wines",
     "D": "kitchen"
    },
    "meta": {
@@ -2102,7 +1640,7 @@
     "delta_sign": -1,
     "category": "bottle",
     "same_name": false,
-    "c_source": "coco_2929",
+    "c_source": "coco_2385",
     "z_pos": 3.0452253818511963,
     "h_neg": 0.10603442788124084,
     "z_neg": 0.0,
@@ -2247,7 +1785,7 @@
    "names": {
     "A": null,
     "B": "soccer",
-    "C": "mouth",
+    "C": "tower",
     "D": "soccer"
    },
    "meta": {
@@ -2256,7 +1794,7 @@
     "delta_sign": 0,
     "category": "car, person, sports ball",
     "same_name": true,
-    "c_source": "coco_5228",
+    "c_source": "coco_4263",
     "z_pos": 3.6280734539031982,
     "h_neg": -1.648340106010437,
     "z_neg": 0.0,
@@ -2324,7 +1862,7 @@
    "names": {
     "A": null,
     "B": "children",
-    "C": "bulldog",
+    "C": "mountain",
     "D": "skipping"
    },
    "meta": {
@@ -2333,7 +1871,7 @@
     "delta_sign": -1,
     "category": "kite, person",
     "same_name": false,
-    "c_source": "coco_2464",
+    "c_source": "coco_1413",
     "z_pos": 4.922735214233398,
     "h_neg": 0.931793749332428,
     "z_neg": 0.0,
@@ -2401,7 +1939,7 @@
    "names": {
     "A": null,
     "B": "bookstore",
-    "C": "ramp",
+    "C": "church",
     "D": "bookshelf"
    },
    "meta": {
@@ -2410,7 +1948,7 @@
     "delta_sign": -1,
     "category": "book, chair, couch, laptop",
     "same_name": false,
-    "c_source": "coco_5064",
+    "c_source": "coco_1315",
     "z_pos": 8.894596099853516,
     "h_neg": 1.4844183921813965,
     "z_neg": 0.0,
@@ -2448,6 +1986,468 @@
     }
    }
   },
+  "coco_2734": {
+   "dataset": "coco",
+   "stratum": "R",
+   "refs_high": [
+    "stimuli/img/coco_2734/h0.jpg",
+    "stimuli/img/coco_2734/h1.jpg",
+    "stimuli/img/coco_2734/h2.jpg",
+    "stimuli/img/coco_2734/h3.jpg",
+    "stimuli/img/coco_2734/h4.jpg",
+    "stimuli/img/coco_2734/h5.jpg",
+    "stimuli/img/coco_2734/h6.jpg",
+    "stimuli/img/coco_2734/h7.jpg",
+    "stimuli/img/coco_2734/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_2734/l0.jpg",
+    "stimuli/img/coco_2734/l1.jpg",
+    "stimuli/img/coco_2734/l2.jpg",
+    "stimuli/img/coco_2734/l3.jpg",
+    "stimuli/img/coco_2734/l4.jpg",
+    "stimuli/img/coco_2734/l5.jpg",
+    "stimuli/img/coco_2734/l6.jpg",
+    "stimuli/img/coco_2734/l7.jpg",
+    "stimuli/img/coco_2734/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_2734/qpos.jpg",
+   "query_neg": "stimuli/img/coco_2734/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "office",
+    "C": "suit",
+    "D": "workstations"
+   },
+   "meta": {
+    "corr_salt": 0.31909,
+    "corr_cd": 0.27034,
+    "delta_sign": 1,
+    "category": "chair, cup, dining table, laptop, person",
+    "same_name": false,
+    "c_source": "coco_379",
+    "z_pos": 4.949130058288574,
+    "h_neg": -0.11146306991577148,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 7,
+    "nact_ev": 7,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      190236,
+      472678,
+      135872,
+      172595,
+      189820,
+      516916,
+      9483,
+      163682,
+      450303
+     ],
+     "refs_low": [
+      369310,
+      234607,
+      529762,
+      489764,
+      382734,
+      572678,
+      318138,
+      463918,
+      84664
+     ],
+     "query_pos": 13659,
+     "query_neg": 492110,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_4263": {
+   "dataset": "coco",
+   "stratum": "R",
+   "refs_high": [
+    "stimuli/img/coco_4263/h0.jpg",
+    "stimuli/img/coco_4263/h1.jpg",
+    "stimuli/img/coco_4263/h2.jpg",
+    "stimuli/img/coco_4263/h3.jpg",
+    "stimuli/img/coco_4263/h4.jpg",
+    "stimuli/img/coco_4263/h5.jpg",
+    "stimuli/img/coco_4263/h6.jpg",
+    "stimuli/img/coco_4263/h7.jpg",
+    "stimuli/img/coco_4263/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_4263/l0.jpg",
+    "stimuli/img/coco_4263/l1.jpg",
+    "stimuli/img/coco_4263/l2.jpg",
+    "stimuli/img/coco_4263/l3.jpg",
+    "stimuli/img/coco_4263/l4.jpg",
+    "stimuli/img/coco_4263/l5.jpg",
+    "stimuli/img/coco_4263/l6.jpg",
+    "stimuli/img/coco_4263/l7.jpg",
+    "stimuli/img/coco_4263/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_4263/qpos.jpg",
+   "query_neg": "stimuli/img/coco_4263/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "tower",
+    "C": "snow",
+    "D": "courthouse"
+   },
+   "meta": {
+    "corr_salt": 0.37543,
+    "corr_cd": 0.0,
+    "delta_sign": 1,
+    "category": "car, person, traffic light, truck",
+    "same_name": false,
+    "c_source": "coco_6061",
+    "z_pos": 4.995911121368408,
+    "h_neg": -1.0167473554611206,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 7,
+    "nact_ev": 7,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": false,
+    "src": {
+     "refs_high": [
+      243034,
+      565469,
+      308531,
+      58655,
+      418696,
+      361142,
+      294163,
+      391648,
+      376856
+     ],
+     "refs_low": [
+      95069,
+      472375,
+      31118,
+      568690,
+      98261,
+      404534,
+      245764,
+      399560,
+      548506
+     ],
+     "query_pos": 157756,
+     "query_neg": 183246,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_4502": {
+   "dataset": "coco",
+   "stratum": "R",
+   "refs_high": [
+    "stimuli/img/coco_4502/h0.jpg",
+    "stimuli/img/coco_4502/h1.jpg",
+    "stimuli/img/coco_4502/h2.jpg",
+    "stimuli/img/coco_4502/h3.jpg",
+    "stimuli/img/coco_4502/h4.jpg",
+    "stimuli/img/coco_4502/h5.jpg",
+    "stimuli/img/coco_4502/h6.jpg",
+    "stimuli/img/coco_4502/h7.jpg",
+    "stimuli/img/coco_4502/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_4502/l0.jpg",
+    "stimuli/img/coco_4502/l1.jpg",
+    "stimuli/img/coco_4502/l2.jpg",
+    "stimuli/img/coco_4502/l3.jpg",
+    "stimuli/img/coco_4502/l4.jpg",
+    "stimuli/img/coco_4502/l5.jpg",
+    "stimuli/img/coco_4502/l6.jpg",
+    "stimuli/img/coco_4502/l7.jpg",
+    "stimuli/img/coco_4502/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_4502/qpos.jpg",
+   "query_neg": "stimuli/img/coco_4502/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "bridges",
+    "C": "desk",
+    "D": "intersection"
+   },
+   "meta": {
+    "corr_salt": 0.34503,
+    "corr_cd": -0.01506,
+    "delta_sign": 1,
+    "category": "person, truck",
+    "same_name": false,
+    "c_source": "coco_3066",
+    "z_pos": 3.5365850925445557,
+    "h_neg": -0.5691343545913696,
+    "z_neg": 0.0,
+    "pos_rank_ev": 2,
+    "n_pos_candidates": 13,
+    "nact_ev": 13,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      460229,
+      258793,
+      565012,
+      417043,
+      350023,
+      292997,
+      287291,
+      545100,
+      155341
+     ],
+     "refs_low": [
+      516871,
+      179765,
+      297147,
+      395575,
+      402334,
+      52996,
+      270066,
+      464689,
+      296284
+     ],
+     "query_pos": 288042,
+     "query_neg": 205289,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_1118": {
+   "dataset": "coco",
+   "stratum": "R",
+   "refs_high": [
+    "stimuli/img/coco_1118/h0.jpg",
+    "stimuli/img/coco_1118/h1.jpg",
+    "stimuli/img/coco_1118/h2.jpg",
+    "stimuli/img/coco_1118/h3.jpg",
+    "stimuli/img/coco_1118/h4.jpg",
+    "stimuli/img/coco_1118/h5.jpg",
+    "stimuli/img/coco_1118/h6.jpg",
+    "stimuli/img/coco_1118/h7.jpg",
+    "stimuli/img/coco_1118/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_1118/l0.jpg",
+    "stimuli/img/coco_1118/l1.jpg",
+    "stimuli/img/coco_1118/l2.jpg",
+    "stimuli/img/coco_1118/l3.jpg",
+    "stimuli/img/coco_1118/l4.jpg",
+    "stimuli/img/coco_1118/l5.jpg",
+    "stimuli/img/coco_1118/l6.jpg",
+    "stimuli/img/coco_1118/l7.jpg",
+    "stimuli/img/coco_1118/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_1118/qpos.jpg",
+   "query_neg": "stimuli/img/coco_1118/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "beach",
+    "C": "smiling",
+    "D": "surfer"
+   },
+   "meta": {
+    "corr_salt": 0.42296,
+    "corr_cd": 0.2646,
+    "delta_sign": 1,
+    "category": "person, umbrella",
+    "same_name": false,
+    "c_source": "coco_4733",
+    "z_pos": 4.863188743591309,
+    "h_neg": 0.7901301383972168,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 9,
+    "nact_ev": 9,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      395903,
+      150224,
+      50326,
+      515445,
+      383339,
+      535858,
+      13774,
+      297595,
+      472623
+     ],
+     "refs_low": [
+      51314,
+      142971,
+      416343,
+      474344,
+      410456,
+      219578,
+      41633,
+      274460,
+      59635
+     ],
+     "query_pos": 29984,
+     "query_neg": 370711,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_6014": {
+   "dataset": "coco",
+   "stratum": "R",
+   "refs_high": [
+    "stimuli/img/coco_6014/h0.jpg",
+    "stimuli/img/coco_6014/h1.jpg",
+    "stimuli/img/coco_6014/h2.jpg",
+    "stimuli/img/coco_6014/h3.jpg",
+    "stimuli/img/coco_6014/h4.jpg",
+    "stimuli/img/coco_6014/h5.jpg",
+    "stimuli/img/coco_6014/h6.jpg",
+    "stimuli/img/coco_6014/h7.jpg",
+    "stimuli/img/coco_6014/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_6014/l0.jpg",
+    "stimuli/img/coco_6014/l1.jpg",
+    "stimuli/img/coco_6014/l2.jpg",
+    "stimuli/img/coco_6014/l3.jpg",
+    "stimuli/img/coco_6014/l4.jpg",
+    "stimuli/img/coco_6014/l5.jpg",
+    "stimuli/img/coco_6014/l6.jpg",
+    "stimuli/img/coco_6014/l7.jpg",
+    "stimuli/img/coco_6014/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_6014/qpos.jpg",
+   "query_neg": "stimuli/img/coco_6014/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "kitchen",
+    "C": "jumps",
+    "D": "kitchen"
+   },
+   "meta": {
+    "corr_salt": 0.1903,
+    "corr_cd": 0.1903,
+    "delta_sign": 0,
+    "category": "bowl, chair, dining table, fork, orange, person",
+    "same_name": true,
+    "c_source": "coco_1077",
+    "z_pos": 4.8124284744262695,
+    "h_neg": -0.3977259397506714,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 9,
+    "nact_ev": 9,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      419653,
+      438774,
+      488673,
+      246968,
+      527750,
+      166918,
+      275198,
+      266768,
+      186632
+     ],
+     "refs_low": [
+      221754,
+      289702,
+      338901,
+      231527,
+      493286,
+      446703,
+      186938,
+      554002,
+      32901
+     ],
+     "query_pos": 177489,
+     "query_neg": 167572,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_1413": {
+   "dataset": "coco",
+   "stratum": "R",
+   "refs_high": [
+    "stimuli/img/coco_1413/h0.jpg",
+    "stimuli/img/coco_1413/h1.jpg",
+    "stimuli/img/coco_1413/h2.jpg",
+    "stimuli/img/coco_1413/h3.jpg",
+    "stimuli/img/coco_1413/h4.jpg",
+    "stimuli/img/coco_1413/h5.jpg",
+    "stimuli/img/coco_1413/h6.jpg",
+    "stimuli/img/coco_1413/h7.jpg",
+    "stimuli/img/coco_1413/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_1413/l0.jpg",
+    "stimuli/img/coco_1413/l1.jpg",
+    "stimuli/img/coco_1413/l2.jpg",
+    "stimuli/img/coco_1413/l3.jpg",
+    "stimuli/img/coco_1413/l4.jpg",
+    "stimuli/img/coco_1413/l5.jpg",
+    "stimuli/img/coco_1413/l6.jpg",
+    "stimuli/img/coco_1413/l7.jpg",
+    "stimuli/img/coco_1413/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_1413/qpos.jpg",
+   "query_neg": "stimuli/img/coco_1413/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "mountain",
+    "C": "adolescents",
+    "D": "skiing"
+   },
+   "meta": {
+    "corr_salt": 0.39876,
+    "corr_cd": -0.01044,
+    "delta_sign": 1,
+    "category": "person",
+    "same_name": false,
+    "c_source": "coco_5439",
+    "z_pos": 3.680896520614624,
+    "h_neg": 0.6947085857391357,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 9,
+    "nact_ev": 9,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      451144,
+      567740,
+      252507,
+      326128,
+      274708,
+      357742,
+      322724,
+      424551,
+      258388
+     ],
+     "refs_low": [
+      297353,
+      385997,
+      245173,
+      411953,
+      77595,
+      231527,
+      199977,
+      140658,
+      116479
+     ],
+     "query_pos": 205333,
+     "query_neg": 144784,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
   "coco_2336": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -2478,7 +2478,7 @@
    "names": {
     "A": null,
     "B": "supermarkets",
-    "C": "tower",
+    "C": "flashlight",
     "D": "vendors"
    },
    "meta": {
@@ -2487,7 +2487,7 @@
     "delta_sign": -1,
     "category": "handbag, person, umbrella",
     "same_name": false,
-    "c_source": "coco_4263",
+    "c_source": "coco_995",
     "z_pos": 5.6751580238342285,
     "h_neg": -0.36255496740341187,
     "z_neg": 0.0,
@@ -2555,7 +2555,7 @@
    "names": {
     "A": null,
     "B": "fries",
-    "C": "speeches",
+    "C": "poultry",
     "D": "coronary"
    },
    "meta": {
@@ -2564,7 +2564,7 @@
     "delta_sign": 1,
     "category": "dining table, sandwich",
     "same_name": false,
-    "c_source": "coco_2364",
+    "c_source": "coco_2486",
     "z_pos": 4.652604579925537,
     "h_neg": 0.5029363632202148,
     "z_neg": 0.0,
@@ -2632,7 +2632,7 @@
    "names": {
     "A": null,
     "B": "speeches",
-    "C": "desk",
+    "C": "flame",
     "D": "chairman"
    },
    "meta": {
@@ -2641,7 +2641,7 @@
     "delta_sign": 1,
     "category": "person, tie",
     "same_name": false,
-    "c_source": "coco_3066",
+    "c_source": "coco_2122",
     "z_pos": 4.402529239654541,
     "h_neg": -1.0700433254241943,
     "z_neg": 0.0,
@@ -2709,7 +2709,7 @@
    "names": {
     "A": null,
     "B": "rice",
-    "C": "beaches",
+    "C": "representations",
     "D": "meals"
    },
    "meta": {
@@ -2718,7 +2718,7 @@
     "delta_sign": 1,
     "category": "carrot, dining table, fork",
     "same_name": false,
-    "c_source": "coco_796",
+    "c_source": "coco_2817",
     "z_pos": 10.44731330871582,
     "h_neg": 0.9364255666732788,
     "z_neg": 0.0,
@@ -2786,7 +2786,7 @@
    "names": {
     "A": null,
     "B": "night",
-    "C": "speeches",
+    "C": "tower",
     "D": "nightlife"
    },
    "meta": {
@@ -2795,7 +2795,7 @@
     "delta_sign": 1,
     "category": "traffic light",
     "same_name": false,
-    "c_source": "coco_2392",
+    "c_source": "coco_4526",
     "z_pos": 5.6143927574157715,
     "h_neg": -0.2230445146560669,
     "z_neg": 0.0,
@@ -2863,7 +2863,7 @@
    "names": {
     "A": null,
     "B": "infant",
-    "C": "railways",
+    "C": "church",
     "D": "toddler"
    },
    "meta": {
@@ -2872,7 +2872,7 @@
     "delta_sign": -1,
     "category": "toothbrush",
     "same_name": false,
-    "c_source": "coco_4979",
+    "c_source": "coco_4450",
     "z_pos": 8.729120254516602,
     "h_neg": -0.15031319856643677,
     "z_neg": 0.0,
@@ -2910,83 +2910,6 @@
     }
    }
   },
-  "coco_4500": {
-   "dataset": "coco",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/coco_4500/h0.jpg",
-    "stimuli/img/coco_4500/h1.jpg",
-    "stimuli/img/coco_4500/h2.jpg",
-    "stimuli/img/coco_4500/h3.jpg",
-    "stimuli/img/coco_4500/h4.jpg",
-    "stimuli/img/coco_4500/h5.jpg",
-    "stimuli/img/coco_4500/h6.jpg",
-    "stimuli/img/coco_4500/h7.jpg",
-    "stimuli/img/coco_4500/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_4500/l0.jpg",
-    "stimuli/img/coco_4500/l1.jpg",
-    "stimuli/img/coco_4500/l2.jpg",
-    "stimuli/img/coco_4500/l3.jpg",
-    "stimuli/img/coco_4500/l4.jpg",
-    "stimuli/img/coco_4500/l5.jpg",
-    "stimuli/img/coco_4500/l6.jpg",
-    "stimuli/img/coco_4500/l7.jpg",
-    "stimuli/img/coco_4500/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_4500/qpos.jpg",
-   "query_neg": "stimuli/img/coco_4500/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "potatoes",
-    "C": "wedding",
-    "D": "dinner"
-   },
-   "meta": {
-    "corr_salt": 0.54757,
-    "corr_cd": -0.00717,
-    "delta_sign": 1,
-    "category": "carrot, dining table, knife",
-    "same_name": false,
-    "c_source": "coco_5304",
-    "z_pos": 6.454100608825684,
-    "h_neg": -0.43274229764938354,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 9,
-    "nact_ev": 9,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      153632,
-      579091,
-      177714,
-      284106,
-      424721,
-      210520,
-      3845,
-      106266,
-      15278
-     ],
-     "refs_low": [
-      544565,
-      375430,
-      245576,
-      470924,
-      130465,
-      529528,
-      88269,
-      212800,
-      577539
-     ],
-     "query_pos": 104669,
-     "query_neg": 143998,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_2929": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -3017,7 +2940,7 @@
    "names": {
     "A": null,
     "B": "rice",
-    "C": "hotspots",
+    "C": "snow",
     "D": "vegetables"
    },
    "meta": {
@@ -3026,7 +2949,7 @@
     "delta_sign": 1,
     "category": "apple, broccoli, carrot",
     "same_name": false,
-    "c_source": "coco_1123",
+    "c_source": "coco_2577",
     "z_pos": 4.980852127075195,
     "h_neg": -0.7025801539421082,
     "z_neg": 0.0,
@@ -3094,7 +3017,7 @@
    "names": {
     "A": null,
     "B": "church",
-    "C": "retailers",
+    "C": "children",
     "D": "spires"
    },
    "meta": {
@@ -3103,7 +3026,7 @@
     "delta_sign": 1,
     "category": "clock",
     "same_name": false,
-    "c_source": "coco_4205",
+    "c_source": "coco_4673",
     "z_pos": 9.300543785095215,
     "h_neg": 0.07458502054214478,
     "z_neg": 0.0,
@@ -3171,7 +3094,7 @@
    "names": {
     "A": null,
     "B": "forehead",
-    "C": "mountains",
+    "C": "fries",
     "D": "zoo"
    },
    "meta": {
@@ -3180,7 +3103,7 @@
     "delta_sign": -1,
     "category": "person",
     "same_name": false,
-    "c_source": "coco_5336",
+    "c_source": "coco_4147",
     "z_pos": 7.102198600769043,
     "h_neg": -0.46086835861206055,
     "z_neg": 0.0,
@@ -3248,7 +3171,7 @@
    "names": {
     "A": null,
     "B": "mouth",
-    "C": "urban",
+    "C": "rice",
     "D": "eating"
    },
    "meta": {
@@ -3257,7 +3180,7 @@
     "delta_sign": 1,
     "category": "toothbrush",
     "same_name": false,
-    "c_source": "coco_3107",
+    "c_source": "coco_2929",
     "z_pos": 6.718518257141113,
     "h_neg": 0.22993338108062744,
     "z_neg": 0.0,
@@ -3325,7 +3248,7 @@
    "names": {
     "A": null,
     "B": "snow",
-    "C": "infant",
+    "C": "fireplace",
     "D": "snowboarding"
    },
    "meta": {
@@ -3334,7 +3257,7 @@
     "delta_sign": -1,
     "category": "person",
     "same_name": false,
-    "c_source": "coco_222",
+    "c_source": "coco_241",
     "z_pos": 5.806894302368164,
     "h_neg": 0.021944954991340637,
     "z_neg": 0.0,
@@ -3372,83 +3295,6 @@
     }
    }
   },
-  "coco_4535": {
-   "dataset": "coco",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/coco_4535/h0.jpg",
-    "stimuli/img/coco_4535/h1.jpg",
-    "stimuli/img/coco_4535/h2.jpg",
-    "stimuli/img/coco_4535/h3.jpg",
-    "stimuli/img/coco_4535/h4.jpg",
-    "stimuli/img/coco_4535/h5.jpg",
-    "stimuli/img/coco_4535/h6.jpg",
-    "stimuli/img/coco_4535/h7.jpg",
-    "stimuli/img/coco_4535/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_4535/l0.jpg",
-    "stimuli/img/coco_4535/l1.jpg",
-    "stimuli/img/coco_4535/l2.jpg",
-    "stimuli/img/coco_4535/l3.jpg",
-    "stimuli/img/coco_4535/l4.jpg",
-    "stimuli/img/coco_4535/l5.jpg",
-    "stimuli/img/coco_4535/l6.jpg",
-    "stimuli/img/coco_4535/l7.jpg",
-    "stimuli/img/coco_4535/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_4535/qpos.jpg",
-   "query_neg": "stimuli/img/coco_4535/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "posing",
-    "C": "fries",
-    "D": "delegates"
-   },
-   "meta": {
-    "corr_salt": 0.43706,
-    "corr_cd": 0.0,
-    "delta_sign": 1,
-    "category": "cup, handbag, person, tie, wine glass",
-    "same_name": false,
-    "c_source": "coco_4147",
-    "z_pos": 7.260626316070557,
-    "h_neg": -0.41654202342033386,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 6,
-    "nact_ev": 6,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": false,
-    "src": {
-     "refs_high": [
-      32901,
-      24021,
-      250282,
-      390555,
-      354547,
-      151657,
-      453166,
-      489842,
-      244496
-     ],
-     "refs_low": [
-      21465,
-      350002,
-      390826,
-      194506,
-      283412,
-      8021,
-      241668,
-      67180,
-      263966
-     ],
-     "query_pos": 412362,
-     "query_neg": 417632,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_4673": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -3479,7 +3325,7 @@
    "names": {
     "A": null,
     "B": "children",
-    "C": "forehead",
+    "C": "rice",
     "D": "grandchildren"
    },
    "meta": {
@@ -3488,7 +3334,7 @@
     "delta_sign": 1,
     "category": "cake, dining table",
     "same_name": false,
-    "c_source": "coco_3208",
+    "c_source": "coco_1916",
     "z_pos": 5.337635040283203,
     "h_neg": -0.5941351652145386,
     "z_neg": 0.0,
@@ -3526,83 +3372,6 @@
     }
    }
   },
-  "coco_2882": {
-   "dataset": "coco",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/coco_2882/h0.jpg",
-    "stimuli/img/coco_2882/h1.jpg",
-    "stimuli/img/coco_2882/h2.jpg",
-    "stimuli/img/coco_2882/h3.jpg",
-    "stimuli/img/coco_2882/h4.jpg",
-    "stimuli/img/coco_2882/h5.jpg",
-    "stimuli/img/coco_2882/h6.jpg",
-    "stimuli/img/coco_2882/h7.jpg",
-    "stimuli/img/coco_2882/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_2882/l0.jpg",
-    "stimuli/img/coco_2882/l1.jpg",
-    "stimuli/img/coco_2882/l2.jpg",
-    "stimuli/img/coco_2882/l3.jpg",
-    "stimuli/img/coco_2882/l4.jpg",
-    "stimuli/img/coco_2882/l5.jpg",
-    "stimuli/img/coco_2882/l6.jpg",
-    "stimuli/img/coco_2882/l7.jpg",
-    "stimuli/img/coco_2882/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_2882/qpos.jpg",
-   "query_neg": "stimuli/img/coco_2882/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "vaccine",
-    "C": "dental",
-    "D": "zoo"
-   },
-   "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": 0.42587,
-    "delta_sign": -1,
-    "category": "person",
-    "same_name": false,
-    "c_source": "coco_2516",
-    "z_pos": 4.801669120788574,
-    "h_neg": -0.06686897575855255,
-    "z_neg": 0.0,
-    "pos_rank_ev": 2,
-    "n_pos_candidates": 8,
-    "nact_ev": 8,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      448448,
-      420472,
-      235057,
-      475150,
-      299720,
-      575187,
-      25139,
-      282912,
-      286849
-     ],
-     "refs_low": [
-      367818,
-      51309,
-      369081,
-      252216,
-      240754,
-      118209,
-      481582,
-      335450,
-      560178
-     ],
-     "query_pos": 471567,
-     "query_neg": 409475,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_1077": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -3633,7 +3402,7 @@
    "names": {
     "A": null,
     "B": "jumps",
-    "C": "mountains",
+    "C": "night",
     "D": "skateboarding"
    },
    "meta": {
@@ -3642,7 +3411,7 @@
     "delta_sign": -1,
     "category": "backpack, person",
     "same_name": false,
-    "c_source": "coco_4530",
+    "c_source": "coco_956",
     "z_pos": 3.4859206676483154,
     "h_neg": 0.44774389266967773,
     "z_neg": 0.0,
@@ -3710,7 +3479,7 @@
    "names": {
     "A": null,
     "B": "ramp",
-    "C": "subway",
+    "C": "rice",
     "D": "skateboarding"
    },
    "meta": {
@@ -3719,7 +3488,7 @@
     "delta_sign": 1,
     "category": "person",
     "same_name": false,
-    "c_source": "coco_2967",
+    "c_source": "coco_3302",
     "z_pos": 2.398815870285034,
     "h_neg": -0.39806511998176575,
     "z_neg": 0.0,
@@ -3757,83 +3526,6 @@
     }
    }
   },
-  "coco_1413": {
-   "dataset": "coco",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/coco_1413/h0.jpg",
-    "stimuli/img/coco_1413/h1.jpg",
-    "stimuli/img/coco_1413/h2.jpg",
-    "stimuli/img/coco_1413/h3.jpg",
-    "stimuli/img/coco_1413/h4.jpg",
-    "stimuli/img/coco_1413/h5.jpg",
-    "stimuli/img/coco_1413/h6.jpg",
-    "stimuli/img/coco_1413/h7.jpg",
-    "stimuli/img/coco_1413/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_1413/l0.jpg",
-    "stimuli/img/coco_1413/l1.jpg",
-    "stimuli/img/coco_1413/l2.jpg",
-    "stimuli/img/coco_1413/l3.jpg",
-    "stimuli/img/coco_1413/l4.jpg",
-    "stimuli/img/coco_1413/l5.jpg",
-    "stimuli/img/coco_1413/l6.jpg",
-    "stimuli/img/coco_1413/l7.jpg",
-    "stimuli/img/coco_1413/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_1413/qpos.jpg",
-   "query_neg": "stimuli/img/coco_1413/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "mountain",
-    "C": "posing",
-    "D": "skiing"
-   },
-   "meta": {
-    "corr_salt": 0.39876,
-    "corr_cd": -0.01044,
-    "delta_sign": 1,
-    "category": "person",
-    "same_name": false,
-    "c_source": "coco_4535",
-    "z_pos": 3.680896520614624,
-    "h_neg": 0.6947085857391357,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 9,
-    "nact_ev": 9,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      451144,
-      567740,
-      252507,
-      326128,
-      274708,
-      357742,
-      322724,
-      424551,
-      258388
-     ],
-     "refs_low": [
-      297353,
-      385997,
-      245173,
-      411953,
-      77595,
-      231527,
-      199977,
-      140658,
-      116479
-     ],
-     "query_pos": 205333,
-     "query_neg": 144784,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_4205": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -3864,7 +3556,7 @@
    "names": {
     "A": null,
     "B": "retailers",
-    "C": "snow",
+    "C": "speeches",
     "D": "market"
    },
    "meta": {
@@ -3873,7 +3565,7 @@
     "delta_sign": -1,
     "category": "car, handbag, person",
     "same_name": false,
-    "c_source": "coco_6061",
+    "c_source": "coco_2364",
     "z_pos": 7.059524059295654,
     "h_neg": 0.4673282206058502,
     "z_neg": 0.0,
@@ -3941,7 +3633,7 @@
    "names": {
     "A": null,
     "B": "tower",
-    "C": "sand",
+    "C": "children",
     "D": "courthouse"
    },
    "meta": {
@@ -3950,7 +3642,7 @@
     "delta_sign": 1,
     "category": "traffic light, truck",
     "same_name": false,
-    "c_source": "coco_2573",
+    "c_source": "coco_3602",
     "z_pos": 6.443042755126953,
     "h_neg": 0.44499948620796204,
     "z_neg": 0.0,
@@ -3988,83 +3680,6 @@
     }
    }
   },
-  "coco_123": {
-   "dataset": "coco",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/coco_123/h0.jpg",
-    "stimuli/img/coco_123/h1.jpg",
-    "stimuli/img/coco_123/h2.jpg",
-    "stimuli/img/coco_123/h3.jpg",
-    "stimuli/img/coco_123/h4.jpg",
-    "stimuli/img/coco_123/h5.jpg",
-    "stimuli/img/coco_123/h6.jpg",
-    "stimuli/img/coco_123/h7.jpg",
-    "stimuli/img/coco_123/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_123/l0.jpg",
-    "stimuli/img/coco_123/l1.jpg",
-    "stimuli/img/coco_123/l2.jpg",
-    "stimuli/img/coco_123/l3.jpg",
-    "stimuli/img/coco_123/l4.jpg",
-    "stimuli/img/coco_123/l5.jpg",
-    "stimuli/img/coco_123/l6.jpg",
-    "stimuli/img/coco_123/l7.jpg",
-    "stimuli/img/coco_123/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_123/qpos.jpg",
-   "query_neg": "stimuli/img/coco_123/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "egg",
-    "C": "tracks",
-    "D": "brunch"
-   },
-   "meta": {
-    "corr_salt": 0.40267,
-    "corr_cd": 0.0,
-    "delta_sign": 1,
-    "category": "chair, cup, dining table, person",
-    "same_name": false,
-    "c_source": "coco_4223",
-    "z_pos": 5.9196858406066895,
-    "h_neg": -0.1632847785949707,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 5,
-    "nact_ev": 5,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": false,
-    "src": {
-     "refs_high": [
-      260105,
-      357903,
-      347335,
-      84664,
-      10583,
-      182417,
-      253452,
-      256518,
-      305609
-     ],
-     "refs_low": [
-      273711,
-      64084,
-      237984,
-      528399,
-      224119,
-      493334,
-      106266,
-      509131,
-      314541
-     ],
-     "query_pos": 356424,
-     "query_neg": 82696,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_4526": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -4095,7 +3710,7 @@
    "names": {
     "A": null,
     "B": "tower",
-    "C": "infant",
+    "C": "wedding",
     "D": "courthouse"
    },
    "meta": {
@@ -4104,7 +3719,7 @@
     "delta_sign": 1,
     "category": "clock",
     "same_name": false,
-    "c_source": "coco_1900",
+    "c_source": "coco_5304",
     "z_pos": 4.931262493133545,
     "h_neg": -1.0212182998657227,
     "z_neg": 0.0,
@@ -4172,7 +3787,7 @@
    "names": {
     "A": null,
     "B": "subway",
-    "C": "beach",
+    "C": "hotspots",
     "D": "transit"
    },
    "meta": {
@@ -4181,7 +3796,7 @@
     "delta_sign": 1,
     "category": "backpack, handbag, person, suitcase, train",
     "same_name": false,
-    "c_source": "coco_3079",
+    "c_source": "coco_1123",
     "z_pos": 5.109124660491943,
     "h_neg": 0.6480411291122437,
     "z_neg": 0.0,
@@ -4249,7 +3864,7 @@
    "names": {
     "A": null,
     "B": "suit",
-    "C": "smiling",
+    "C": "office",
     "D": "businessman"
    },
    "meta": {
@@ -4258,7 +3873,7 @@
     "delta_sign": 1,
     "category": "car, person, tie",
     "same_name": false,
-    "c_source": "coco_4733",
+    "c_source": "coco_2734",
     "z_pos": 7.652132987976074,
     "h_neg": -0.17305853962898254,
     "z_neg": 0.0,
@@ -4326,7 +3941,7 @@
    "names": {
     "A": null,
     "B": "tracks",
-    "C": "suit",
+    "C": "speeches",
     "D": "railway"
    },
    "meta": {
@@ -4335,7 +3950,7 @@
     "delta_sign": 1,
     "category": "person, suitcase",
     "same_name": false,
-    "c_source": "coco_379",
+    "c_source": "coco_2392",
     "z_pos": 5.893595218658447,
     "h_neg": -0.5295949578285217,
     "z_neg": 0.0,
@@ -4403,7 +4018,7 @@
    "names": {
     "A": null,
     "B": "rice",
-    "C": "soccer",
+    "C": "kitchen",
     "D": "dinners"
    },
    "meta": {
@@ -4412,7 +4027,7 @@
     "delta_sign": 1,
     "category": "bowl, carrot, dining table",
     "same_name": false,
-    "c_source": "coco_1399",
+    "c_source": "coco_6014",
     "z_pos": 3.764468193054199,
     "h_neg": 1.1416893005371094,
     "z_neg": 0.0,
@@ -4450,83 +4065,6 @@
     }
    }
   },
-  "coco_894": {
-   "dataset": "coco",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/coco_894/h0.jpg",
-    "stimuli/img/coco_894/h1.jpg",
-    "stimuli/img/coco_894/h2.jpg",
-    "stimuli/img/coco_894/h3.jpg",
-    "stimuli/img/coco_894/h4.jpg",
-    "stimuli/img/coco_894/h5.jpg",
-    "stimuli/img/coco_894/h6.jpg",
-    "stimuli/img/coco_894/h7.jpg",
-    "stimuli/img/coco_894/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_894/l0.jpg",
-    "stimuli/img/coco_894/l1.jpg",
-    "stimuli/img/coco_894/l2.jpg",
-    "stimuli/img/coco_894/l3.jpg",
-    "stimuli/img/coco_894/l4.jpg",
-    "stimuli/img/coco_894/l5.jpg",
-    "stimuli/img/coco_894/l6.jpg",
-    "stimuli/img/coco_894/l7.jpg",
-    "stimuli/img/coco_894/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_894/qpos.jpg",
-   "query_neg": "stimuli/img/coco_894/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "shops",
-    "C": "bookstore",
-    "D": "downtown"
-   },
-   "meta": {
-    "corr_salt": -0.00542,
-    "corr_cd": 0.37502,
-    "delta_sign": -1,
-    "category": "car, stop sign",
-    "same_name": false,
-    "c_source": "coco_4498",
-    "z_pos": 5.9723334312438965,
-    "h_neg": -1.145319938659668,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 5,
-    "nact_ev": 5,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      39484,
-      343149,
-      21839,
-      301376,
-      221754,
-      118405,
-      163314,
-      555050,
-      278006
-     ],
-     "refs_low": [
-      464476,
-      52017,
-      130386,
-      301421,
-      200839,
-      383621,
-      415536,
-      527616,
-      346638
-     ],
-     "query_pos": 427055,
-     "query_neg": 369751,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_2364": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -4557,7 +4095,7 @@
    "names": {
     "A": null,
     "B": "speeches",
-    "C": "rice",
+    "C": "kitchen",
     "D": "karaoke"
    },
    "meta": {
@@ -4566,7 +4104,7 @@
     "delta_sign": 1,
     "category": "chair, person, tie",
     "same_name": false,
-    "c_source": "coco_1916",
+    "c_source": "coco_852",
     "z_pos": 9.700782775878906,
     "h_neg": 0.069040447473526,
     "z_neg": 0.0,
@@ -4604,83 +4142,6 @@
     }
    }
   },
-  "coco_4263": {
-   "dataset": "coco",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/coco_4263/h0.jpg",
-    "stimuli/img/coco_4263/h1.jpg",
-    "stimuli/img/coco_4263/h2.jpg",
-    "stimuli/img/coco_4263/h3.jpg",
-    "stimuli/img/coco_4263/h4.jpg",
-    "stimuli/img/coco_4263/h5.jpg",
-    "stimuli/img/coco_4263/h6.jpg",
-    "stimuli/img/coco_4263/h7.jpg",
-    "stimuli/img/coco_4263/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_4263/l0.jpg",
-    "stimuli/img/coco_4263/l1.jpg",
-    "stimuli/img/coco_4263/l2.jpg",
-    "stimuli/img/coco_4263/l3.jpg",
-    "stimuli/img/coco_4263/l4.jpg",
-    "stimuli/img/coco_4263/l5.jpg",
-    "stimuli/img/coco_4263/l6.jpg",
-    "stimuli/img/coco_4263/l7.jpg",
-    "stimuli/img/coco_4263/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_4263/qpos.jpg",
-   "query_neg": "stimuli/img/coco_4263/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "tower",
-    "C": "gan",
-    "D": "courthouse"
-   },
-   "meta": {
-    "corr_salt": 0.37543,
-    "corr_cd": 0.0,
-    "delta_sign": 1,
-    "category": "car, person, traffic light, truck",
-    "same_name": false,
-    "c_source": "coco_1132",
-    "z_pos": 4.995911121368408,
-    "h_neg": -1.0167473554611206,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 7,
-    "nact_ev": 7,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": false,
-    "src": {
-     "refs_high": [
-      243034,
-      565469,
-      308531,
-      58655,
-      418696,
-      361142,
-      294163,
-      391648,
-      376856
-     ],
-     "refs_low": [
-      95069,
-      472375,
-      31118,
-      568690,
-      98261,
-      404534,
-      245764,
-      399560,
-      548506
-     ],
-     "query_pos": 157756,
-     "query_neg": 183246,
-     "id_kind": "COCO image id"
-    }
-   }
-  },
   "coco_3066": {
    "dataset": "coco",
    "stratum": "Delta",
@@ -4711,7 +4172,7 @@
    "names": {
     "A": null,
     "B": "desk",
-    "C": "bread",
+    "C": "infant",
     "D": "workstation"
    },
    "meta": {
@@ -4720,7 +4181,7 @@
     "delta_sign": 1,
     "category": "book, laptop",
     "same_name": false,
-    "c_source": "coco_1545",
+    "c_source": "coco_222",
     "z_pos": 4.28374719619751,
     "h_neg": 0.6972195506095886,
     "z_neg": 0.0,
@@ -4754,6 +4215,545 @@
      ],
      "query_pos": 63602,
      "query_neg": 22371,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_365": {
+   "dataset": "coco",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/coco_365/h0.jpg",
+    "stimuli/img/coco_365/h1.jpg",
+    "stimuli/img/coco_365/h2.jpg",
+    "stimuli/img/coco_365/h3.jpg",
+    "stimuli/img/coco_365/h4.jpg",
+    "stimuli/img/coco_365/h5.jpg",
+    "stimuli/img/coco_365/h6.jpg",
+    "stimuli/img/coco_365/h7.jpg",
+    "stimuli/img/coco_365/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_365/l0.jpg",
+    "stimuli/img/coco_365/l1.jpg",
+    "stimuli/img/coco_365/l2.jpg",
+    "stimuli/img/coco_365/l3.jpg",
+    "stimuli/img/coco_365/l4.jpg",
+    "stimuli/img/coco_365/l5.jpg",
+    "stimuli/img/coco_365/l6.jpg",
+    "stimuli/img/coco_365/l7.jpg",
+    "stimuli/img/coco_365/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_365/qpos.jpg",
+   "query_neg": "stimuli/img/coco_365/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "lighting",
+    "C": "stove",
+    "D": "intersection"
+   },
+   "meta": {
+    "corr_salt": -0.00538,
+    "corr_cd": 0.36019,
+    "delta_sign": -1,
+    "category": "traffic light",
+    "same_name": false,
+    "c_source": "coco_5130",
+    "z_pos": 7.39656925201416,
+    "h_neg": -2.252915859222412,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 19,
+    "nact_ev": 19,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      269682,
+      307074,
+      430875,
+      166509,
+      522751,
+      244379,
+      260266,
+      170545,
+      423798
+     ],
+     "refs_low": [
+      336232,
+      210273,
+      511398,
+      532575,
+      555050,
+      142472,
+      412894,
+      69138,
+      472375
+     ],
+     "query_pos": 575372,
+     "query_neg": 311883,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_6003": {
+   "dataset": "coco",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/coco_6003/h0.jpg",
+    "stimuli/img/coco_6003/h1.jpg",
+    "stimuli/img/coco_6003/h2.jpg",
+    "stimuli/img/coco_6003/h3.jpg",
+    "stimuli/img/coco_6003/h4.jpg",
+    "stimuli/img/coco_6003/h5.jpg",
+    "stimuli/img/coco_6003/h6.jpg",
+    "stimuli/img/coco_6003/h7.jpg",
+    "stimuli/img/coco_6003/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_6003/l0.jpg",
+    "stimuli/img/coco_6003/l1.jpg",
+    "stimuli/img/coco_6003/l2.jpg",
+    "stimuli/img/coco_6003/l3.jpg",
+    "stimuli/img/coco_6003/l4.jpg",
+    "stimuli/img/coco_6003/l5.jpg",
+    "stimuli/img/coco_6003/l6.jpg",
+    "stimuli/img/coco_6003/l7.jpg",
+    "stimuli/img/coco_6003/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_6003/qpos.jpg",
+   "query_neg": "stimuli/img/coco_6003/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "baking",
+    "C": "forehead",
+    "D": "cooking"
+   },
+   "meta": {
+    "corr_salt": -0.00338,
+    "corr_cd": 0.34694,
+    "delta_sign": -1,
+    "category": "cup, knife, pizza",
+    "same_name": false,
+    "c_source": "coco_3208",
+    "z_pos": 7.286709785461426,
+    "h_neg": 0.0031998008489608765,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 14,
+    "nact_ev": 14,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      529528,
+      146457,
+      552775,
+      331817,
+      280930,
+      17899,
+      530061,
+      154213,
+      287347
+     ],
+     "refs_low": [
+      175364,
+      338901,
+      151938,
+      416991,
+      455597,
+      277020,
+      445846,
+      141597,
+      514797
+     ],
+     "query_pos": 476787,
+     "query_neg": 337498,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_2385": {
+   "dataset": "coco",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/coco_2385/h0.jpg",
+    "stimuli/img/coco_2385/h1.jpg",
+    "stimuli/img/coco_2385/h2.jpg",
+    "stimuli/img/coco_2385/h3.jpg",
+    "stimuli/img/coco_2385/h4.jpg",
+    "stimuli/img/coco_2385/h5.jpg",
+    "stimuli/img/coco_2385/h6.jpg",
+    "stimuli/img/coco_2385/h7.jpg",
+    "stimuli/img/coco_2385/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_2385/l0.jpg",
+    "stimuli/img/coco_2385/l1.jpg",
+    "stimuli/img/coco_2385/l2.jpg",
+    "stimuli/img/coco_2385/l3.jpg",
+    "stimuli/img/coco_2385/l4.jpg",
+    "stimuli/img/coco_2385/l5.jpg",
+    "stimuli/img/coco_2385/l6.jpg",
+    "stimuli/img/coco_2385/l7.jpg",
+    "stimuli/img/coco_2385/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_2385/qpos.jpg",
+   "query_neg": "stimuli/img/coco_2385/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "wines",
+    "C": "bookstore",
+    "D": "winery"
+   },
+   "meta": {
+    "corr_salt": 0.34775,
+    "corr_cd": 0.0,
+    "delta_sign": 1,
+    "category": "car, chair, person",
+    "same_name": false,
+    "c_source": "coco_4498",
+    "z_pos": 6.1458516120910645,
+    "h_neg": 1.9912172555923462,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 6,
+    "nact_ev": 6,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": false,
+    "src": {
+     "refs_high": [
+      442161,
+      85089,
+      25394,
+      405691,
+      78032,
+      402720,
+      171190,
+      180751,
+      146155
+     ],
+     "refs_low": [
+      527695,
+      298904,
+      256407,
+      528399,
+      115946,
+      62554,
+      296634,
+      166259,
+      465585
+     ],
+     "query_pos": 32334,
+     "query_neg": 319369,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_2817": {
+   "dataset": "coco",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/coco_2817/h0.jpg",
+    "stimuli/img/coco_2817/h1.jpg",
+    "stimuli/img/coco_2817/h2.jpg",
+    "stimuli/img/coco_2817/h3.jpg",
+    "stimuli/img/coco_2817/h4.jpg",
+    "stimuli/img/coco_2817/h5.jpg",
+    "stimuli/img/coco_2817/h6.jpg",
+    "stimuli/img/coco_2817/h7.jpg",
+    "stimuli/img/coco_2817/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_2817/l0.jpg",
+    "stimuli/img/coco_2817/l1.jpg",
+    "stimuli/img/coco_2817/l2.jpg",
+    "stimuli/img/coco_2817/l3.jpg",
+    "stimuli/img/coco_2817/l4.jpg",
+    "stimuli/img/coco_2817/l5.jpg",
+    "stimuli/img/coco_2817/l6.jpg",
+    "stimuli/img/coco_2817/l7.jpg",
+    "stimuli/img/coco_2817/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_2817/qpos.jpg",
+   "query_neg": "stimuli/img/coco_2817/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "representations",
+    "C": "beach",
+    "D": "birthdays"
+   },
+   "meta": {
+    "corr_salt": 0.0,
+    "corr_cd": 0.34642,
+    "delta_sign": -1,
+    "category": "teddy bear",
+    "same_name": false,
+    "c_source": "coco_1118",
+    "z_pos": 2.369025707244873,
+    "h_neg": 0.4695550799369812,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 8,
+    "nact_ev": 8,
+    "salt_name_evaluable": false,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      31296,
+      231879,
+      73946,
+      150417,
+      268378,
+      214224,
+      156643,
+      468332,
+      318138
+     ],
+     "refs_low": [
+      446207,
+      492937,
+      540280,
+      506454,
+      100489,
+      479448,
+      74209,
+      267537,
+      42102
+     ],
+     "query_pos": 570169,
+     "query_neg": 355610,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_1874": {
+   "dataset": "coco",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/coco_1874/h0.jpg",
+    "stimuli/img/coco_1874/h1.jpg",
+    "stimuli/img/coco_1874/h2.jpg",
+    "stimuli/img/coco_1874/h3.jpg",
+    "stimuli/img/coco_1874/h4.jpg",
+    "stimuli/img/coco_1874/h5.jpg",
+    "stimuli/img/coco_1874/h6.jpg",
+    "stimuli/img/coco_1874/h7.jpg",
+    "stimuli/img/coco_1874/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_1874/l0.jpg",
+    "stimuli/img/coco_1874/l1.jpg",
+    "stimuli/img/coco_1874/l2.jpg",
+    "stimuli/img/coco_1874/l3.jpg",
+    "stimuli/img/coco_1874/l4.jpg",
+    "stimuli/img/coco_1874/l5.jpg",
+    "stimuli/img/coco_1874/l6.jpg",
+    "stimuli/img/coco_1874/l7.jpg",
+    "stimuli/img/coco_1874/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_1874/qpos.jpg",
+   "query_neg": "stimuli/img/coco_1874/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "infant",
+    "C": "retailers",
+    "D": "toddler"
+   },
+   "meta": {
+    "corr_salt": 0.0,
+    "corr_cd": 0.34388,
+    "delta_sign": -1,
+    "category": "car, cup, dining table, person",
+    "same_name": false,
+    "c_source": "coco_4205",
+    "z_pos": 4.83341121673584,
+    "h_neg": 1.0647366046905518,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 8,
+    "nact_ev": 8,
+    "salt_name_evaluable": false,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      530061,
+      468332,
+      321214,
+      20333,
+      349594,
+      123633,
+      303893,
+      117425,
+      66886
+     ],
+     "refs_low": [
+      481404,
+      471991,
+      194940,
+      388927,
+      224119,
+      499266,
+      351609,
+      450686,
+      334309
+     ],
+     "query_pos": 345361,
+     "query_neg": 356424,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_241": {
+   "dataset": "coco",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/coco_241/h0.jpg",
+    "stimuli/img/coco_241/h1.jpg",
+    "stimuli/img/coco_241/h2.jpg",
+    "stimuli/img/coco_241/h3.jpg",
+    "stimuli/img/coco_241/h4.jpg",
+    "stimuli/img/coco_241/h5.jpg",
+    "stimuli/img/coco_241/h6.jpg",
+    "stimuli/img/coco_241/h7.jpg",
+    "stimuli/img/coco_241/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_241/l0.jpg",
+    "stimuli/img/coco_241/l1.jpg",
+    "stimuli/img/coco_241/l2.jpg",
+    "stimuli/img/coco_241/l3.jpg",
+    "stimuli/img/coco_241/l4.jpg",
+    "stimuli/img/coco_241/l5.jpg",
+    "stimuli/img/coco_241/l6.jpg",
+    "stimuli/img/coco_241/l7.jpg",
+    "stimuli/img/coco_241/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_241/qpos.jpg",
+   "query_neg": "stimuli/img/coco_241/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "fireplace",
+    "C": "mouth",
+    "D": "bedrooms"
+   },
+   "meta": {
+    "corr_salt": 0.42197,
+    "corr_cd": 0.07869,
+    "delta_sign": 1,
+    "category": "chair, couch, potted plant, vase",
+    "same_name": false,
+    "c_source": "coco_5228",
+    "z_pos": 3.0726802349090576,
+    "h_neg": 0.719234824180603,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 9,
+    "nact_ev": 9,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      532901,
+      453722,
+      104666,
+      249550,
+      379441,
+      322352,
+      195754,
+      228144,
+      242934
+     ],
+     "refs_low": [
+      480122,
+      419601,
+      175364,
+      107339,
+      552883,
+      165257,
+      177935,
+      382696,
+      330818
+     ],
+     "query_pos": 293804,
+     "query_neg": 492758,
+     "id_kind": "COCO image id"
+    }
+   }
+  },
+  "coco_5439": {
+   "dataset": "coco",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/coco_5439/h0.jpg",
+    "stimuli/img/coco_5439/h1.jpg",
+    "stimuli/img/coco_5439/h2.jpg",
+    "stimuli/img/coco_5439/h3.jpg",
+    "stimuli/img/coco_5439/h4.jpg",
+    "stimuli/img/coco_5439/h5.jpg",
+    "stimuli/img/coco_5439/h6.jpg",
+    "stimuli/img/coco_5439/h7.jpg",
+    "stimuli/img/coco_5439/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_5439/l0.jpg",
+    "stimuli/img/coco_5439/l1.jpg",
+    "stimuli/img/coco_5439/l2.jpg",
+    "stimuli/img/coco_5439/l3.jpg",
+    "stimuli/img/coco_5439/l4.jpg",
+    "stimuli/img/coco_5439/l5.jpg",
+    "stimuli/img/coco_5439/l6.jpg",
+    "stimuli/img/coco_5439/l7.jpg",
+    "stimuli/img/coco_5439/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_5439/qpos.jpg",
+   "query_neg": "stimuli/img/coco_5439/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "adolescents",
+    "C": "lighting",
+    "D": "kids"
+   },
+   "meta": {
+    "corr_salt": 0.0,
+    "corr_cd": 0.34026,
+    "delta_sign": -1,
+    "category": "cake, dining table, knife, person",
+    "same_name": false,
+    "c_source": "coco_3118",
+    "z_pos": 10.115524291992188,
+    "h_neg": 0.6658875942230225,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 31,
+    "nact_ev": 31,
+    "salt_name_evaluable": false,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      559543,
+      27186,
+      518770,
+      489611,
+      9448,
+      73533,
+      15335,
+      349594,
+      162415
+     ],
+     "refs_low": [
+      438862,
+      439525,
+      401244,
+      457559,
+      139872,
+      138492,
+      546475,
+      368940,
+      477689
+     ],
+     "query_pos": 394940,
+     "query_neg": 434459,
      "id_kind": "COCO image id"
     }
    }
@@ -5143,204 +5143,126 @@
     }
    }
   },
-  "coco_2255": {
+  "coco_2249": {
    "dataset": "coco",
    "stratum": "catch",
    "refs_high": [
-    "stimuli/img/coco_2255/h0.jpg",
-    "stimuli/img/coco_2255/h1.jpg",
-    "stimuli/img/coco_2255/h2.jpg",
-    "stimuli/img/coco_2255/h3.jpg",
-    "stimuli/img/coco_2255/h4.jpg",
-    "stimuli/img/coco_2255/h5.jpg",
-    "stimuli/img/coco_2255/h6.jpg",
-    "stimuli/img/coco_2255/h7.jpg",
-    "stimuli/img/coco_2255/h8.jpg"
+    "stimuli/img/coco_2249/h0.jpg",
+    "stimuli/img/coco_2249/h1.jpg",
+    "stimuli/img/coco_2249/h2.jpg",
+    "stimuli/img/coco_2249/h3.jpg",
+    "stimuli/img/coco_2249/h4.jpg",
+    "stimuli/img/coco_2249/h5.jpg",
+    "stimuli/img/coco_2249/h6.jpg",
+    "stimuli/img/coco_2249/h7.jpg",
+    "stimuli/img/coco_2249/h8.jpg"
    ],
    "refs_low": [
-    "stimuli/img/coco_2255/l0.jpg",
-    "stimuli/img/coco_2255/l1.jpg",
-    "stimuli/img/coco_2255/l2.jpg",
-    "stimuli/img/coco_2255/l3.jpg",
-    "stimuli/img/coco_2255/l4.jpg",
-    "stimuli/img/coco_2255/l5.jpg",
-    "stimuli/img/coco_2255/l6.jpg",
-    "stimuli/img/coco_2255/l7.jpg",
-    "stimuli/img/coco_2255/l8.jpg"
+    "stimuli/img/coco_2249/l0.jpg",
+    "stimuli/img/coco_2249/l1.jpg",
+    "stimuli/img/coco_2249/l2.jpg",
+    "stimuli/img/coco_2249/l3.jpg",
+    "stimuli/img/coco_2249/l4.jpg",
+    "stimuli/img/coco_2249/l5.jpg",
+    "stimuli/img/coco_2249/l6.jpg",
+    "stimuli/img/coco_2249/l7.jpg",
+    "stimuli/img/coco_2249/l8.jpg"
    ],
-   "query_pos": "stimuli/img/coco_2255/qpos.jpg",
-   "query_neg": "stimuli/img/coco_2255/qneg.jpg",
+   "query_pos": "stimuli/img/coco_2249/qpos.jpg",
+   "query_neg": "stimuli/img/coco_2249/qneg.jpg",
    "names": {
     "A": null,
-    "B": "airport",
-    "C": "motorcycle",
-    "D": "airports"
+    "B": "pizza",
+    "C": "males",
+    "D": "pizza"
    },
    "meta": {
-    "corr_salt": 0.52803,
-    "corr_cd": 0.52803,
+    "corr_salt": 0.42539,
+    "corr_cd": 0.42539,
     "delta_sign": 0,
-    "category": "airplane",
-    "same_name": false,
-    "c_source": "coco_5678",
-    "z_pos": 5.673929214477539,
-    "h_neg": -0.6055560111999512,
+    "category": "pizza",
+    "same_name": true,
+    "c_source": "coco_5671",
+    "z_pos": 4.245752811431885,
+    "h_neg": 0.8656739592552185,
     "z_neg": 0.0,
     "pos_rank_ev": null,
     "n_pos_candidates": null,
-    "nact_ev": 7,
+    "nact_ev": 12,
     "salt_name_evaluable": true,
     "cd_name_evaluable": true,
     "src": {
      "refs_high": [
-      497568,
-      477441,
-      579158,
-      479912,
-      495054,
-      500049,
-      354829,
-      381639,
-      208363
+      520871,
+      532129,
+      323151,
+      62808,
+      75456,
+      116208,
+      236412,
+      458992,
+      430973
      ],
      "refs_low": [
-      214205,
-      491725,
-      90631,
-      95069,
-      143068,
-      130465,
-      578500,
-      17959,
-      2149
+      460929,
+      434297,
+      331817,
+      311950,
+      91779,
+      29675,
+      165831,
+      301718,
+      177714
      ],
-     "query_pos": 495054,
-     "query_neg": 424776,
+     "query_pos": 75456,
+     "query_neg": 535253,
      "id_kind": "COCO image id"
     },
     "catch_ref_index": 4
    }
   },
-  "coco_4757": {
+  "coco_4751": {
    "dataset": "coco",
    "stratum": "catch",
    "refs_high": [
-    "stimuli/img/coco_4757/h0.jpg",
-    "stimuli/img/coco_4757/h1.jpg",
-    "stimuli/img/coco_4757/h2.jpg",
-    "stimuli/img/coco_4757/h3.jpg",
-    "stimuli/img/coco_4757/h4.jpg",
-    "stimuli/img/coco_4757/h5.jpg",
-    "stimuli/img/coco_4757/h6.jpg",
-    "stimuli/img/coco_4757/h7.jpg",
-    "stimuli/img/coco_4757/h8.jpg"
+    "stimuli/img/coco_4751/h0.jpg",
+    "stimuli/img/coco_4751/h1.jpg",
+    "stimuli/img/coco_4751/h2.jpg",
+    "stimuli/img/coco_4751/h3.jpg",
+    "stimuli/img/coco_4751/h4.jpg",
+    "stimuli/img/coco_4751/h5.jpg",
+    "stimuli/img/coco_4751/h6.jpg",
+    "stimuli/img/coco_4751/h7.jpg",
+    "stimuli/img/coco_4751/h8.jpg"
    ],
    "refs_low": [
-    "stimuli/img/coco_4757/l0.jpg",
-    "stimuli/img/coco_4757/l1.jpg",
-    "stimuli/img/coco_4757/l2.jpg",
-    "stimuli/img/coco_4757/l3.jpg",
-    "stimuli/img/coco_4757/l4.jpg",
-    "stimuli/img/coco_4757/l5.jpg",
-    "stimuli/img/coco_4757/l6.jpg",
-    "stimuli/img/coco_4757/l7.jpg",
-    "stimuli/img/coco_4757/l8.jpg"
+    "stimuli/img/coco_4751/l0.jpg",
+    "stimuli/img/coco_4751/l1.jpg",
+    "stimuli/img/coco_4751/l2.jpg",
+    "stimuli/img/coco_4751/l3.jpg",
+    "stimuli/img/coco_4751/l4.jpg",
+    "stimuli/img/coco_4751/l5.jpg",
+    "stimuli/img/coco_4751/l6.jpg",
+    "stimuli/img/coco_4751/l7.jpg",
+    "stimuli/img/coco_4751/l8.jpg"
    ],
-   "query_pos": "stimuli/img/coco_4757/qpos.jpg",
-   "query_neg": "stimuli/img/coco_4757/qneg.jpg",
+   "query_pos": "stimuli/img/coco_4751/qpos.jpg",
+   "query_neg": "stimuli/img/coco_4751/qneg.jpg",
    "names": {
     "A": null,
-    "B": "giclee",
-    "C": "airport",
-    "D": "savanna"
+    "B": "sidewalk",
+    "C": "pizza",
+    "D": "sidewalk"
    },
    "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": 0.0,
+    "corr_salt": -0.0156,
+    "corr_cd": -0.0156,
     "delta_sign": 0,
-    "category": "backpack, chair, handbag, person",
-    "same_name": false,
-    "c_source": "coco_2255",
-    "z_pos": 3.569521188735962,
-    "h_neg": -0.00918576866388321,
-    "z_neg": 0.0,
-    "pos_rank_ev": null,
-    "n_pos_candidates": null,
-    "nact_ev": 10,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": false,
-    "src": {
-     "refs_high": [
-      152870,
-      359781,
-      217614,
-      288584,
-      563603,
-      537053,
-      235252,
-      261712,
-      345261
-     ],
-     "refs_low": [
-      377946,
-      553990,
-      135890,
-      297353,
-      511076,
-      384850,
-      468233,
-      95069,
-      419098
-     ],
-     "query_pos": 288584,
-     "query_neg": 115245,
-     "id_kind": "COCO image id"
-    },
-    "catch_ref_index": 3
-   }
-  },
-  "coco_5678": {
-   "dataset": "coco",
-   "stratum": "catch",
-   "refs_high": [
-    "stimuli/img/coco_5678/h0.jpg",
-    "stimuli/img/coco_5678/h1.jpg",
-    "stimuli/img/coco_5678/h2.jpg",
-    "stimuli/img/coco_5678/h3.jpg",
-    "stimuli/img/coco_5678/h4.jpg",
-    "stimuli/img/coco_5678/h5.jpg",
-    "stimuli/img/coco_5678/h6.jpg",
-    "stimuli/img/coco_5678/h7.jpg",
-    "stimuli/img/coco_5678/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/coco_5678/l0.jpg",
-    "stimuli/img/coco_5678/l1.jpg",
-    "stimuli/img/coco_5678/l2.jpg",
-    "stimuli/img/coco_5678/l3.jpg",
-    "stimuli/img/coco_5678/l4.jpg",
-    "stimuli/img/coco_5678/l5.jpg",
-    "stimuli/img/coco_5678/l6.jpg",
-    "stimuli/img/coco_5678/l7.jpg",
-    "stimuli/img/coco_5678/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/coco_5678/qpos.jpg",
-   "query_neg": "stimuli/img/coco_5678/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "motorcycle",
-    "C": "giclee",
-    "D": "motorcycle"
-   },
-   "meta": {
-    "corr_salt": 0.33033,
-    "corr_cd": 0.33033,
-    "delta_sign": 0,
-    "category": "motorcycle, truck",
+    "category": "car, person",
     "same_name": true,
-    "c_source": "coco_4757",
-    "z_pos": 8.189009666442871,
-    "h_neg": -0.37850332260131836,
+    "c_source": "coco_2249",
+    "z_pos": 3.379220724105835,
+    "h_neg": -0.6821373105049133,
     "z_neg": 0.0,
     "pos_rank_ev": null,
     "n_pos_candidates": null,
@@ -5349,29 +5271,107 @@
     "cd_name_evaluable": true,
     "src": {
      "refs_high": [
-      144300,
-      270066,
-      226662,
-      297147,
-      266400,
-      408830,
-      70774,
-      456394,
-      149406
+      234757,
+      28993,
+      464824,
+      273198,
+      117197,
+      165713,
+      441468,
+      569030,
+      74058
      ],
      "refs_low": [
-      359833,
-      7386,
-      414261,
-      17182,
-      199977,
-      424642,
-      453981,
-      127494,
-      2149
+      251824,
+      326970,
+      157767,
+      402334,
+      229221,
+      94326,
+      100723,
+      534673,
+      352900
      ],
-     "query_pos": 270066,
-     "query_neg": 426372,
+     "query_pos": 441468,
+     "query_neg": 397351,
+     "id_kind": "COCO image id"
+    },
+    "catch_ref_index": 6
+   }
+  },
+  "coco_5671": {
+   "dataset": "coco",
+   "stratum": "catch",
+   "refs_high": [
+    "stimuli/img/coco_5671/h0.jpg",
+    "stimuli/img/coco_5671/h1.jpg",
+    "stimuli/img/coco_5671/h2.jpg",
+    "stimuli/img/coco_5671/h3.jpg",
+    "stimuli/img/coco_5671/h4.jpg",
+    "stimuli/img/coco_5671/h5.jpg",
+    "stimuli/img/coco_5671/h6.jpg",
+    "stimuli/img/coco_5671/h7.jpg",
+    "stimuli/img/coco_5671/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/coco_5671/l0.jpg",
+    "stimuli/img/coco_5671/l1.jpg",
+    "stimuli/img/coco_5671/l2.jpg",
+    "stimuli/img/coco_5671/l3.jpg",
+    "stimuli/img/coco_5671/l4.jpg",
+    "stimuli/img/coco_5671/l5.jpg",
+    "stimuli/img/coco_5671/l6.jpg",
+    "stimuli/img/coco_5671/l7.jpg",
+    "stimuli/img/coco_5671/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/coco_5671/qpos.jpg",
+   "query_neg": "stimuli/img/coco_5671/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "males",
+    "C": "sidewalk",
+    "D": "karaoke"
+   },
+   "meta": {
+    "corr_salt": -0.01551,
+    "corr_cd": 0.0,
+    "delta_sign": -1,
+    "category": "person, remote",
+    "same_name": false,
+    "c_source": "coco_4751",
+    "z_pos": 3.9709513187408447,
+    "h_neg": -1.823083519935608,
+    "z_neg": 0.0,
+    "pos_rank_ev": null,
+    "n_pos_candidates": null,
+    "nact_ev": 14,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": false,
+    "src": {
+     "refs_high": [
+      518770,
+      463918,
+      109313,
+      185890,
+      325483,
+      416451,
+      465549,
+      293625,
+      302536
+     ],
+     "refs_low": [
+      179112,
+      433980,
+      444275,
+      546475,
+      10995,
+      214869,
+      345397,
+      470173,
+      98520
+     ],
+     "query_pos": 463918,
+     "query_neg": 402765,
      "id_kind": "COCO image id"
     },
     "catch_ref_index": 1
@@ -5407,7 +5407,7 @@
    "names": {
     "A": null,
     "B": "infant",
-    "C": "marvel",
+    "C": "musician",
     "D": "toddler"
    },
    "meta": {
@@ -5416,7 +5416,7 @@
     "delta_sign": 1,
     "category": "lens cap",
     "same_name": false,
-    "c_source": "imagenet_5182",
+    "c_source": "imagenet_5188",
     "z_pos": 9.23360824584961,
     "h_neg": -0.3828878104686737,
     "z_neg": 0.0,
@@ -5484,7 +5484,7 @@
    "names": {
     "A": null,
     "B": "snowy",
-    "C": "athletic",
+    "C": "kitchen",
     "D": "snowy"
    },
    "meta": {
@@ -5493,7 +5493,7 @@
     "delta_sign": 0,
     "category": "grey wolf",
     "same_name": true,
-    "c_source": "imagenet_72",
+    "c_source": "imagenet_5947",
     "z_pos": 6.26580810546875,
     "h_neg": 0.23744332790374756,
     "z_neg": 0.0,
@@ -5561,7 +5561,7 @@
    "names": {
     "A": null,
     "B": "dressed",
-    "C": "postcard",
+    "C": "cuisine",
     "D": "composites"
    },
    "meta": {
@@ -5570,7 +5570,7 @@
     "delta_sign": -1,
     "category": "bow tie",
     "same_name": false,
-    "c_source": "imagenet_2525",
+    "c_source": "imagenet_1964",
     "z_pos": 5.834228992462158,
     "h_neg": 0.6411340236663818,
     "z_neg": 0.0,
@@ -5638,7 +5638,7 @@
    "names": {
     "A": null,
     "B": "balcony",
-    "C": "sail",
+    "C": "lettering",
     "D": "porch"
    },
    "meta": {
@@ -5647,7 +5647,7 @@
     "delta_sign": 1,
     "category": "patio",
     "same_name": false,
-    "c_source": "imagenet_515",
+    "c_source": "imagenet_3473",
     "z_pos": 11.243681907653809,
     "h_neg": 0.7366088628768921,
     "z_neg": 0.0,
@@ -5715,7 +5715,7 @@
    "names": {
     "A": null,
     "B": "bookshelf",
-    "C": "male",
+    "C": "room",
     "D": "bookshelf"
    },
    "meta": {
@@ -5724,7 +5724,7 @@
     "delta_sign": 0,
     "category": "wardrobe",
     "same_name": true,
-    "c_source": "imagenet_2411",
+    "c_source": "imagenet_3218",
     "z_pos": 6.621884346008301,
     "h_neg": -0.13230586051940918,
     "z_neg": 0.0,
@@ -5792,7 +5792,7 @@
    "names": {
     "A": null,
     "B": "meals",
-    "C": "doll",
+    "C": "highways",
     "D": "dinner"
    },
    "meta": {
@@ -5801,7 +5801,7 @@
     "delta_sign": 1,
     "category": "mashed potatoes",
     "same_name": false,
-    "c_source": "imagenet_5968",
+    "c_source": "imagenet_3713",
     "z_pos": 13.072855949401855,
     "h_neg": -0.38651570677757263,
     "z_neg": 0.0,
@@ -5869,7 +5869,7 @@
    "names": {
     "A": null,
     "B": "scuba",
-    "C": "stones",
+    "C": "writing",
     "D": "snorkeling"
    },
    "meta": {
@@ -5878,7 +5878,7 @@
     "delta_sign": 1,
     "category": "sea snake",
     "same_name": false,
-    "c_source": "imagenet_3508",
+    "c_source": "imagenet_2050",
     "z_pos": 7.148036479949951,
     "h_neg": 0.7200365662574768,
     "z_neg": 0.0,
@@ -5946,7 +5946,7 @@
    "names": {
     "A": null,
     "B": "rome",
-    "C": "industrial",
+    "C": "dressed",
     "D": "piazza"
    },
    "meta": {
@@ -5955,7 +5955,7 @@
     "delta_sign": 0,
     "category": "obelisk",
     "same_name": false,
-    "c_source": "imagenet_7",
+    "c_source": "imagenet_4646",
     "z_pos": 10.805171012878418,
     "h_neg": 0.5218801498413086,
     "z_neg": 0.0,
@@ -6023,7 +6023,7 @@
    "names": {
     "A": null,
     "B": "oral",
-    "C": "sail",
+    "C": "earthquakes",
     "D": "cigarette"
    },
    "meta": {
@@ -6032,7 +6032,7 @@
     "delta_sign": 0,
     "category": "harmonica",
     "same_name": false,
-    "c_source": "imagenet_853",
+    "c_source": "imagenet_3000",
     "z_pos": 8.623167991638184,
     "h_neg": -0.7871113419532776,
     "z_neg": 0.0,
@@ -6100,7 +6100,7 @@
    "names": {
     "A": null,
     "B": "pottery",
-    "C": "visualization",
+    "C": "nautical",
     "D": "urn"
    },
    "meta": {
@@ -6109,7 +6109,7 @@
     "delta_sign": 0,
     "category": "cauldron",
     "same_name": false,
-    "c_source": "imagenet_2789",
+    "c_source": "imagenet_4416",
     "z_pos": 11.700552940368652,
     "h_neg": -0.021733373403549194,
     "z_neg": 0.0,
@@ -6177,7 +6177,7 @@
    "names": {
     "A": null,
     "B": "snorkeling",
-    "C": "earthquakes",
+    "C": "musicians",
     "D": "snorkeling"
    },
    "meta": {
@@ -6186,7 +6186,7 @@
     "delta_sign": 0,
     "category": "swimming cap",
     "same_name": true,
-    "c_source": "imagenet_3000",
+    "c_source": "imagenet_3152",
     "z_pos": 7.1049580574035645,
     "h_neg": -1.5570791959762573,
     "z_neg": 0.0,
@@ -6254,7 +6254,7 @@
    "names": {
     "A": null,
     "B": "workers",
-    "C": "canoeing",
+    "C": "dressed",
     "D": "vendors"
    },
    "meta": {
@@ -6263,7 +6263,7 @@
     "delta_sign": 1,
     "category": "rickshaw",
     "same_name": false,
-    "c_source": "imagenet_5911",
+    "c_source": "imagenet_5532",
     "z_pos": 5.289052486419678,
     "h_neg": 0.10327261686325073,
     "z_neg": 0.0,
@@ -6331,7 +6331,7 @@
    "names": {
     "A": null,
     "B": "musicians",
-    "C": "balcony",
+    "C": "smiley",
     "D": "musicians"
    },
    "meta": {
@@ -6340,7 +6340,7 @@
     "delta_sign": 0,
     "category": "saxophone",
     "same_name": true,
-    "c_source": "imagenet_1925",
+    "c_source": "imagenet_2361",
     "z_pos": 6.59138298034668,
     "h_neg": -0.9749670028686523,
     "z_neg": 0.0,
@@ -6408,7 +6408,7 @@
    "names": {
     "A": null,
     "B": "nautical",
-    "C": "woman",
+    "C": "industrial",
     "D": "aboard"
    },
    "meta": {
@@ -6417,7 +6417,7 @@
     "delta_sign": 1,
     "category": "ocean liner",
     "same_name": false,
-    "c_source": "imagenet_5538",
+    "c_source": "imagenet_7",
     "z_pos": 12.522724151611328,
     "h_neg": -0.11827673017978668,
     "z_neg": 0.0,
@@ -6485,7 +6485,7 @@
    "names": {
     "A": null,
     "B": "doll",
-    "C": "sewing",
+    "C": "snowy",
     "D": "dolls"
    },
    "meta": {
@@ -6494,7 +6494,7 @@
     "delta_sign": 0,
     "category": "overskirt",
     "same_name": false,
-    "c_source": "imagenet_1471",
+    "c_source": "imagenet_1657",
     "z_pos": 16.047256469726562,
     "h_neg": -0.7682844400405884,
     "z_neg": 0.0,
@@ -6562,7 +6562,7 @@
    "names": {
     "A": null,
     "B": "earthquakes",
-    "C": "bookshelf",
+    "C": "comics",
     "D": "coastline"
    },
    "meta": {
@@ -6571,7 +6571,7 @@
     "delta_sign": 1,
     "category": "shipwreck",
     "same_name": false,
-    "c_source": "imagenet_2162",
+    "c_source": "imagenet_3172",
     "z_pos": 4.689858436584473,
     "h_neg": 0.3288293182849884,
     "z_neg": 0.0,
@@ -6639,7 +6639,7 @@
    "names": {
     "A": null,
     "B": "kitchen",
-    "C": "pottery",
+    "C": "oral",
     "D": "kitchen"
    },
    "meta": {
@@ -6648,7 +6648,7 @@
     "delta_sign": 0,
     "category": "dishwasher",
     "same_name": true,
-    "c_source": "imagenet_2592",
+    "c_source": "imagenet_2646",
     "z_pos": 8.168249130249023,
     "h_neg": -0.8128460645675659,
     "z_neg": 0.0,
@@ -6716,7 +6716,7 @@
    "names": {
     "A": null,
     "B": "canoeing",
-    "C": "urban",
+    "C": "scuba",
     "D": "instructors"
    },
    "meta": {
@@ -6725,7 +6725,7 @@
     "delta_sign": 0,
     "category": "scuba diver",
     "same_name": false,
-    "c_source": "imagenet_2853",
+    "c_source": "imagenet_3108",
     "z_pos": 8.327661514282227,
     "h_neg": 0.4593685269355774,
     "z_neg": 0.0,
@@ -6793,7 +6793,7 @@
    "names": {
     "A": null,
     "B": "lettering",
-    "C": "dressed",
+    "C": "snorkeling",
     "D": "lettering"
    },
    "meta": {
@@ -6802,7 +6802,7 @@
     "delta_sign": 0,
     "category": "plastic bag",
     "same_name": true,
-    "c_source": "imagenet_5532",
+    "c_source": "imagenet_5644",
     "z_pos": 5.541871547698975,
     "h_neg": 1.5185298919677734,
     "z_neg": 0.0,
@@ -6870,7 +6870,7 @@
    "names": {
     "A": null,
     "B": "meat",
-    "C": "shows",
+    "C": "patients",
     "D": "meat"
    },
    "meta": {
@@ -6879,7 +6879,7 @@
     "delta_sign": 0,
     "category": "hot pot",
     "same_name": true,
-    "c_source": "imagenet_1279",
+    "c_source": "imagenet_3178",
     "z_pos": 9.330928802490234,
     "h_neg": 0.423581063747406,
     "z_neg": 0.0,
@@ -6947,7 +6947,7 @@
    "names": {
     "A": null,
     "B": "infant",
-    "C": "room",
+    "C": "stones",
     "D": "infant"
    },
    "meta": {
@@ -6956,7 +6956,7 @@
     "delta_sign": 0,
     "category": "wooden spoon",
     "same_name": true,
-    "c_source": "imagenet_3218",
+    "c_source": "imagenet_3508",
     "z_pos": 5.7241644859313965,
     "h_neg": -0.20494773983955383,
     "z_neg": 0.0,
@@ -7024,7 +7024,7 @@
    "names": {
     "A": null,
     "B": "dressed",
-    "C": "scissors",
+    "C": "bookshelf",
     "D": "drunken"
    },
    "meta": {
@@ -7033,7 +7033,7 @@
     "delta_sign": 1,
     "category": "sombrero",
     "same_name": false,
-    "c_source": "imagenet_4",
+    "c_source": "imagenet_2162",
     "z_pos": 7.293496131896973,
     "h_neg": 0.29402297735214233,
     "z_neg": 0.0,
@@ -7101,7 +7101,7 @@
    "names": {
     "A": null,
     "B": "flame",
-    "C": "writing",
+    "C": "shows",
     "D": "combustion"
    },
    "meta": {
@@ -7110,7 +7110,7 @@
     "delta_sign": 1,
     "category": "matchstick",
     "same_name": false,
-    "c_source": "imagenet_2050",
+    "c_source": "imagenet_1279",
     "z_pos": 7.326516151428223,
     "h_neg": 0.5202977657318115,
     "z_neg": 0.0,
@@ -7178,7 +7178,7 @@
    "names": {
     "A": null,
     "B": "scissors",
-    "C": "meat",
+    "C": "marvel",
     "D": "handle"
    },
    "meta": {
@@ -7187,7 +7187,7 @@
     "delta_sign": -1,
     "category": "velvet fabric",
     "same_name": false,
-    "c_source": "imagenet_4903",
+    "c_source": "imagenet_5182",
     "z_pos": 7.230922698974609,
     "h_neg": -1.0396728515625,
     "z_neg": 0.0,
@@ -7255,7 +7255,7 @@
    "names": {
     "A": null,
     "B": "male",
-    "C": "rome",
+    "C": "sail",
     "D": "author"
    },
    "meta": {
@@ -7264,7 +7264,7 @@
     "delta_sign": -1,
     "category": "lab coat",
     "same_name": false,
-    "c_source": "imagenet_4063",
+    "c_source": "imagenet_4869",
     "z_pos": 5.058547019958496,
     "h_neg": 0.4124131500720978,
     "z_neg": 0.0,
@@ -7332,7 +7332,7 @@
    "names": {
     "A": null,
     "B": "smiley",
-    "C": "dressed",
+    "C": "pottery",
     "D": "stationery"
    },
    "meta": {
@@ -7341,7 +7341,7 @@
     "delta_sign": 0,
     "category": "pencil case",
     "same_name": false,
-    "c_source": "imagenet_4646",
+    "c_source": "imagenet_2592",
     "z_pos": 7.271056175231934,
     "h_neg": 0.1826830506324768,
     "z_neg": 0.0,
@@ -7409,7 +7409,7 @@
    "names": {
     "A": null,
     "B": "woodworking",
-    "C": "patients",
+    "C": "cages",
     "D": "woodworking"
    },
    "meta": {
@@ -7418,7 +7418,7 @@
     "delta_sign": 0,
     "category": "letter opener",
     "same_name": true,
-    "c_source": "imagenet_3178",
+    "c_source": "imagenet_3310",
     "z_pos": 6.203211784362793,
     "h_neg": 0.8675010204315186,
     "z_neg": 0.0,
@@ -7456,83 +7456,6 @@
     }
    }
   },
-  "imagenet_923": {
-   "dataset": "imagenet",
-   "stratum": "R",
-   "refs_high": [
-    "stimuli/img/imagenet_923/h0.jpg",
-    "stimuli/img/imagenet_923/h1.jpg",
-    "stimuli/img/imagenet_923/h2.jpg",
-    "stimuli/img/imagenet_923/h3.jpg",
-    "stimuli/img/imagenet_923/h4.jpg",
-    "stimuli/img/imagenet_923/h5.jpg",
-    "stimuli/img/imagenet_923/h6.jpg",
-    "stimuli/img/imagenet_923/h7.jpg",
-    "stimuli/img/imagenet_923/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/imagenet_923/l0.jpg",
-    "stimuli/img/imagenet_923/l1.jpg",
-    "stimuli/img/imagenet_923/l2.jpg",
-    "stimuli/img/imagenet_923/l3.jpg",
-    "stimuli/img/imagenet_923/l4.jpg",
-    "stimuli/img/imagenet_923/l5.jpg",
-    "stimuli/img/imagenet_923/l6.jpg",
-    "stimuli/img/imagenet_923/l7.jpg",
-    "stimuli/img/imagenet_923/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/imagenet_923/qpos.jpg",
-   "query_neg": "stimuli/img/imagenet_923/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "graphics",
-    "C": "audience",
-    "D": "schematic"
-   },
-   "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": 0.0,
-    "delta_sign": 0,
-    "category": "analog clock",
-    "same_name": false,
-    "c_source": "imagenet_1386",
-    "z_pos": 9.731520652770996,
-    "h_neg": 0.22006669640541077,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 84,
-    "nact_ev": 84,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": false,
-    "src": {
-     "refs_high": [
-      31766,
-      30683,
-      20469,
-      20659,
-      27466,
-      20464,
-      20474,
-      20692,
-      36558
-     ],
-     "refs_low": [
-      33204,
-      4061,
-      2495,
-      2509,
-      2372,
-      16540,
-      2953,
-      16554,
-      17792
-     ],
-     "query_pos": 20499,
-     "query_neg": 20471,
-     "id_kind": "ImageNet val row (= id)"
-    }
-   }
-  },
   "imagenet_120": {
    "dataset": "imagenet",
    "stratum": "R",
@@ -7563,7 +7486,7 @@
    "names": {
     "A": null,
     "B": "batting",
-    "C": "snowy",
+    "C": "comics",
     "D": "tournament"
    },
    "meta": {
@@ -7572,7 +7495,7 @@
     "delta_sign": 0,
     "category": "duck",
     "same_name": false,
-    "c_source": "imagenet_1657",
+    "c_source": "imagenet_1859",
     "z_pos": 4.391800880432129,
     "h_neg": 0.8265111446380615,
     "z_neg": 0.0,
@@ -7640,7 +7563,7 @@
    "names": {
     "A": null,
     "B": "cheerleader",
-    "C": "comics",
+    "C": "batting",
     "D": "gymnastics"
    },
    "meta": {
@@ -7649,7 +7572,7 @@
     "delta_sign": -1,
     "category": "volleyball",
     "same_name": false,
-    "c_source": "imagenet_3172",
+    "c_source": "imagenet_120",
     "z_pos": 6.41007137298584,
     "h_neg": -0.8593782186508179,
     "z_neg": 0.0,
@@ -7687,6 +7610,83 @@
     }
    }
   },
+  "imagenet_5547": {
+   "dataset": "imagenet",
+   "stratum": "R",
+   "refs_high": [
+    "stimuli/img/imagenet_5547/h0.jpg",
+    "stimuli/img/imagenet_5547/h1.jpg",
+    "stimuli/img/imagenet_5547/h2.jpg",
+    "stimuli/img/imagenet_5547/h3.jpg",
+    "stimuli/img/imagenet_5547/h4.jpg",
+    "stimuli/img/imagenet_5547/h5.jpg",
+    "stimuli/img/imagenet_5547/h6.jpg",
+    "stimuli/img/imagenet_5547/h7.jpg",
+    "stimuli/img/imagenet_5547/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/imagenet_5547/l0.jpg",
+    "stimuli/img/imagenet_5547/l1.jpg",
+    "stimuli/img/imagenet_5547/l2.jpg",
+    "stimuli/img/imagenet_5547/l3.jpg",
+    "stimuli/img/imagenet_5547/l4.jpg",
+    "stimuli/img/imagenet_5547/l5.jpg",
+    "stimuli/img/imagenet_5547/l6.jpg",
+    "stimuli/img/imagenet_5547/l7.jpg",
+    "stimuli/img/imagenet_5547/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/imagenet_5547/qpos.jpg",
+   "query_neg": "stimuli/img/imagenet_5547/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "herring",
+    "C": "cords",
+    "D": "trout"
+   },
+   "meta": {
+    "corr_salt": 0.0,
+    "corr_cd": 0.0,
+    "delta_sign": 0,
+    "category": "snoek fish",
+    "same_name": false,
+    "c_source": "imagenet_409",
+    "z_pos": 10.68783187866211,
+    "h_neg": -2.0199356079101562,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 108,
+    "nact_ev": 108,
+    "salt_name_evaluable": false,
+    "cd_name_evaluable": false,
+    "src": {
+     "refs_high": [
+      37934,
+      19562,
+      37904,
+      19790,
+      46,
+      22,
+      35,
+      19561,
+      30
+     ],
+     "refs_low": [
+      30179,
+      1045,
+      34987,
+      1046,
+      1037,
+      6950,
+      1020,
+      1031,
+      41970
+     ],
+     "query_pos": 19474,
+     "query_neg": 19477,
+     "id_kind": "ImageNet val row (= id)"
+    }
+   }
+  },
   "imagenet_4869": {
    "dataset": "imagenet",
    "stratum": "Delta",
@@ -7717,7 +7717,7 @@
    "names": {
     "A": null,
     "B": "sail",
-    "C": "musicians",
+    "C": "flame",
     "D": "sailing"
    },
    "meta": {
@@ -7726,7 +7726,7 @@
     "delta_sign": 1,
     "category": "promontory",
     "same_name": false,
-    "c_source": "imagenet_3152",
+    "c_source": "imagenet_2602",
     "z_pos": 4.34500789642334,
     "h_neg": -0.03920774161815643,
     "z_neg": 0.0,
@@ -7794,7 +7794,7 @@
    "names": {
     "A": null,
     "B": "comics",
-    "C": "cages",
+    "C": "athletic",
     "D": "reprints"
    },
    "meta": {
@@ -7803,7 +7803,7 @@
     "delta_sign": 1,
     "category": "dust jacket",
     "same_name": false,
-    "c_source": "imagenet_3310",
+    "c_source": "imagenet_72",
     "z_pos": 6.873788833618164,
     "h_neg": 0.2996101379394531,
     "z_neg": 0.0,
@@ -7871,7 +7871,7 @@
    "names": {
     "A": null,
     "B": "urban",
-    "C": "cuisine",
+    "C": "woodworking",
     "D": "street"
    },
    "meta": {
@@ -7880,7 +7880,7 @@
     "delta_sign": -1,
     "category": "traffic light",
     "same_name": false,
-    "c_source": "imagenet_1964",
+    "c_source": "imagenet_339",
     "z_pos": 7.601220607757568,
     "h_neg": 1.1561994552612305,
     "z_neg": 0.0,
@@ -7948,7 +7948,7 @@
    "names": {
     "A": null,
     "B": "comics",
-    "C": "bedrooms",
+    "C": "rome",
     "D": "paperbacks"
    },
    "meta": {
@@ -7957,7 +7957,7 @@
     "delta_sign": 1,
     "category": "comic book",
     "same_name": false,
-    "c_source": "imagenet_1945",
+    "c_source": "imagenet_4063",
     "z_pos": 5.000032424926758,
     "h_neg": 0.30903714895248413,
     "z_neg": 0.0,
@@ -7995,83 +7995,6 @@
     }
    }
   },
-  "imagenet_2525": {
-   "dataset": "imagenet",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/imagenet_2525/h0.jpg",
-    "stimuli/img/imagenet_2525/h1.jpg",
-    "stimuli/img/imagenet_2525/h2.jpg",
-    "stimuli/img/imagenet_2525/h3.jpg",
-    "stimuli/img/imagenet_2525/h4.jpg",
-    "stimuli/img/imagenet_2525/h5.jpg",
-    "stimuli/img/imagenet_2525/h6.jpg",
-    "stimuli/img/imagenet_2525/h7.jpg",
-    "stimuli/img/imagenet_2525/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/imagenet_2525/l0.jpg",
-    "stimuli/img/imagenet_2525/l1.jpg",
-    "stimuli/img/imagenet_2525/l2.jpg",
-    "stimuli/img/imagenet_2525/l3.jpg",
-    "stimuli/img/imagenet_2525/l4.jpg",
-    "stimuli/img/imagenet_2525/l5.jpg",
-    "stimuli/img/imagenet_2525/l6.jpg",
-    "stimuli/img/imagenet_2525/l7.jpg",
-    "stimuli/img/imagenet_2525/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/imagenet_2525/qpos.jpg",
-   "query_neg": "stimuli/img/imagenet_2525/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "postcard",
-    "C": "graphics",
-    "D": "vending"
-   },
-   "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": 0.30842,
-    "delta_sign": -1,
-    "category": "parking meter",
-    "same_name": false,
-    "c_source": "imagenet_923",
-    "z_pos": 6.308033466339111,
-    "h_neg": -1.3550118207931519,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 74,
-    "nact_ev": 74,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      44313,
-      28561,
-      28595,
-      31887,
-      31872,
-      28563,
-      28596,
-      28579,
-      28587
-     ],
-     "refs_low": [
-      658,
-      43355,
-      24260,
-      31109,
-      43393,
-      28969,
-      30691,
-      680,
-      28966
-     ],
-     "query_pos": 35245,
-     "query_neg": 35205,
-     "id_kind": "ImageNet val row (= id)"
-    }
-   }
-  },
   "imagenet_5456": {
    "dataset": "imagenet",
    "stratum": "Delta",
@@ -8102,7 +8025,7 @@
    "names": {
     "A": null,
     "B": "wedding",
-    "C": "cheerleader",
+    "C": "farm",
     "D": "bride"
    },
    "meta": {
@@ -8111,7 +8034,7 @@
     "delta_sign": -1,
     "category": "bridegroom",
     "same_name": false,
-    "c_source": "imagenet_2148",
+    "c_source": "imagenet_777",
     "z_pos": 5.370364665985107,
     "h_neg": 1.3482214212417603,
     "z_neg": 0.0,
@@ -8179,7 +8102,7 @@
    "names": {
     "A": null,
     "B": "swim",
-    "C": "woodworking",
+    "C": "cheerleader",
     "D": "snorkeling"
    },
    "meta": {
@@ -8188,7 +8111,7 @@
     "delta_sign": 1,
     "category": "snoek fish",
     "same_name": false,
-    "c_source": "imagenet_339",
+    "c_source": "imagenet_2148",
     "z_pos": 5.6334123611450195,
     "h_neg": 0.09583714604377747,
     "z_neg": 0.0,
@@ -8256,7 +8179,7 @@
    "names": {
     "A": null,
     "B": "sail",
-    "C": "musician",
+    "C": "wedding",
     "D": "sailing"
    },
    "meta": {
@@ -8265,7 +8188,7 @@
     "delta_sign": 1,
     "category": "silver salmon",
     "same_name": false,
-    "c_source": "imagenet_5188",
+    "c_source": "imagenet_5456",
     "z_pos": 5.505643367767334,
     "h_neg": 0.5026482343673706,
     "z_neg": 0.0,
@@ -8333,7 +8256,7 @@
    "names": {
     "A": null,
     "B": "sewing",
-    "C": "kitchen",
+    "C": "classrooms",
     "D": "furnished"
    },
    "meta": {
@@ -8342,7 +8265,7 @@
     "delta_sign": 1,
     "category": "jeans",
     "same_name": false,
-    "c_source": "imagenet_5947",
+    "c_source": "imagenet_4467",
     "z_pos": 3.9814419746398926,
     "h_neg": -0.39159202575683594,
     "z_neg": 0.0,
@@ -8410,7 +8333,7 @@
    "names": {
     "A": null,
     "B": "classrooms",
-    "C": "workers",
+    "C": "herring",
     "D": "gymnastics"
    },
    "meta": {
@@ -8419,7 +8342,7 @@
     "delta_sign": -1,
     "category": "pajamas",
     "same_name": false,
-    "c_source": "imagenet_1961",
+    "c_source": "imagenet_5547",
     "z_pos": 5.6165571212768555,
     "h_neg": -1.3767650127410889,
     "z_neg": 0.0,
@@ -8487,7 +8410,7 @@
    "names": {
     "A": null,
     "B": "cuisine",
-    "C": "comics",
+    "C": "canoeing",
     "D": "cooking"
    },
    "meta": {
@@ -8496,7 +8419,7 @@
     "delta_sign": 1,
     "category": "guacamole",
     "same_name": false,
-    "c_source": "imagenet_1859",
+    "c_source": "imagenet_5911",
     "z_pos": 6.906299114227295,
     "h_neg": 1.2596228122711182,
     "z_neg": 0.0,
@@ -8564,7 +8487,7 @@
    "names": {
     "A": null,
     "B": "marvel",
-    "C": "meals",
+    "C": "knee",
     "D": "comics"
    },
    "meta": {
@@ -8573,7 +8496,7 @@
     "delta_sign": -1,
     "category": "toy store",
     "same_name": false,
-    "c_source": "imagenet_1355",
+    "c_source": "imagenet_1334",
     "z_pos": 10.83777904510498,
     "h_neg": 1.1084234714508057,
     "z_neg": 0.0,
@@ -8641,7 +8564,7 @@
    "names": {
     "A": null,
     "B": "athletic",
-    "C": "swim",
+    "C": "urban",
     "D": "rugby"
    },
    "meta": {
@@ -8650,7 +8573,7 @@
     "delta_sign": -1,
     "category": "swimming cap",
     "same_name": false,
-    "c_source": "imagenet_2696",
+    "c_source": "imagenet_2853",
     "z_pos": 3.708820343017578,
     "h_neg": -1.2874233722686768,
     "z_neg": 0.0,
@@ -8718,7 +8641,7 @@
    "names": {
     "A": null,
     "B": "writing",
-    "C": "batting",
+    "C": "infant",
     "D": "stationery"
    },
    "meta": {
@@ -8727,7 +8650,7 @@
     "delta_sign": 1,
     "category": "ring binder",
     "same_name": false,
-    "c_source": "imagenet_120",
+    "c_source": "imagenet_1874",
     "z_pos": 9.501019477844238,
     "h_neg": 0.7300293445587158,
     "z_neg": 0.0,
@@ -8795,7 +8718,7 @@
    "names": {
     "A": null,
     "B": "cages",
-    "C": "infant",
+    "C": "meals",
     "D": "prisoners"
    },
    "meta": {
@@ -8804,7 +8727,7 @@
     "delta_sign": 1,
     "category": "sulphur-crested cockatoo",
     "same_name": false,
-    "c_source": "imagenet_1874",
+    "c_source": "imagenet_1355",
     "z_pos": 5.3011474609375,
     "h_neg": -0.14219030737876892,
     "z_neg": 0.0,
@@ -8872,7 +8795,7 @@
    "names": {
     "A": null,
     "B": "musician",
-    "C": "cooked",
+    "C": "audience",
     "D": "performing"
    },
    "meta": {
@@ -8881,7 +8804,7 @@
     "delta_sign": 1,
     "category": "stage",
     "same_name": false,
-    "c_source": "imagenet_818",
+    "c_source": "imagenet_1386",
     "z_pos": 10.185038566589355,
     "h_neg": -1.3595333099365234,
     "z_neg": 0.0,
@@ -8949,7 +8872,7 @@
    "names": {
     "A": null,
     "B": "audience",
-    "C": "nautical",
+    "C": "doll",
     "D": "crowd"
    },
    "meta": {
@@ -8958,7 +8881,7 @@
     "delta_sign": 1,
     "category": "scoreboard",
     "same_name": false,
-    "c_source": "imagenet_4416",
+    "c_source": "imagenet_5968",
     "z_pos": 4.745967388153076,
     "h_neg": 0.8780076503753662,
     "z_neg": 0.0,
@@ -9026,7 +8949,7 @@
    "names": {
     "A": null,
     "B": "knee",
-    "C": "lettering",
+    "C": "meat",
     "D": "pantyhose"
    },
    "meta": {
@@ -9035,7 +8958,7 @@
     "delta_sign": 1,
     "category": "cowboy hat",
     "same_name": false,
-    "c_source": "imagenet_3473",
+    "c_source": "imagenet_4903",
     "z_pos": 5.096923828125,
     "h_neg": -1.1447280645370483,
     "z_neg": 0.0,
@@ -9073,83 +8996,6 @@
     }
    }
   },
-  "imagenet_818": {
-   "dataset": "imagenet",
-   "stratum": "Delta",
-   "refs_high": [
-    "stimuli/img/imagenet_818/h0.jpg",
-    "stimuli/img/imagenet_818/h1.jpg",
-    "stimuli/img/imagenet_818/h2.jpg",
-    "stimuli/img/imagenet_818/h3.jpg",
-    "stimuli/img/imagenet_818/h4.jpg",
-    "stimuli/img/imagenet_818/h5.jpg",
-    "stimuli/img/imagenet_818/h6.jpg",
-    "stimuli/img/imagenet_818/h7.jpg",
-    "stimuli/img/imagenet_818/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/imagenet_818/l0.jpg",
-    "stimuli/img/imagenet_818/l1.jpg",
-    "stimuli/img/imagenet_818/l2.jpg",
-    "stimuli/img/imagenet_818/l3.jpg",
-    "stimuli/img/imagenet_818/l4.jpg",
-    "stimuli/img/imagenet_818/l5.jpg",
-    "stimuli/img/imagenet_818/l6.jpg",
-    "stimuli/img/imagenet_818/l7.jpg",
-    "stimuli/img/imagenet_818/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/imagenet_818/qpos.jpg",
-   "query_neg": "stimuli/img/imagenet_818/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "cooked",
-    "C": "oral",
-    "D": "seafood"
-   },
-   "meta": {
-    "corr_salt": 0.0,
-    "corr_cd": 0.17539,
-    "delta_sign": -1,
-    "category": "mashed potatoes",
-    "same_name": false,
-    "c_source": "imagenet_2646",
-    "z_pos": 6.411884784698486,
-    "h_neg": -1.0872949361801147,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 96,
-    "nact_ev": 96,
-    "salt_name_evaluable": false,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      6073,
-      35026,
-      47204,
-      6097,
-      6091,
-      6056,
-      6095,
-      46934,
-      6076
-     ],
-     "refs_low": [
-      46802,
-      33442,
-      15470,
-      40896,
-      46849,
-      46812,
-      46847,
-      46839,
-      6129
-     ],
-     "query_pos": 46753,
-     "query_neg": 46789,
-     "id_kind": "ImageNet val row (= id)"
-    }
-   }
-  },
   "imagenet_515": {
    "dataset": "imagenet",
    "stratum": "Delta",
@@ -9180,7 +9026,7 @@
    "names": {
     "A": null,
     "B": "sail",
-    "C": "flame",
+    "C": "swim",
     "D": "sailing"
    },
    "meta": {
@@ -9189,7 +9035,7 @@
     "delta_sign": 1,
     "category": "dock",
     "same_name": false,
-    "c_source": "imagenet_2602",
+    "c_source": "imagenet_2696",
     "z_pos": 8.236000061035156,
     "h_neg": -1.1399024724960327,
     "z_neg": 0.0,
@@ -9334,7 +9180,7 @@
    "names": {
     "A": null,
     "B": "room",
-    "C": "snorkeling",
+    "C": "workers",
     "D": "furnished"
    },
    "meta": {
@@ -9343,7 +9189,7 @@
     "delta_sign": 1,
     "category": "home theater",
     "same_name": false,
-    "c_source": "imagenet_5644",
+    "c_source": "imagenet_1961",
     "z_pos": 7.913499355316162,
     "h_neg": -1.044672966003418,
     "z_neg": 0.0,
@@ -9411,7 +9257,7 @@
    "names": {
     "A": null,
     "B": "stones",
-    "C": "classrooms",
+    "C": "balcony",
     "D": "coastline"
    },
    "meta": {
@@ -9420,7 +9266,7 @@
     "delta_sign": 1,
     "category": "crutch",
     "same_name": false,
-    "c_source": "imagenet_4467",
+    "c_source": "imagenet_1925",
     "z_pos": 6.465887546539307,
     "h_neg": -0.7188100218772888,
     "z_neg": 0.0,
@@ -9488,7 +9334,7 @@
    "names": {
     "A": null,
     "B": "shows",
-    "C": "sail",
+    "C": "sewing",
     "D": "exhibitor"
    },
    "meta": {
@@ -9497,7 +9343,7 @@
     "delta_sign": 1,
     "category": "Great Dane",
     "same_name": false,
-    "c_source": "imagenet_4869",
+    "c_source": "imagenet_1471",
     "z_pos": 5.6194257736206055,
     "h_neg": 0.5229592323303223,
     "z_neg": 0.0,
@@ -9565,7 +9411,7 @@
    "names": {
     "A": null,
     "B": "patients",
-    "C": "knee",
+    "C": "bedrooms",
     "D": "pierced"
    },
    "meta": {
@@ -9574,7 +9420,7 @@
     "delta_sign": 1,
     "category": "Band-Aid",
     "same_name": false,
-    "c_source": "imagenet_1334",
+    "c_source": "imagenet_1945",
     "z_pos": 7.279596328735352,
     "h_neg": 0.8444044589996338,
     "z_neg": 0.0,
@@ -9719,7 +9565,7 @@
    "names": {
     "A": null,
     "B": "woman",
-    "C": "cords",
+    "C": "scissors",
     "D": "librarian"
    },
    "meta": {
@@ -9728,7 +9574,7 @@
     "delta_sign": 1,
     "category": "park bench",
     "same_name": false,
-    "c_source": "imagenet_409",
+    "c_source": "imagenet_4",
     "z_pos": 8.444358825683594,
     "h_neg": 0.10734322667121887,
     "z_neg": 0.0,
@@ -9796,7 +9642,7 @@
    "names": {
     "A": null,
     "B": "visualization",
-    "C": "scuba",
+    "C": "sail",
     "D": "mesh"
    },
    "meta": {
@@ -9805,7 +9651,7 @@
     "delta_sign": -1,
     "category": "strainer",
     "same_name": false,
-    "c_source": "imagenet_3108",
+    "c_source": "imagenet_853",
     "z_pos": 8.899825096130371,
     "h_neg": 1.2535984516143799,
     "z_neg": 0.0,
@@ -9873,7 +9719,7 @@
    "names": {
     "A": null,
     "B": "bedrooms",
-    "C": "wedding",
+    "C": "sail",
     "D": "bookshelf"
    },
    "meta": {
@@ -9882,7 +9728,7 @@
     "delta_sign": 1,
     "category": "chiffonier",
     "same_name": false,
-    "c_source": "imagenet_5456",
+    "c_source": "imagenet_515",
     "z_pos": 7.304253578186035,
     "h_neg": 0.7465283870697021,
     "z_neg": 0.0,
@@ -9950,7 +9796,7 @@
    "names": {
     "A": null,
     "B": "fingering",
-    "C": "smiley",
+    "C": "male",
     "D": "musician"
    },
    "meta": {
@@ -9959,7 +9805,7 @@
     "delta_sign": -1,
     "category": "grand piano",
     "same_name": false,
-    "c_source": "imagenet_2361",
+    "c_source": "imagenet_2411",
     "z_pos": 4.0423736572265625,
     "h_neg": -0.33425241708755493,
     "z_neg": 0.0,
@@ -9997,6 +9843,160 @@
     }
    }
   },
+  "imagenet_3713": {
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/imagenet_3713/h0.jpg",
+    "stimuli/img/imagenet_3713/h1.jpg",
+    "stimuli/img/imagenet_3713/h2.jpg",
+    "stimuli/img/imagenet_3713/h3.jpg",
+    "stimuli/img/imagenet_3713/h4.jpg",
+    "stimuli/img/imagenet_3713/h5.jpg",
+    "stimuli/img/imagenet_3713/h6.jpg",
+    "stimuli/img/imagenet_3713/h7.jpg",
+    "stimuli/img/imagenet_3713/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/imagenet_3713/l0.jpg",
+    "stimuli/img/imagenet_3713/l1.jpg",
+    "stimuli/img/imagenet_3713/l2.jpg",
+    "stimuli/img/imagenet_3713/l3.jpg",
+    "stimuli/img/imagenet_3713/l4.jpg",
+    "stimuli/img/imagenet_3713/l5.jpg",
+    "stimuli/img/imagenet_3713/l6.jpg",
+    "stimuli/img/imagenet_3713/l7.jpg",
+    "stimuli/img/imagenet_3713/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/imagenet_3713/qpos.jpg",
+   "query_neg": "stimuli/img/imagenet_3713/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "highways",
+    "C": "woman",
+    "D": "infrastructure"
+   },
+   "meta": {
+    "corr_salt": 0.13433,
+    "corr_cd": 0.0,
+    "delta_sign": 1,
+    "category": "tow truck",
+    "same_name": false,
+    "c_source": "imagenet_5538",
+    "z_pos": 3.9287450313568115,
+    "h_neg": 0.7849799990653992,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 68,
+    "nact_ev": 68,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": false,
+    "src": {
+     "refs_high": [
+      20416,
+      21808,
+      46037,
+      25851,
+      46006,
+      36661,
+      40153,
+      21849,
+      36682
+     ],
+     "refs_low": [
+      48810,
+      30315,
+      48763,
+      31145,
+      18560,
+      42938,
+      45101,
+      30321,
+      33792
+     ],
+     "query_pos": 43224,
+     "query_neg": 43221,
+     "id_kind": "ImageNet val row (= id)"
+    }
+   }
+  },
+  "imagenet_777": {
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "refs_high": [
+    "stimuli/img/imagenet_777/h0.jpg",
+    "stimuli/img/imagenet_777/h1.jpg",
+    "stimuli/img/imagenet_777/h2.jpg",
+    "stimuli/img/imagenet_777/h3.jpg",
+    "stimuli/img/imagenet_777/h4.jpg",
+    "stimuli/img/imagenet_777/h5.jpg",
+    "stimuli/img/imagenet_777/h6.jpg",
+    "stimuli/img/imagenet_777/h7.jpg",
+    "stimuli/img/imagenet_777/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/imagenet_777/l0.jpg",
+    "stimuli/img/imagenet_777/l1.jpg",
+    "stimuli/img/imagenet_777/l2.jpg",
+    "stimuli/img/imagenet_777/l3.jpg",
+    "stimuli/img/imagenet_777/l4.jpg",
+    "stimuli/img/imagenet_777/l5.jpg",
+    "stimuli/img/imagenet_777/l6.jpg",
+    "stimuli/img/imagenet_777/l7.jpg",
+    "stimuli/img/imagenet_777/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/imagenet_777/qpos.jpg",
+   "query_neg": "stimuli/img/imagenet_777/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "farm",
+    "C": "visualization",
+    "D": "machinery"
+   },
+   "meta": {
+    "corr_salt": 0.11667,
+    "corr_cd": -0.00127,
+    "delta_sign": 1,
+    "category": "threshing machine",
+    "same_name": false,
+    "c_source": "imagenet_2789",
+    "z_pos": 4.904465198516846,
+    "h_neg": 0.16323110461235046,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 87,
+    "nact_ev": 87,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      36533,
+      36519,
+      22434,
+      24498,
+      36535,
+      36528,
+      45014,
+      36673,
+      31742
+     ],
+     "refs_low": [
+      46625,
+      5487,
+      17313,
+      43057,
+      46620,
+      5457,
+      48986,
+      48685,
+      20639
+     ],
+     "query_pos": 42832,
+     "query_neg": 42833,
+     "id_kind": "ImageNet val row (= id)"
+    }
+   }
+  },
   "imagenet_5163": {
    "dataset": "imagenet",
    "stratum": "practice",
@@ -10027,7 +10027,7 @@
    "names": {
     "A": null,
     "B": "bathroom",
-    "C": "sword",
+    "C": "fishing",
     "D": "bathroom"
    },
    "meta": {
@@ -10036,7 +10036,7 @@
     "delta_sign": 0,
     "category": "toilet paper",
     "same_name": true,
-    "c_source": "imagenet_3199",
+    "c_source": "imagenet_279",
     "z_pos": 11.409819602966309,
     "h_neg": 1.5197147130966187,
     "z_neg": 0.0,
@@ -10104,7 +10104,7 @@
    "names": {
     "A": null,
     "B": "musicians",
-    "C": "highways",
+    "C": "sword",
     "D": "musicians"
    },
    "meta": {
@@ -10113,7 +10113,7 @@
     "delta_sign": 0,
     "category": "bassoon",
     "same_name": true,
-    "c_source": "imagenet_2748",
+    "c_source": "imagenet_3199",
     "z_pos": 7.978734970092773,
     "h_neg": 0.39281371235847473,
     "z_neg": 0.0,
@@ -10151,83 +10151,6 @@
     }
    }
   },
-  "imagenet_2748": {
-   "dataset": "imagenet",
-   "stratum": "practice",
-   "refs_high": [
-    "stimuli/img/imagenet_2748/h0.jpg",
-    "stimuli/img/imagenet_2748/h1.jpg",
-    "stimuli/img/imagenet_2748/h2.jpg",
-    "stimuli/img/imagenet_2748/h3.jpg",
-    "stimuli/img/imagenet_2748/h4.jpg",
-    "stimuli/img/imagenet_2748/h5.jpg",
-    "stimuli/img/imagenet_2748/h6.jpg",
-    "stimuli/img/imagenet_2748/h7.jpg",
-    "stimuli/img/imagenet_2748/h8.jpg"
-   ],
-   "refs_low": [
-    "stimuli/img/imagenet_2748/l0.jpg",
-    "stimuli/img/imagenet_2748/l1.jpg",
-    "stimuli/img/imagenet_2748/l2.jpg",
-    "stimuli/img/imagenet_2748/l3.jpg",
-    "stimuli/img/imagenet_2748/l4.jpg",
-    "stimuli/img/imagenet_2748/l5.jpg",
-    "stimuli/img/imagenet_2748/l6.jpg",
-    "stimuli/img/imagenet_2748/l7.jpg",
-    "stimuli/img/imagenet_2748/l8.jpg"
-   ],
-   "query_pos": "stimuli/img/imagenet_2748/qpos.jpg",
-   "query_neg": "stimuli/img/imagenet_2748/qneg.jpg",
-   "names": {
-    "A": null,
-    "B": "highways",
-    "C": "musicians",
-    "D": "highways"
-   },
-   "meta": {
-    "corr_salt": 0.35771,
-    "corr_cd": 0.35771,
-    "delta_sign": 0,
-    "category": "semi-trailer truck",
-    "same_name": true,
-    "c_source": "imagenet_5462",
-    "z_pos": 12.933204650878906,
-    "h_neg": 0.4394837021827698,
-    "z_neg": 0.0,
-    "pos_rank_ev": 1,
-    "n_pos_candidates": 50,
-    "nact_ev": 50,
-    "salt_name_evaluable": true,
-    "cd_name_evaluable": true,
-    "src": {
-     "refs_high": [
-      43362,
-      33024,
-      43379,
-      43385,
-      23781,
-      43365,
-      23780,
-      33035,
-      37887
-     ],
-     "refs_low": [
-      24329,
-      47739,
-      450,
-      44478,
-      24308,
-      24349,
-      5277,
-      44483,
-      24320
-     ],
-     "query_pos": 43388,
-     "query_neg": 43360,
-     "id_kind": "ImageNet val row (= id)"
-    }
-   }
-  },
   "imagenet_3199": {
    "dataset": "imagenet",
    "stratum": "practice",
@@ -10258,7 +10181,7 @@
    "names": {
     "A": null,
     "B": "sword",
-    "C": "bathroom",
+    "C": "musicians",
     "D": "sword"
    },
    "meta": {
@@ -10267,7 +10190,7 @@
     "delta_sign": 0,
     "category": "letter opener",
     "same_name": true,
-    "c_source": "imagenet_5163",
+    "c_source": "imagenet_5462",
     "z_pos": 9.537558555603027,
     "h_neg": 0.8942573666572571,
     "z_neg": 0.0,
@@ -10305,6 +10228,83 @@
     }
    }
   },
+  "imagenet_279": {
+   "dataset": "imagenet",
+   "stratum": "practice",
+   "refs_high": [
+    "stimuli/img/imagenet_279/h0.jpg",
+    "stimuli/img/imagenet_279/h1.jpg",
+    "stimuli/img/imagenet_279/h2.jpg",
+    "stimuli/img/imagenet_279/h3.jpg",
+    "stimuli/img/imagenet_279/h4.jpg",
+    "stimuli/img/imagenet_279/h5.jpg",
+    "stimuli/img/imagenet_279/h6.jpg",
+    "stimuli/img/imagenet_279/h7.jpg",
+    "stimuli/img/imagenet_279/h8.jpg"
+   ],
+   "refs_low": [
+    "stimuli/img/imagenet_279/l0.jpg",
+    "stimuli/img/imagenet_279/l1.jpg",
+    "stimuli/img/imagenet_279/l2.jpg",
+    "stimuli/img/imagenet_279/l3.jpg",
+    "stimuli/img/imagenet_279/l4.jpg",
+    "stimuli/img/imagenet_279/l5.jpg",
+    "stimuli/img/imagenet_279/l6.jpg",
+    "stimuli/img/imagenet_279/l7.jpg",
+    "stimuli/img/imagenet_279/l8.jpg"
+   ],
+   "query_pos": "stimuli/img/imagenet_279/qpos.jpg",
+   "query_neg": "stimuli/img/imagenet_279/qneg.jpg",
+   "names": {
+    "A": null,
+    "B": "fishing",
+    "C": "bathroom",
+    "D": "fishing"
+   },
+   "meta": {
+    "corr_salt": 0.32134,
+    "corr_cd": 0.32134,
+    "delta_sign": 0,
+    "category": "snoek fish",
+    "same_name": true,
+    "c_source": "imagenet_5163",
+    "z_pos": 9.383377075195312,
+    "h_neg": 0.3268964886665344,
+    "z_neg": 0.0,
+    "pos_rank_ev": 1,
+    "n_pos_candidates": 57,
+    "nact_ev": 57,
+    "salt_name_evaluable": true,
+    "cd_name_evaluable": true,
+    "src": {
+     "refs_high": [
+      19466,
+      19465,
+      19494,
+      19469,
+      19464,
+      19488,
+      19729,
+      37913,
+      19492
+     ],
+     "refs_low": [
+      5720,
+      15,
+      38721,
+      48996,
+      5709,
+      18114,
+      2421,
+      24198,
+      38696
+     ],
+     "query_pos": 19476,
+     "query_neg": 19457,
+     "id_kind": "ImageNet val row (= id)"
+    }
+   }
+  },
   "imagenet_2011": {
    "dataset": "imagenet",
    "stratum": "catch",
@@ -10335,7 +10335,7 @@
    "names": {
     "A": null,
     "B": "brush",
-    "C": "wrench",
+    "C": "boats",
     "D": "brushes"
    },
    "meta": {
@@ -10344,7 +10344,7 @@
     "delta_sign": 0,
     "category": "broom",
     "same_name": false,
-    "c_source": "imagenet_4937",
+    "c_source": "imagenet_4935",
     "z_pos": 10.046648025512695,
     "h_neg": 0.3459865152835846,
     "z_neg": 0.0,
@@ -10383,79 +10383,79 @@
     "catch_ref_index": 7
    }
   },
-  "imagenet_4937": {
+  "imagenet_4935": {
    "dataset": "imagenet",
    "stratum": "catch",
    "refs_high": [
-    "stimuli/img/imagenet_4937/h0.jpg",
-    "stimuli/img/imagenet_4937/h1.jpg",
-    "stimuli/img/imagenet_4937/h2.jpg",
-    "stimuli/img/imagenet_4937/h3.jpg",
-    "stimuli/img/imagenet_4937/h4.jpg",
-    "stimuli/img/imagenet_4937/h5.jpg",
-    "stimuli/img/imagenet_4937/h6.jpg",
-    "stimuli/img/imagenet_4937/h7.jpg",
-    "stimuli/img/imagenet_4937/h8.jpg"
+    "stimuli/img/imagenet_4935/h0.jpg",
+    "stimuli/img/imagenet_4935/h1.jpg",
+    "stimuli/img/imagenet_4935/h2.jpg",
+    "stimuli/img/imagenet_4935/h3.jpg",
+    "stimuli/img/imagenet_4935/h4.jpg",
+    "stimuli/img/imagenet_4935/h5.jpg",
+    "stimuli/img/imagenet_4935/h6.jpg",
+    "stimuli/img/imagenet_4935/h7.jpg",
+    "stimuli/img/imagenet_4935/h8.jpg"
    ],
    "refs_low": [
-    "stimuli/img/imagenet_4937/l0.jpg",
-    "stimuli/img/imagenet_4937/l1.jpg",
-    "stimuli/img/imagenet_4937/l2.jpg",
-    "stimuli/img/imagenet_4937/l3.jpg",
-    "stimuli/img/imagenet_4937/l4.jpg",
-    "stimuli/img/imagenet_4937/l5.jpg",
-    "stimuli/img/imagenet_4937/l6.jpg",
-    "stimuli/img/imagenet_4937/l7.jpg",
-    "stimuli/img/imagenet_4937/l8.jpg"
+    "stimuli/img/imagenet_4935/l0.jpg",
+    "stimuli/img/imagenet_4935/l1.jpg",
+    "stimuli/img/imagenet_4935/l2.jpg",
+    "stimuli/img/imagenet_4935/l3.jpg",
+    "stimuli/img/imagenet_4935/l4.jpg",
+    "stimuli/img/imagenet_4935/l5.jpg",
+    "stimuli/img/imagenet_4935/l6.jpg",
+    "stimuli/img/imagenet_4935/l7.jpg",
+    "stimuli/img/imagenet_4935/l8.jpg"
    ],
-   "query_pos": "stimuli/img/imagenet_4937/qpos.jpg",
-   "query_neg": "stimuli/img/imagenet_4937/qneg.jpg",
+   "query_pos": "stimuli/img/imagenet_4935/qpos.jpg",
+   "query_neg": "stimuli/img/imagenet_4935/qneg.jpg",
    "names": {
     "A": null,
-    "B": "wrench",
+    "B": "boats",
     "C": "brush",
-    "D": "toolkit"
+    "D": "ferries"
    },
    "meta": {
-    "corr_salt": 0.0,
+    "corr_salt": 0.36705,
     "corr_cd": 0.0,
-    "delta_sign": 0,
-    "category": "tray",
+    "delta_sign": 1,
+    "category": "aircraft carrier",
     "same_name": false,
     "c_source": "imagenet_2011",
-    "z_pos": 5.681421756744385,
-    "h_neg": 0.46654003858566284,
+    "z_pos": 9.020984649658203,
+    "h_neg": 0.6583445072174072,
     "z_neg": 0.0,
     "pos_rank_ev": null,
     "n_pos_candidates": null,
-    "nact_ev": 114,
-    "salt_name_evaluable": false,
+    "nact_ev": 72,
+    "salt_name_evaluable": true,
     "cd_name_evaluable": false,
     "src": {
      "refs_high": [
-      25629,
-      23874,
-      25609,
-      23851,
-      29396,
-      23878,
-      25641,
-      43418,
-      44560
+      40741,
+      31291,
+      40736,
+      31259,
+      40714,
+      31255,
+      27741,
+      20159,
+      27739
      ],
      "refs_low": [
-      15212,
-      27987,
-      36485,
-      6801,
-      8362,
-      24755,
-      8153,
-      15898,
-      5371
+      46365,
+      48124,
+      48128,
+      46379,
+      22493,
+      46386,
+      45303,
+      45338,
+      46354
      ],
-     "query_pos": 43418,
-     "query_neg": 43438,
+     "query_pos": 20159,
+     "query_neg": 20199,
      "id_kind": "ImageNet val row (= id)"
     },
     "catch_ref_index": 7
@@ -10470,14 +10470,14 @@
   "coco_5151",
   "imagenet_5163",
   "imagenet_5462",
-  "imagenet_2748",
-  "imagenet_3199"
+  "imagenet_3199",
+  "imagenet_279"
  ],
  "catch": [
-  "coco_2255",
-  "coco_4757",
-  "coco_5678",
+  "coco_2249",
+  "coco_4751",
+  "coco_5671",
   "imagenet_2011",
-  "imagenet_4937"
+  "imagenet_4935"
  ]
 }
