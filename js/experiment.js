@@ -254,9 +254,12 @@ function debugBadge(item, chosenSide) {
   }
   return '<div class="debug-badge ' + src.cls + '">' +
     '<div class="dbg-source">' + esc(src.label) + "</div>" +
+    (item.item_type === "catch" ? '<div class="dbg-catch">ESSAI PIÈGE (voulu) : l\'image correcte est une copie d\'une des 9 images du haut ' +
+      "(contrôle d'attention, 5 par session).</div>" : "") +
     '<div class="dbg-meta">' + (CFG.stimOverride ? "stimuli : " + esc(CFG.stimOverride) + " · " : "") + "atome " + esc(item.atom_id) + " · " +
     (item.item_type === "practice" ? "entraînement" : item.item_type === "catch" ? "essai piège" : "test, strate " + esc(item.atom.stratum)) +
     " · bonne image : " + SIDE_FR[item.pos_side] + "</div>" +
+    (item.atom.meta && item.atom.meta.judge_desc ? '<div class="dbg-meta">juge MLLM (sans les noms) : ' + esc(item.atom.meta.judge_desc) + "</div>" : "") +
     verdict + "</div>";
 }
 
