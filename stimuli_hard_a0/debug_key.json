@@ -1,0 +1,208 @@
+{
+ "version": "2026-10-13-v6-protob-harda0",
+ "set": "stimuli_hard_a0",
+ "source": "stimuli_hard_a0",
+ "neurons": {
+  "2g7qgy": {
+   "atom": "coco_241",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "2g7qgy-fqqfu6",
+   "category": "chair, couch, potted plant, vase",
+   "judge_desc": "Presence of a fireplace in each room",
+   "corr_salt": 0.42197,
+   "corr_cd": 0.07869
+  },
+  "37sdmu": {
+   "atom": "imagenet_4869",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "37sdmu-49dy5w",
+   "category": "sailboat",
+   "judge_desc": "Sailboats on water with coastal scenery",
+   "corr_salt": 0.41879,
+   "corr_cd": -0.00177
+  },
+  "3mvu8r": {
+   "atom": "coco_2734",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "3mvu8r-p9mwvc",
+   "category": "banana, cup, keyboard, laptop, orange, person, tv",
+   "judge_desc": "Multiple computer monitors on desks",
+   "corr_salt": 0.31909,
+   "corr_cd": 0.27034
+  },
+  "3t7w39": {
+   "atom": "imagenet_2853",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "3t7w39-qdc98t",
+   "category": "traffic light",
+   "judge_desc": "Traffic lights in urban street scenes",
+   "corr_salt": 0.0,
+   "corr_cd": 0.33414
+  },
+  "5qmqb6": {
+   "atom": "imagenet_777",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "5qmqb6-3cu94w",
+   "category": "threshing machine",
+   "judge_desc": "Rustic farm equipment and structures",
+   "corr_salt": 0.11667,
+   "corr_cd": -0.00127
+  },
+  "6fbzec": {
+   "atom": "coco_2464",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "6fbzec-zg7rvk",
+   "category": "dog, fire hydrant",
+   "judge_desc": "Presence of dogs in various settings",
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "6n3kzv": {
+   "atom": "imagenet_1859",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "6n3kzv-peajyg",
+   "category": "comic book",
+   "judge_desc": "Cartoon characters and comic book elements",
+   "corr_salt": 0.35683,
+   "corr_cd": 0.0
+  },
+  "725s7j": {
+   "atom": "imagenet_1874",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "725s7j-x4pfvu",
+   "category": "shower cap",
+   "judge_desc": "Presence of young children and caregivers",
+   "corr_salt": 0.06827,
+   "corr_cd": 0.06827
+  },
+  "7ptq2m": {
+   "atom": "coco_4205",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "7ptq2m-uk2jy6",
+   "category": "apple, banana, car, person",
+   "judge_desc": "Fresh produce in market stalls",
+   "corr_salt": 0.0,
+   "corr_cd": 0.40813
+  },
+  "buvpnt": {
+   "atom": "imagenet_3178",
+   "dataset": "imagenet",
+   "stratum": "Delta",
+   "pos": "buvpnt-x34fwr",
+   "category": "Band-Aid",
+   "judge_desc": "Bandages or tape on skin",
+   "corr_salt": 0.15079,
+   "corr_cd": -0.00079
+  },
+  "bze766": {
+   "atom": "imagenet_3473",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "bze766-kvrwk8",
+   "category": "doormat",
+   "judge_desc": "Bold, high-contrast text or logos",
+   "corr_salt": -0.00168,
+   "corr_cd": -0.00168
+  },
+  "eth9zv": {
+   "atom": "imagenet_2162",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "eth9zv-z7kugn",
+   "category": "entertainment center",
+   "judge_desc": "Wooden bookshelves filled with books",
+   "corr_salt": -0.00159,
+   "corr_cd": -0.00159
+  },
+  "qk8fzr": {
+   "atom": "coco_1874",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "qk8fzr-69xrjz",
+   "category": "cake, car, cup, dining table, person, spoon",
+   "judge_desc": "Children eating cake outdoors",
+   "corr_salt": 0.0,
+   "corr_cd": 0.34388
+  },
+  "tgnagq": {
+   "atom": "coco_2486",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "tgnagq-aecey5",
+   "category": "cake, dining table",
+   "judge_desc": "Presence of food and dining setting",
+   "corr_salt": 0.0,
+   "corr_cd": 0.17446
+  },
+  "wkft2a": {
+   "atom": "coco_1118",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "wkft2a-dz2fta",
+   "category": "person, surfboard",
+   "judge_desc": "Presence of water and beach activities",
+   "corr_salt": 0.42296,
+   "corr_cd": 0.2646
+  },
+  "wtfn6x": {
+   "atom": "coco_5064",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "wtfn6x-djwgf3",
+   "category": "person, skateboard",
+   "judge_desc": "Skateboarding in action",
+   "corr_salt": 0.55503,
+   "corr_cd": 0.14067
+  },
+  "wv3grt": {
+   "atom": "imagenet_5911",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "wv3grt-vxg5m5",
+   "category": "mountain",
+   "judge_desc": "Presence of life jackets or safety gear",
+   "corr_salt": 0.0,
+   "corr_cd": 0.0
+  },
+  "wwb4p6": {
+   "atom": "imagenet_1355",
+   "dataset": "imagenet",
+   "stratum": "R",
+   "pos": "wwb4p6-zycppb",
+   "category": "corn",
+   "judge_desc": "Presence of mashed potatoes",
+   "corr_salt": 0.24988,
+   "corr_cd": 0.0
+  },
+  "y2v2ec": {
+   "atom": "coco_852",
+   "dataset": "coco",
+   "stratum": "R",
+   "pos": "y2v2ec-59v44p",
+   "category": "bottle, bowl, chair, microwave, oven, refrigerator",
+   "judge_desc": "Wooden cabinets in kitchen",
+   "corr_salt": 0.38575,
+   "corr_cd": 0.38575
+  },
+  "zvx5c8": {
+   "atom": "coco_2385",
+   "dataset": "coco",
+   "stratum": "Delta",
+   "pos": "zvx5c8-pg4qhd",
+   "category": "car, chair, person, wine glass",
+   "judge_desc": "People holding wine glasses",
+   "corr_salt": 0.34775,
+   "corr_cd": 0.0
+  }
+ },
+ "case": "Cas A0 \u00b7 haut 0 : les 9 premi\u00e8res du top 25 (actuel) \u00b7 bas A : jumelle la plus proche, sans plafond par cat\u00e9gorie ni juge"
+}

@@ -1,0 +1,701 @@
+{
+ "format": 2,
+ "version": "2026-10-13-v6-protob-harda1",
+ "source": "stimuli_hard_a1",
+ "created": "2026-10-23 17:30:50",
+ "note": "Image files are img/<code>.jpg. Codes are opaque; the codebook that decodes them is not published.",
+ "cells": [
+  [
+   "3mvu8r",
+   "6fbzec",
+   "tgnagq",
+   "wkft2a",
+   "y2v2ec"
+  ],
+  [
+   "2g7qgy",
+   "7ptq2m",
+   "qk8fzr",
+   "wtfn6x",
+   "zvx5c8"
+  ],
+  [
+   "725s7j",
+   "bze766",
+   "eth9zv",
+   "wv3grt",
+   "wwb4p6"
+  ],
+  [
+   "37sdmu",
+   "3t7w39",
+   "5qmqb6",
+   "6n3kzv",
+   "buvpnt"
+  ]
+ ],
+ "practice": [],
+ "catch": [],
+ "neurons": {
+  "2g7qgy": {
+   "top": [
+    "2g7qgy-xeab9a",
+    "2g7qgy-54c845",
+    "2g7qgy-2cbdwa",
+    "2g7qgy-m6a9yn",
+    "2g7qgy-k4mqqa",
+    "2g7qgy-ghv77q",
+    "2g7qgy-rv6rf8",
+    "2g7qgy-4vg62d",
+    "2g7qgy-2pg4ve"
+   ],
+   "bottom": [
+    "2g7qgy-qnp3p5",
+    "2g7qgy-79utjq",
+    "2g7qgy-gzuhzn",
+    "2g7qgy-zshac6",
+    "2g7qgy-f48p77",
+    "2g7qgy-u7eppn",
+    "2g7qgy-8zjez4",
+    "2g7qgy-sy86em",
+    "2g7qgy-d4ub9p"
+   ],
+   "pair": [
+    "2g7qgy-79pzrw",
+    "2g7qgy-fqqfu6"
+   ],
+   "names": {
+    "B": "fireplace",
+    "C": "mouth",
+    "D": "bedrooms"
+   }
+  },
+  "37sdmu": {
+   "top": [
+    "37sdmu-ztv5p6",
+    "37sdmu-brfprs",
+    "37sdmu-zg9asm",
+    "37sdmu-2ghz5u",
+    "37sdmu-syuuur",
+    "37sdmu-gsddt2",
+    "37sdmu-xpys8c",
+    "37sdmu-xrqs8q",
+    "37sdmu-bz763f"
+   ],
+   "bottom": [
+    "37sdmu-ychy3g",
+    "37sdmu-yv68ds",
+    "37sdmu-yppkq9",
+    "37sdmu-jdsq3e",
+    "37sdmu-rds6xm",
+    "37sdmu-gtv9th",
+    "37sdmu-yz88xb",
+    "37sdmu-w6t697",
+    "37sdmu-vak6yd"
+   ],
+   "pair": [
+    "37sdmu-49dy5w",
+    "37sdmu-n2n63q"
+   ],
+   "names": {
+    "B": "sail",
+    "C": "knee",
+    "D": "sailing"
+   }
+  },
+  "3mvu8r": {
+   "top": [
+    "3mvu8r-q6hu2g",
+    "3mvu8r-desmdq",
+    "3mvu8r-gm9tmf",
+    "3mvu8r-7y9wrw",
+    "3mvu8r-6ykb8r",
+    "3mvu8r-2x955j",
+    "3mvu8r-wuhm58",
+    "3mvu8r-qv4yh3",
+    "3mvu8r-9xgve7"
+   ],
+   "bottom": [
+    "3mvu8r-rmzuyz",
+    "3mvu8r-nncx3c",
+    "3mvu8r-e4kx66",
+    "3mvu8r-uyrb85",
+    "3mvu8r-9bysr5",
+    "3mvu8r-vvywnz",
+    "3mvu8r-ar5efb",
+    "3mvu8r-xz785d",
+    "3mvu8r-r7tzym"
+   ],
+   "pair": [
+    "3mvu8r-3ta6wk",
+    "3mvu8r-p9mwvc"
+   ],
+   "names": {
+    "B": "office",
+    "C": "suit",
+    "D": "workstations"
+   }
+  },
+  "3t7w39": {
+   "top": [
+    "3t7w39-4z2mmm",
+    "3t7w39-c9ac36",
+    "3t7w39-rpr778",
+    "3t7w39-pm2k3c",
+    "3t7w39-gt3rxd",
+    "3t7w39-fk74v3",
+    "3t7w39-zhpmuk",
+    "3t7w39-6hhnws",
+    "3t7w39-yjpx9t"
+   ],
+   "bottom": [
+    "3t7w39-4635ee",
+    "3t7w39-gz4z57",
+    "3t7w39-epmm7n",
+    "3t7w39-ygu6p2",
+    "3t7w39-tfxyc8",
+    "3t7w39-djv4am",
+    "3t7w39-gmut78",
+    "3t7w39-yerbvb",
+    "3t7w39-b5jy4t"
+   ],
+   "pair": [
+    "3t7w39-dh8amh",
+    "3t7w39-qdc98t"
+   ],
+   "names": {
+    "B": "urban",
+    "C": "musicians",
+    "D": "street"
+   }
+  },
+  "5qmqb6": {
+   "top": [
+    "5qmqb6-v4dpqm",
+    "5qmqb6-6m4pa5",
+    "5qmqb6-9qes74",
+    "5qmqb6-r3q4rt",
+    "5qmqb6-awmudj",
+    "5qmqb6-f8zjkj",
+    "5qmqb6-n8f2xk",
+    "5qmqb6-4emdc7",
+    "5qmqb6-epk4j7"
+   ],
+   "bottom": [
+    "5qmqb6-nxc7tz",
+    "5qmqb6-crazy7",
+    "5qmqb6-86rwby",
+    "5qmqb6-yf5anc",
+    "5qmqb6-gmf8ud",
+    "5qmqb6-fpdums",
+    "5qmqb6-2cz7j2",
+    "5qmqb6-9wejus",
+    "5qmqb6-tp6ex2"
+   ],
+   "pair": [
+    "5qmqb6-3cu94w",
+    "5qmqb6-hk2rrd"
+   ],
+   "names": {
+    "B": "farm",
+    "C": "swim",
+    "D": "machinery"
+   }
+  },
+  "6fbzec": {
+   "top": [
+    "6fbzec-4m77ka",
+    "6fbzec-5chcg9",
+    "6fbzec-3krcjv",
+    "6fbzec-bd6bky",
+    "6fbzec-xfrjjy",
+    "6fbzec-dnpzrh",
+    "6fbzec-q7z6rr",
+    "6fbzec-g3vp55",
+    "6fbzec-y5qsd9"
+   ],
+   "bottom": [
+    "6fbzec-z4aguy",
+    "6fbzec-s7xkdq",
+    "6fbzec-z4h97x",
+    "6fbzec-4nm75f",
+    "6fbzec-y3j63n",
+    "6fbzec-47vghf",
+    "6fbzec-35then",
+    "6fbzec-sbp4fr",
+    "6fbzec-z2zaea"
+   ],
+   "pair": [
+    "6fbzec-hpddhv",
+    "6fbzec-zg7rvk"
+   ],
+   "names": {
+    "B": "bulldog",
+    "C": "beach",
+    "D": "bulldogs"
+   }
+  },
+  "6n3kzv": {
+   "top": [
+    "6n3kzv-4k2f6s",
+    "6n3kzv-wnswnp",
+    "6n3kzv-8nxpsm",
+    "6n3kzv-t3b45u",
+    "6n3kzv-8ecf9f",
+    "6n3kzv-njg7ws",
+    "6n3kzv-6eqq7a",
+    "6n3kzv-wsfrzy",
+    "6n3kzv-2mfmt5"
+   ],
+   "bottom": [
+    "6n3kzv-d2ehwb",
+    "6n3kzv-se6bm4",
+    "6n3kzv-e4jefv",
+    "6n3kzv-5w9ad9",
+    "6n3kzv-ypvv3s",
+    "6n3kzv-7xetyt",
+    "6n3kzv-5ucfcn",
+    "6n3kzv-ky2sxd",
+    "6n3kzv-bfp6fr"
+   ],
+   "pair": [
+    "6n3kzv-p74fbb",
+    "6n3kzv-peajyg"
+   ],
+   "names": {
+    "B": "comics",
+    "C": "kitchen",
+    "D": "reprints"
+   }
+  },
+  "725s7j": {
+   "top": [
+    "725s7j-c6k5cq",
+    "725s7j-7jq28w",
+    "725s7j-gp6rqe",
+    "725s7j-w3e5s9",
+    "725s7j-7sr8pn",
+    "725s7j-9c5hgb",
+    "725s7j-t4k4tj",
+    "725s7j-nk4zpr",
+    "725s7j-8bf8ku"
+   ],
+   "bottom": [
+    "725s7j-8h5gsg",
+    "725s7j-9pxww4",
+    "725s7j-env5cp",
+    "725s7j-xty2xv",
+    "725s7j-mjhxt5",
+    "725s7j-nshua8",
+    "725s7j-a7eaj5",
+    "725s7j-3yknpw",
+    "725s7j-pnxhb2"
+   ],
+   "pair": [
+    "725s7j-mfmszu",
+    "725s7j-x4pfvu"
+   ],
+   "names": {
+    "B": "infant",
+    "C": "athletic",
+    "D": "infant"
+   }
+  },
+  "7ptq2m": {
+   "top": [
+    "7ptq2m-9ha8tx",
+    "7ptq2m-h6y56x",
+    "7ptq2m-4c8kjg",
+    "7ptq2m-r37kk6",
+    "7ptq2m-2u5zwz",
+    "7ptq2m-qcya4p",
+    "7ptq2m-cpnt8m",
+    "7ptq2m-4kdymb",
+    "7ptq2m-2c543m"
+   ],
+   "bottom": [
+    "7ptq2m-62uh5m",
+    "7ptq2m-8845up",
+    "7ptq2m-45w2bw",
+    "7ptq2m-cseqkf",
+    "7ptq2m-tavbvx",
+    "7ptq2m-fgps2z",
+    "7ptq2m-4cfp4p",
+    "7ptq2m-9u8kr7",
+    "7ptq2m-kyxyuu"
+   ],
+   "pair": [
+    "7ptq2m-fhsa8n",
+    "7ptq2m-uk2jy6"
+   ],
+   "names": {
+    "B": "retailers",
+    "C": "speeches",
+    "D": "market"
+   }
+  },
+  "buvpnt": {
+   "top": [
+    "buvpnt-c6qhr2",
+    "buvpnt-wazxv7",
+    "buvpnt-8fpzrh",
+    "buvpnt-acnq2h",
+    "buvpnt-tmpnqu",
+    "buvpnt-gcexda",
+    "buvpnt-afd6js",
+    "buvpnt-jd9wxg",
+    "buvpnt-ceeyz3"
+   ],
+   "bottom": [
+    "buvpnt-fc8apr",
+    "buvpnt-4fzbbc",
+    "buvpnt-kxwaxa",
+    "buvpnt-7ghuey",
+    "buvpnt-5jujts",
+    "buvpnt-bur8fw",
+    "buvpnt-v6828q",
+    "buvpnt-2r2u6g",
+    "buvpnt-scw6pv"
+   ],
+   "pair": [
+    "buvpnt-7m46na",
+    "buvpnt-x34fwr"
+   ],
+   "names": {
+    "B": "patients",
+    "C": "workers",
+    "D": "pierced"
+   }
+  },
+  "bze766": {
+   "top": [
+    "bze766-rvd3df",
+    "bze766-jc975z",
+    "bze766-trpqbk",
+    "bze766-jvp3e2",
+    "bze766-ptb5e4",
+    "bze766-6j999s",
+    "bze766-a64n6g",
+    "bze766-g4t35f",
+    "bze766-6jdcg5"
+   ],
+   "bottom": [
+    "bze766-58zub8",
+    "bze766-j2phc2",
+    "bze766-htjr82",
+    "bze766-2vyqay",
+    "bze766-vymey8",
+    "bze766-4qzwzr",
+    "bze766-w4vdyk",
+    "bze766-mcpkty",
+    "bze766-ps8d4u"
+   ],
+   "pair": [
+    "bze766-hnn6mj",
+    "bze766-kvrwk8"
+   ],
+   "names": {
+    "B": "lettering",
+    "C": "herring",
+    "D": "lettering"
+   }
+  },
+  "eth9zv": {
+   "top": [
+    "eth9zv-ayeus8",
+    "eth9zv-yvakb4",
+    "eth9zv-rtxyuq",
+    "eth9zv-rcwsbc",
+    "eth9zv-8bxzjs",
+    "eth9zv-5yabsp",
+    "eth9zv-4tfftw",
+    "eth9zv-krmxwh",
+    "eth9zv-u9jjmr"
+   ],
+   "bottom": [
+    "eth9zv-qcmkef",
+    "eth9zv-fjammt",
+    "eth9zv-tkvmpd",
+    "eth9zv-dqrtx6",
+    "eth9zv-j2xrsk",
+    "eth9zv-bnqq5z",
+    "eth9zv-gm9u55",
+    "eth9zv-9ef38h",
+    "eth9zv-ce9s3b"
+   ],
+   "pair": [
+    "eth9zv-yn4nag",
+    "eth9zv-z7kugn"
+   ],
+   "names": {
+    "B": "bookshelf",
+    "C": "room",
+    "D": "bookshelf"
+   }
+  },
+  "qk8fzr": {
+   "top": [
+    "qk8fzr-dxy2yd",
+    "qk8fzr-kkzgfp",
+    "qk8fzr-hta55h",
+    "qk8fzr-qp9tyn",
+    "qk8fzr-h5ke2q",
+    "qk8fzr-uhhw2g",
+    "qk8fzr-jspusz",
+    "qk8fzr-xrdx3k",
+    "qk8fzr-umnuv3"
+   ],
+   "bottom": [
+    "qk8fzr-xwxyj9",
+    "qk8fzr-bxjsz5",
+    "qk8fzr-svqscn",
+    "qk8fzr-k6qhev",
+    "qk8fzr-xgsk3r",
+    "qk8fzr-tvpvqc",
+    "qk8fzr-nz5vzn",
+    "qk8fzr-vjmugs",
+    "qk8fzr-fmvav9"
+   ],
+   "pair": [
+    "qk8fzr-69xrjz",
+    "qk8fzr-qwju43"
+   ],
+   "names": {
+    "B": "infant",
+    "C": "retailers",
+    "D": "toddler"
+   }
+  },
+  "tgnagq": {
+   "top": [
+    "tgnagq-mc6yca",
+    "tgnagq-k7fkzp",
+    "tgnagq-a8qd5h",
+    "tgnagq-ewt4ek",
+    "tgnagq-ysahz9",
+    "tgnagq-jnvnca",
+    "tgnagq-c4zrp7",
+    "tgnagq-34bd3d",
+    "tgnagq-xehwvq"
+   ],
+   "bottom": [
+    "tgnagq-bxqh52",
+    "tgnagq-w3pcfs",
+    "tgnagq-pmhmqt",
+    "tgnagq-xdb9yg",
+    "tgnagq-mag7ft",
+    "tgnagq-jsgaje",
+    "tgnagq-9z5wt4",
+    "tgnagq-8shxvy",
+    "tgnagq-68nun8"
+   ],
+   "pair": [
+    "tgnagq-aecey5",
+    "tgnagq-c5yu9t"
+   ],
+   "names": {
+    "B": "poultry",
+    "C": "bridges",
+    "D": "dinners"
+   }
+  },
+  "wkft2a": {
+   "top": [
+    "wkft2a-pq885e",
+    "wkft2a-rndb5s",
+    "wkft2a-yngwvh",
+    "wkft2a-2ffzhe",
+    "wkft2a-a699k2",
+    "wkft2a-j76ccb",
+    "wkft2a-942ftd",
+    "wkft2a-e7gpww",
+    "wkft2a-zrheg2"
+   ],
+   "bottom": [
+    "wkft2a-texgg4",
+    "wkft2a-vv3xgh",
+    "wkft2a-jtq565",
+    "wkft2a-8tzkhj",
+    "wkft2a-ye9anb",
+    "wkft2a-d26phw",
+    "wkft2a-xg9598",
+    "wkft2a-xz4w52",
+    "wkft2a-4f5yxq"
+   ],
+   "pair": [
+    "wkft2a-dz2fta",
+    "wkft2a-s778cy"
+   ],
+   "names": {
+    "B": "beach",
+    "C": "smiling",
+    "D": "surfer"
+   }
+  },
+  "wtfn6x": {
+   "top": [
+    "wtfn6x-w8n3ce",
+    "wtfn6x-pz4rbn",
+    "wtfn6x-kvep4n",
+    "wtfn6x-tb49ae",
+    "wtfn6x-jdk9ww",
+    "wtfn6x-83j3cg",
+    "wtfn6x-eay9h8",
+    "wtfn6x-yxuzey",
+    "wtfn6x-2af7fb"
+   ],
+   "bottom": [
+    "wtfn6x-encr3x",
+    "wtfn6x-gfc9cv",
+    "wtfn6x-3sucje",
+    "wtfn6x-8zhban",
+    "wtfn6x-3hdkhx",
+    "wtfn6x-3hbjgc",
+    "wtfn6x-6h93vj",
+    "wtfn6x-vzxvcp",
+    "wtfn6x-2xegdm"
+   ],
+   "pair": [
+    "wtfn6x-djwgf3",
+    "wtfn6x-z5z3q3"
+   ],
+   "names": {
+    "B": "ramp",
+    "C": "rice",
+    "D": "skateboarding"
+   }
+  },
+  "wv3grt": {
+   "top": [
+    "wv3grt-b27tmx",
+    "wv3grt-jj25y7",
+    "wv3grt-ts9f53",
+    "wv3grt-e9cwvs",
+    "wv3grt-g7cbpf",
+    "wv3grt-cykgkb",
+    "wv3grt-xgwutb",
+    "wv3grt-zg9jjz",
+    "wv3grt-ww2d5v"
+   ],
+   "bottom": [
+    "wv3grt-h5sfb5",
+    "wv3grt-xkacxw",
+    "wv3grt-4x4zub",
+    "wv3grt-6t2nzt",
+    "wv3grt-fhrg4m",
+    "wv3grt-83p9ht",
+    "wv3grt-66qa8e",
+    "wv3grt-cb4q38",
+    "wv3grt-75z9ff"
+   ],
+   "pair": [
+    "wv3grt-edgdv9",
+    "wv3grt-vxg5m5"
+   ],
+   "names": {
+    "B": "canoeing",
+    "C": "earthquakes",
+    "D": "instructors"
+   }
+  },
+  "wwb4p6": {
+   "top": [
+    "wwb4p6-dv6nv2",
+    "wwb4p6-hqaewu",
+    "wwb4p6-h36aks",
+    "wwb4p6-hgdar2",
+    "wwb4p6-c6tyek",
+    "wwb4p6-xdz5vu",
+    "wwb4p6-amvnmh",
+    "wwb4p6-m448yr",
+    "wwb4p6-su847v"
+   ],
+   "bottom": [
+    "wwb4p6-tacjuw",
+    "wwb4p6-6wucjm",
+    "wwb4p6-5bzrpz",
+    "wwb4p6-q3kjqm",
+    "wwb4p6-q8f2gx",
+    "wwb4p6-45duzw",
+    "wwb4p6-gnp5et",
+    "wwb4p6-tqkfrw",
+    "wwb4p6-jvm895"
+   ],
+   "pair": [
+    "wwb4p6-75cr3m",
+    "wwb4p6-zycppb"
+   ],
+   "names": {
+    "B": "meals",
+    "C": "highways",
+    "D": "dinner"
+   }
+  },
+  "y2v2ec": {
+   "top": [
+    "y2v2ec-fygth6",
+    "y2v2ec-drkzsx",
+    "y2v2ec-pk5qek",
+    "y2v2ec-gjx2yk",
+    "y2v2ec-nkpjmp",
+    "y2v2ec-vs22rc",
+    "y2v2ec-kh6sw5",
+    "y2v2ec-yuhs4a",
+    "y2v2ec-veywx2"
+   ],
+   "bottom": [
+    "y2v2ec-43hbva",
+    "y2v2ec-f3qy47",
+    "y2v2ec-2b3r86",
+    "y2v2ec-956772",
+    "y2v2ec-txjjk7",
+    "y2v2ec-ascq65",
+    "y2v2ec-dg6rwq",
+    "y2v2ec-c7c6u4",
+    "y2v2ec-jzav4b"
+   ],
+   "pair": [
+    "y2v2ec-4fxgps",
+    "y2v2ec-59v44p"
+   ],
+   "names": {
+    "B": "kitchen",
+    "C": "mountains",
+    "D": "kitchen"
+   }
+  },
+  "zvx5c8": {
+   "top": [
+    "zvx5c8-nbd5ya",
+    "zvx5c8-u2v5x3",
+    "zvx5c8-h5c7dm",
+    "zvx5c8-he9x37",
+    "zvx5c8-c2xf69",
+    "zvx5c8-wjetvh",
+    "zvx5c8-hbt2e3",
+    "zvx5c8-d5shgw",
+    "zvx5c8-uuh7je"
+   ],
+   "bottom": [
+    "zvx5c8-tphjvr",
+    "zvx5c8-nuhwrg",
+    "zvx5c8-csqvc3",
+    "zvx5c8-kbc3ye",
+    "zvx5c8-rv7mt6",
+    "zvx5c8-jep8f7",
+    "zvx5c8-tgg3cz",
+    "zvx5c8-trp6x3",
+    "zvx5c8-2njbmd"
+   ],
+   "pair": [
+    "zvx5c8-beknuu",
+    "zvx5c8-pg4qhd"
+   ],
+   "names": {
+    "B": "wines",
+    "C": "bookstore",
+    "D": "winery"
+   }
+  }
+ }
+}
