@@ -186,7 +186,8 @@ function validateStimuli(m) {
   if (!cells.length) errs.push("manifest.cells is empty");
   else if (CFG.nTest % cells.length) errs.push("config.nTest (" + CFG.nTest + ") is not a multiple of the " + cells.length + " cells");
   else cells.forEach((c, i) => {
-    if (!Array.isArray(c) || c.length < CFG.nTest / cells.length) errs.push("cell " + i + " holds fewer than " + CFG.nTest / cells.length + " neurons");
+    // debug: a small prototype set (e.g. stimuli_hard_*, 5 neurons per cell) is accepted; makePlan then draws the whole cells
+    if (!Array.isArray(c) || (c.length < CFG.nTest / cells.length && !(CFG.debug && c.length))) errs.push("cell " + i + " holds fewer than " + CFG.nTest / cells.length + " neurons");
   });
   if (!Array.isArray(m.practice) || !Array.isArray(m.catch)) errs.push("manifest.practice and manifest.catch must be lists");
   const ids = cells.flat().concat(m.practice || [], m.catch || []);
@@ -223,7 +224,7 @@ function makePlan(seed) {
   const M = S.manifest;
   const NC = CONDS.length;
   const order = shuffle(CONDS.slice(), rng);      // which conditions receive the rounds left over after an even split
-  const per = CFG.nTest / M.cells.length;
+  const per = Math.min(CFG.nTest / M.cells.length, ...M.cells.map((c) => c.length));   // smaller only for debug prototype sets
   let extra = 0;
   const test = [];
   M.cells.forEach((cell) => {
@@ -790,6 +791,7 @@ function debugBadge(r, chosenSlot) {
   }
   return '<div class="debug-badge ' + src.cls + '">' +
     '<div class="dbg-source">' + esc(src.label) + "</div>" +
+    (S.key && S.key.case ? '<div class="dbg-meta"><b>' + esc(S.key.case) + "</b></div>" : "") +   // make_hard_grid.py sets
     (r.type === "catch" ? '<div class="dbg-catch">ESSAI PIÈGE (voulu) : la bonne image est une copie d\'une des 9 images du haut ' +
       "(contrôle d'attention).</div>" : "") +
     '<div class="dbg-meta">' + esc(S.stimDir) + " " + esc(S.manifest.version) + " · graine " + esc(S.seed) + " · round " + r.round + " · neurone " + esc(r.neuron) +

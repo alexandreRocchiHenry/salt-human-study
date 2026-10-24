@@ -91,6 +91,7 @@ only at the end).
 | `&full=1` | the participant flow instead, with the banner on every round; nothing is sent, the CSV is downloaded at the end and the scores are shown |
 | `&all=1` | browser: every neuron of the set (practice and catch included) |
 | `&proto=a\|b\|c` | prototype set `stimuli_a`, `stimuli_b`, `stimuli_c` (the default `stimuli` is prototype b) |
+| `&proto=hard_a0` ... `hard_b2` | harder reference rows on 20 neurons, 5 per cell (`stimuli_gen/make_hard_grid.py`, 23 Oct. 2026): top row 0 = as now, 1 = 9 drawn among the top 25, 2 = 9 drawn among the top 50; bottom row A = nearest twins with no category cap and no judge, B = as now; `hard_a1` is the author's case C, `hard_b0` the control. The banner names the case. Small sets like these are accepted in debug only |
 | `&seed=<n>` | reproduce a draw (the seed is in the banner and in the data) |
 | `&cond=A\|B\|C\|D` | show one condition on every round |
 | `&resume=1` | with `full=1`: keep the progress in `localStorage`, to test resuming after a reload |
